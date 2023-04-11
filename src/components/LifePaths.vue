@@ -4,11 +4,12 @@
 </script>
 
 <script>
-  import { CharacterData, AvailableLifepathList } from '../character-data';
+  import { CharacterData } from '../character-data';
   export default {
     data() {
       return {
-        characterLP: CharacterData.Lifepaths
+        characterLP: CharacterData.Lifepaths,
+        availableLifepathList: CharacterData.AvailableLifepathList
       }
     },
     methods: {
@@ -22,7 +23,7 @@
 <template>
   <div>
     <b-sidebar id="sidebar-1" title="LifePaths" shadow backdrop no-header>
-      <AvailableLifepaths :available-lifepath-list = "AvailableLifepathList" />
+      <AvailableLifepaths :available-lifepath-list = "availableLifepathList" />
     </b-sidebar>
     <b-row>
       <b-col>
@@ -36,7 +37,7 @@
     <hr />
     <div class="p-3">
       <b-row class="mb-4" v-for="lifePath in characterLP">
-        <SelectedLifepath :lifepath-data = "lifePath" :from-list = "false"/>
+        <SelectedLifepath :lifepath-data = "lifePath" />
       </b-row>
     </div>
   </div>

@@ -19,8 +19,6 @@ export const LeadsToIcons = {
   "Clansman": new LeadIcon("Clansman","hammer")
 }
 
-
-
 class LifepathList {
   constructor(rawJSONdata) {
     this.SettingList = {}
@@ -38,13 +36,22 @@ class LifepathList {
     return filteredList
   }
 
+  DisableWhen(predicate) {
+    for(let setting in this.SettingList) {
+      console.log(setting)
+      for(let lpIndex in this.SettingList[setting]) {
+        let lifepath = this.SettingList[setting][lpIndex]
+        lifepath.disabled = predicate(lifepath)
+      }
+    }
+  }
+
   SettingNameToIcons = (setting, leadsToIcons) => {
     for(let lead in leadsToIcons) {
       if(setting.indexOf(lead) != -1)  return leadsToIcons[lead].icon
     }
   }
 }
-
 
 export class Lifepath {
   constructor(lifepathSetting, lifepathTitle) {
@@ -61,6 +68,7 @@ export class Lifepath {
     this.setting = lifepathSetting,
     this.key_leads = lifePathData.key_leads
     this.isBornLP = lifepathTitle.indexOf("Born") != -1 ? true : false
+    this.disabled = false
 
     this.SetupLpSkills(lifePathData.skills)
     this.SetupLpTraits(lifePathData.traits)

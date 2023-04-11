@@ -24,12 +24,11 @@
 
 <template>
   <b-card 
-    border-variant="secondary"
-    :header-bg-variant="isHovered ? 'secondary' : ''"
-    :header-text-variant="isHovered ? 'white' : ''"
+    header-bg-variant="white"
     header-tag="header" 
     footer-tag="footer"
-    class="p-0">
+    text-variant="muted"
+    class="p-0 my-4">
     <template #header>
       <div>
         <b-row>
@@ -40,7 +39,6 @@
           <b-col cols="2" class="fs-6"><small>Leads To</small></b-col>
           <b-col cols="1" class="d-flex justify-content-between">
             <div></div>
-            <button @click="removeLifepath" type="button" class="btn-close" aria-label="Close"></button>
           </b-col>
         </b-row>
         <b-row>
@@ -51,7 +49,7 @@
             {{ lifepathData.res }}
           </b-col>
           <b-col cols="2">
-            {{ lifepathData.time }}
+            {{ lifepathData.time }} {{ lifepathData.disabled }}
           </b-col>
           <b-col cols="2">
             {{  lifepathData.GetStatString() }}

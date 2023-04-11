@@ -1,17 +1,30 @@
 <script setup>
   import { AvailableLifepathList } from '../character-data';
   import { LeadsToIcons } from '../lifepath'
-  import Lifepath from './SelectedLifepath.vue'
+  import Lifepath from './LifepathChoice.vue'
+  import DisabledLifepath from './LifepathDisabledChoice.vue'
 </script>
 <script>
   export default {
     props: {
-      AvailableLifepathList: Object
+      AvailableLifepathList: Object,
+      showDisabled: false
     }
   }
 </script>
 <template>
   <div>
+    <b-row class="px-4 py-3">
+      <b-col>
+        <h2 class="d-flex justify-content-between">
+          <div></div>
+          <div class="form-check form-switch">
+            <label class="form-check-label" for="flexSwitchCheckDefault">Show All Hidden</label>
+            <input v-model="showDisabled" class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+          </div>
+        </h2>
+      </b-col>
+    </b-row>
     <div class="px-4 py-3" v-for="(settingLifepaths, setting) in AvailableLifepathList.SettingList">
       <div class="separator">
         <h3>
@@ -20,9 +33,12 @@
           <b-icon :icon="AvailableLifepathList.SettingNameToIcons(setting, LeadsToIcons)"></b-icon>
         </h3>
       </div>
-      <div class="py-2" v-for="lifepathData in settingLifepaths">
-        <div>
-          <Lifepath :lifepath-data = "lifepathData" :from-list = "true" />
+      <div v-for="lifepathData in settingLifepaths">
+        <div v-if="lifepathData.disabled">
+          <DisabledLifepath v-show="showDisabled" :lifepath-data = "lifepathData" />
+        </div>
+        <div v-else>
+          <Lifepath :lifepath-data = "lifepathData" />
         </div>
       </div>
     </div>

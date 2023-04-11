@@ -17,6 +17,14 @@
     methods: {
       removeLifepath(event) {
         CharacterData.RemoveLifepath(this.lifepathData)
+      },
+      handleHover(hovered) {
+        if(this.lifepathData.disabled) return
+        this.isHovered = hovered
+      },
+      submitCurrentLifepath(event) {
+        if(this.lifepathData.disabled) return
+        CharacterData.AddLifepath(this.lifepathData.setting, this.lifepathData.id)
       }
     }
   }
@@ -29,7 +37,10 @@
     :header-text-variant="isHovered ? 'white' : ''"
     header-tag="header" 
     footer-tag="footer"
-    class="p-0">
+    v-b-hover="handleHover"
+    @click="submitCurrentLifepath"
+    v-b-toggle.sidebar-1
+    class="p-0 my-4">
     <template #header>
       <div>
         <b-row>
@@ -40,7 +51,6 @@
           <b-col cols="2" class="fs-6"><small>Leads To</small></b-col>
           <b-col cols="1" class="d-flex justify-content-between">
             <div></div>
-            <button @click="removeLifepath" type="button" class="btn-close" aria-label="Close"></button>
           </b-col>
         </b-row>
         <b-row>
@@ -51,7 +61,7 @@
             {{ lifepathData.res }}
           </b-col>
           <b-col cols="2">
-            {{ lifepathData.time }}
+            {{ lifepathData.time }} {{ lifepathData.disabled }}
           </b-col>
           <b-col cols="2">
             {{  lifepathData.GetStatString() }}
