@@ -33,13 +33,12 @@ class Character {
     this.CalculateAvailableLifepaths()
   }
 
+
   CalculateAvailableLifepaths() {
     if(this.availableSettings.length == 0) return this.AvailableLifepathList.DisableWhen((lifepath) => {
       return !lifepath.isBornLP
     })
-    this.AvailableLifepathList.DisableWhen((lifepath) => {
-      return this.availableSettings.indexOf(lifepath.setting) >= 0
-    })
+    this.AvailableLifepathList.ActivateSettings(this)
   }
 
   GetArrayOfAttributes() {
@@ -118,6 +117,7 @@ class Character {
     let currentLifepath = this.Lifepaths[this.Lifepaths.length - 1]
     const settings = [currentLifepath.setting]
     this.availableSettings = settings.concat(currentLifepath.key_leads)
+    console.log(this.availableSettings)
   }
 
   CalculateSkillListChanges() {

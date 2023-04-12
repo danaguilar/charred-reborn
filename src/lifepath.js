@@ -31,6 +31,43 @@ class LifepathList {
     }
   }
 
+  ActivateSettings(CharacterData) {
+    const settingsList  = CharacterData.availableSettings
+    const currentLifepaths = CharacterData.Lifepaths
+    for(let setting in this.SettingList) {
+      for(let lpIndex in this.SettingList[setting]) {
+        let lifepath = this.SettingList[setting][lpIndex]
+        lifepath.disabled = settingsList.indexOf(setting) == -1 || lifepath.isBornLP
+
+        if(!lifepath.disabled && lifepath.requires_expr) {
+          let requirmentsMet = false
+          for(let requirmentIndex in lifepath.requires_expr) {
+            const requirment = lifepath.requires_expr[requirmentIndex]
+            console.log(requirment)
+            for(let lp in currentLifepaths) {
+              if(requirment.indexOf(":") != -1) {
+                console.log(currentLifepaths[lp].RequiredNameWithSetting())
+                if(currentLifepaths[lp].RequiredNameWithSetting() == requirment) {
+                  requirmentsMet = true
+                  break
+                }
+              }
+              else {
+                console.log(currentLifepaths[lp].RequiredName())
+                if(currentLifepaths[lp].RequiredName() == requirment) {
+                  requirmentsMet = true
+                  break
+                }
+              }
+            }
+            if(requirmentsMet) break
+          }
+          lifepath.disabled = !requirmentsMet
+        }
+      }
+    }
+  }
+
   LpInSetting(setting) {
     const filteredList = this.LPList.filter(lp => lp.setting == setting)
     return filteredList
@@ -64,6 +101,7 @@ export class Lifepath {
     this.common_traits = lifePathData.common_traits,
     this.leads = lifePathData.leads.map(lead => LeadsToIcons[lead]),
     this.requires = lifePathData.requires,
+    this.requires_expr = lifePathData.requires_expr
     this.setting = lifepathSetting,
     this.key_leads = lifePathData.key_leads
     this.isBornLP = lifepathTitle.indexOf("Born") != -1 ? true : false
@@ -71,6 +109,14 @@ export class Lifepath {
 
     this.SetupLpSkills(lifePathData.skills)
     this.SetupLpTraits(lifePathData.traits)
+  }
+
+  RequiredName() {
+    return this.id.toLowerCase()
+  }
+
+  RequiredNameWithSetting() {
+    return `${this.setting.toLowerCase()}:${this.RequiredName()}`
   }
 
   SetupLpTraits(lpTraitData) {
