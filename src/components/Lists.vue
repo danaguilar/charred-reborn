@@ -29,6 +29,7 @@
         return CharacterData.GetTotalLPSkillPoints();
       },
       activeSkills() {
+        console.log(CharacterData.AvailableLPSkills)
         return CharacterData.AvailableLPSkills
           .filter(skill => { return skill.active })
           .sort((a, b) => {

@@ -28,16 +28,18 @@ class Character {
     }
     this.SpentPhysical = 0
     this.SpentMental = 0
-    this.AvailableLifepathList = this.CalculateAvailableLifepaths()
-    this.currentSetting = "None"
+    this.availableSettings = []
+    this.AvailableLifepathList = DwarfLPList
+    this.CalculateAvailableLifepaths()
   }
 
   CalculateAvailableLifepaths() {
-    if(!this.AvailableLifepathList) return DwarfLPList.DisableWhen((lifepath) => {
+    if(this.availableSettings.length == 0) return this.AvailableLifepathList.DisableWhen((lifepath) => {
       return !lifepath.isBornLP
     })
-    this.AvailableLifepathList.DisableAll()
-    return DwarfLPList
+    this.AvailableLifepathList.DisableWhen((lifepath) => {
+      return this.availableSettings.indexOf(lifepath.setting) >= 0
+    })
   }
 
   GetArrayOfAttributes() {
@@ -107,7 +109,15 @@ class Character {
     this.CalculateSkillListChanges()
     this.CalculateTraitListChanges()
     this.CreateNewSkillList()
+    this.UpdateAvailableSettings()
     this.CalculateAvailableLifepaths()
+  }
+
+  UpdateAvailableSettings() {
+    if(this.Lifepaths.length == 0) return
+    let currentLifepath = this.Lifepaths[this.Lifepaths.length - 1]
+    const settings = [currentLifepath.setting]
+    this.availableSettings = settings.concat(currentLifepath.key_leads)
   }
 
   CalculateSkillListChanges() {
@@ -115,6 +125,7 @@ class Character {
       let LpUnderTest = this.Lifepaths[i]
       for(let j = 0;  j < i ; j++) {
         let previousLP = this.Lifepaths[j]
+        if(!previousLP.skills) continue
 
         for(let k = 0;  k < LpUnderTest.skills.length; k++) {
           let skillUnderTest = LpUnderTest.skills[k]
@@ -138,9 +149,10 @@ class Character {
   CreateNewSkillList() {
     let newSkillArray = []
     for(const LPIndex in this.Lifepaths) {
-      newSkillArray.push(this.Lifepaths[LPIndex].skills)
+      if(this.Lifepaths[LPIndex].skills) {
+        newSkillArray.push(this.Lifepaths[LPIndex].skills)
+      }
     }
-    if(this.AvailableLPSkills.length == 0) return
     newSkillArray = newSkillArray.flat()
     for(let skillIndex in newSkillArray) {
       const newSkill = newSkillArray[skillIndex]
@@ -159,7 +171,6 @@ class Character {
 
       }
     }
-
     let filteredSkillList = []
     for(let skillIndex in this.AvailableLPSkills) {
       let checkedSkill = this.AvailableLPSkills[skillIndex]

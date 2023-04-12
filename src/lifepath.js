@@ -38,7 +38,6 @@ class LifepathList {
 
   DisableWhen(predicate) {
     for(let setting in this.SettingList) {
-      console.log(setting)
       for(let lpIndex in this.SettingList[setting]) {
         let lifepath = this.SettingList[setting][lpIndex]
         lifepath.disabled = predicate(lifepath)

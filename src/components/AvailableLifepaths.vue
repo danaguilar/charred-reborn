@@ -1,5 +1,4 @@
 <script setup>
-  import { AvailableLifepathList } from '../character-data';
   import { LeadsToIcons } from '../lifepath'
   import Lifepath from './LifepathChoice.vue'
   import DisabledLifepath from './LifepathDisabledChoice.vue'
@@ -33,14 +32,17 @@
           <b-icon :icon="AvailableLifepathList.SettingNameToIcons(setting, LeadsToIcons)"></b-icon>
         </h3>
       </div>
-      <div v-for="lifepathData in settingLifepaths">
-        <div v-if="lifepathData.disabled">
-          <DisabledLifepath v-show="showDisabled" :lifepath-data = "lifepathData" />
-        </div>
-        <div v-else>
-          <Lifepath :lifepath-data = "lifepathData" />
-        </div>
-      </div>
+
+      <b-row>
+        <b-col class="col-6" v-for="(lifepathData, index) in settingLifepaths">
+          <div v-if="lifepathData.disabled">
+            <DisabledLifepath v-show="showDisabled" :lifepath-data = "lifepathData" />
+          </div>
+          <div v-else>
+            <Lifepath :lifepath-data = "lifepathData" />
+          </div>
+        </b-col>
+      </b-row>
     </div>
   </div>
 </template>
