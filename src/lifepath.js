@@ -43,17 +43,14 @@ class LifepathList {
           let requirmentsMet = false
           for(let requirmentIndex in lifepath.requires_expr) {
             const requirment = lifepath.requires_expr[requirmentIndex]
-            console.log(requirment)
             for(let lp in currentLifepaths) {
               if(requirment.indexOf(":") != -1) {
-                console.log(currentLifepaths[lp].RequiredNameWithSetting())
                 if(currentLifepaths[lp].RequiredNameWithSetting() == requirment) {
                   requirmentsMet = true
                   break
                 }
               }
               else {
-                console.log(currentLifepaths[lp].RequiredName())
                 if(currentLifepaths[lp].RequiredName() == requirment) {
                   requirmentsMet = true
                   break

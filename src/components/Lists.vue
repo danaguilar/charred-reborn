@@ -29,7 +29,6 @@
         return CharacterData.GetTotalLPSkillPoints();
       },
       activeSkills() {
-        console.log(CharacterData.AvailableLPSkills)
         return CharacterData.AvailableLPSkills
           .filter(skill => { return skill.active })
           .sort((a, b) => {
@@ -39,17 +38,16 @@
           })
       },
       spentSkillPoints() {
-          return CharacterData.AvailableLPSkills
-            .filter(skill => { return skill.active })
-            .reduce((total, skill) => {
-              return total + skill.pointsSpent
-            }, 0)
+        return CharacterData.SpentSkillPoints()
+      },
+      spentGeneralPoints() {
+        return CharacterData.SpentGeneralSkillPoints()
       }
     },
     methods: {
       rowClass(item, type) {
         if (!item || type !== 'row') return 'table-info'
-        if (item.pointsSpent == 0) return 'text-muted font-weight-light font-italic'
+        if (item.totalPoints == 0) return 'text-muted font-weight-light font-italic'
       }
     }
   }
@@ -83,7 +81,7 @@
                 <h4>{{ currentLPSkillPoints - spentSkillPoints }} / {{ currentLPSkillPoints }}</h4>
               </b-col>
               <b-col>
-                <h4>{{ currentLPSkillPoints - spentSkillPoints }} / {{ currentGeneralSkillPoints }}</h4>
+                <h5>{{ currentGeneralSkillPoints - spentGeneralPoints }} / {{ currentGeneralSkillPoints }}</h5>
               </b-col>
             </b-row>
           </b-col>
@@ -98,10 +96,11 @@
         small
       >
         <template #cell(addPoints)="row">
-          <b-icon icon="plus" @click="row.item.IncrementPoints()"></b-icon>
+          <!-- <b-icon icon="plus" @click="row.item.IncrementPoints()"></b-icon> -->
+          <b-icon icon="plus" @click="characterData.IncrementSkill(row.item)"></b-icon>
         </template>
         <template #cell(removePoints)="row">
-          <b-icon icon="dash" @click="row.item.DecrementPoints()"></b-icon>
+          <b-icon icon="dash" @click="characterData.DecrementSkill(row.item)"></b-icon>
         </template>
         <template #cell(name)="row">
           <strong v-if="row.item.required">{{ row.item.name }}</strong>
@@ -111,10 +110,14 @@
             <small>({{ row.item.roots.map(ele => ele.substring(0,2)).join("/") }})</small>
             {{ row.item.shade }}{{ row.item.CalculateStartingSkills(characterData) }}
         </template>
+        <template #cell(pointsSpent)="row">
+          {{ row.item.pointsSpent }} <span v-if="row.item.generalPointsSpent > 0">({{ row.item.generalPointsSpent }})</span>
+          
+        </template>
         <template #cell(final)="row">
-            <div v-show="row.item.pointsSpent == 0">-</div>
-            <div v-show="row.item.pointsSpent != 0">
-            {{ row.item.shade }}{{ row.item.CalculateStartingSkills(characterData) + row.item.pointsSpent }}
+            <div v-show="row.item.totalPoints == 0">-</div>
+            <div v-show="row.item.totalPoints != 0">
+            {{ row.item.shade }}{{ row.item.CalculateStartingSkills(characterData) + row.item.totalPoints }}
             </div>
         </template>
         

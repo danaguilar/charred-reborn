@@ -97,7 +97,9 @@ export class Skill {
     const skillRoots = skillsData[skillName] ? skillsData[skillName]["roots"] : ["Perception"]
     this.name = skillName
     this.roots = skillRoots
+    this.totalPoints = 0
     this.pointsSpent = 0
+    this.generalPointsSpent = 0
     this.shade = Shade.Black
     this.final = 0
     this.firstSkill = isRequired
@@ -107,11 +109,25 @@ export class Skill {
 
   DecrementPoints() {
     let minPoints = this.required ? 1 : 0
-    if(this.pointsSpent - 1 >= minPoints)  this.pointsSpent--
+    if(this.pointsSpent - 1 >= minPoints) {
+      this.pointsSpent--
+      this.totalPoints--
+    }
+  }
+
+  IncrementGeneralPoints() {
+    this.generalPointsSpent++
+    this.totalPoints++
+  }
+  
+  DecrementGeneralPoints() {
+    this.generalPointsSpent--
+    this.totalPoints--
   }
 
   IncrementPoints() {
     this.pointsSpent++
+    this.totalPoints++
   }
 
   IsRequired() {
@@ -121,10 +137,11 @@ export class Skill {
   SetRequired(isRequired) {
     if(this.required == true && isRequired == false && this.pointsSpent == 1) {
       this.pointsSpent = 0
+      this.totalPoints = 0
     }
     this.required = isRequired
     if(isRequired && this.pointsSpent < 1) {
-      this.pointsSpent = 1
+      this.IncrementPoints()
     }
   }
 

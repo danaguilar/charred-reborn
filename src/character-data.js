@@ -296,6 +296,39 @@ class Character {
     }
   }
 
+  IncrementSkill(skill) {
+    if(this.GetTotalLPSkillPoints() > this.SpentSkillPoints()) {
+      skill.IncrementPoints()
+    }
+    else if(this.GetTotalGeneralSkillPoints() - this.SpentGeneralSkillPoints() > 0 ) {
+      skill.IncrementGeneralPoints()
+    }
+  }
+
+  DecrementSkill(skill) {
+    if(skill.generalPointsSpent > 0) {
+      skill.DecrementGeneralPoints()
+    }
+    else if(this.SpentSkillPoints() > 0) {
+      skill.DecrementPoints()
+    }
+  }
+
+  SpentGeneralSkillPoints() {
+    return this.AvailableLPSkills
+      .filter(skill => { return skill.active })
+      .reduce((total, skill) => {
+        return total + skill.generalPointsSpent
+      }, 0)
+  }
+
+  SpentSkillPoints() {
+      return this.AvailableLPSkills
+        .filter(skill => { return skill.active })
+        .reduce((total, skill) => {
+          return total + skill.pointsSpent
+        }, 0)
+  }
   GetTotalTraitPoints() {
     return this.Lifepaths.reduce(
       (runningTps, LP) => { return runningTps + LP.traitPts }, 0
@@ -304,7 +337,12 @@ class Character {
 
   GetTotalLPSkillPoints() {
     return this.Lifepaths.reduce((runningTotal, LP) => {
-      return runningTotal + LP.skillPts
+      if(LP.skillPts) {
+        return runningTotal + LP.skillPts
+      }
+      else {
+        return runningTotal
+      }
     },0)
   }
 
