@@ -29,6 +29,7 @@ class Character {
     this.SpentPhysical = 0
     this.SpentMental = 0
     this.availableSettings = []
+    this.GeneralSkills = []
     this.AvailableLifepathList = DwarfLPList
     this.CalculateAvailableLifepaths()
   }

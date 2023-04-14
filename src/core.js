@@ -172,7 +172,6 @@ export class Skill {
   }
 }
 
-
 export class Trait {
  constructor(traitName, isRequired) {
     this.name = traitName,
@@ -183,3 +182,32 @@ export class Trait {
     this.active = true
  }
 }
+
+class SkillListItem {
+  constructor(name, jsonData) {
+    this.name = name
+    this.roots = jsonData.roots
+    this.type = jsonData.type
+    this.isMagic = !!jsonData.magic
+    this.unlockonly = !!jsonData.unlockonly
+  }
+}
+
+class SkillList {
+  constructor(jsonData, stock) {
+    for(let skillName in jsonData) {
+      // Ignore wises
+      if(skillName.indexOf("-wise") != -1) continue
+      let skillData = jsonData[skillName]
+      // Skip skills that cannot be learned by the given stock
+      if(!skillData.stock || skillData.stock == stock) {
+        if(!this[skillData.type]) {
+          this[skillData.type] = []
+        }
+        this[skillData.type].push(new SkillListItem(skillName, skillData))
+      }
+    }
+  }
+}
+
+export const DwarfSkillList = new SkillList(skillsJSON, "dwarven")

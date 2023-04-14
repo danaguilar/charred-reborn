@@ -1,3 +1,8 @@
+<script setup>
+  import SkillList from './SkillList.vue'
+
+</script>
+
 <script>
   import { CharacterData } from '../character-data';
   export default {
@@ -37,6 +42,9 @@
             if(!a.required && b.required) return 1
           })
       },
+      activeGeneralSkill() {
+        return CharacterData.GeneralSkills
+      },
       spentSkillPoints() {
         return CharacterData.SpentSkillPoints()
       },
@@ -65,7 +73,7 @@
       <template #header>
         <b-row align-v="center">
           <b-col>
-            <h2>Skill </h2>
+            <h2>Skills</h2>
           </b-col>
           <b-col>
             <b-row>
@@ -120,8 +128,73 @@
             {{ row.item.shade }}{{ row.item.CalculateStartingSkills(characterData) + row.item.totalPoints }}
             </div>
         </template>
+        <template #thead-top="data">
+          <h5>Lifepath</h5>
+        </template>
         
       </b-table>
+      <b-table
+        :items="activeGeneralSkill"
+        :fields="fields"
+        :tbody-tr-class="rowClass"
+        small
+      >
+        <template #thead-top="data">
+          <h5>General</h5>
+        </template>
+
+        <template #custom-foot>
+          <b-tr>
+            <b-th colspan="5">
+              <b-button  v-b-modal.skillListModal size="sm" block variant="outline-primary" style="width: 100%">
+                <b-icon icon="plus"></b-icon>
+                  Add General Skill
+                <b-icon icon="plus"></b-icon>
+              </b-button>
+            </b-th>
+          </b-tr>
+        </template>
+
+        <template #cell(addPoints)="row">
+          <b-icon icon="plus" @click="characterData.IncrementSkill(row.item)"></b-icon>
+        </template>
+        <template #cell(removePoints)="row">
+          <b-icon icon="dash" @click="characterData.DecrementSkill(row.item)"></b-icon>
+        </template>
+        <template #cell(name)="row">
+          <strong v-if="row.item.required">{{ row.item.name }}</strong>
+          <div v-else>{{ row.item.name }}</div>
+        </template>
+        <template #cell(root)="row">
+            <small>({{ row.item.roots.map(ele => ele.substring(0,2)).join("/") }})</small>
+            {{ row.item.shade }}{{ row.item.CalculateStartingSkills(characterData) }}
+        </template>
+        <template #cell(pointsSpent)="row">
+          {{ row.item.pointsSpent }} <span v-if="row.item.generalPointsSpent > 0">({{ row.item.generalPointsSpent }})</span>
+          
+        </template>
+        <template #cell(final)="row">
+            <div v-show="row.item.totalPoints == 0">-</div>
+            <div v-show="row.item.totalPoints != 0">
+            {{ row.item.shade }}{{ row.item.CalculateStartingSkills(characterData) + row.item.totalPoints }}
+            </div>
+        </template>
+      </b-table>
     </b-card>
+
+  <b-modal 
+    id="skillListModal" 
+    size="xl" 
+    centered 
+    footerClass="p-0 border-top-0"
+    title="Skill List">
+    <template #modal-header>
+      <h2>Skills</h2>
+    </template>
+    <template #modal-footer>
+      <span></span>
+    </template>
+    <SkillList />
+  </b-modal>
   </div>
 </template>

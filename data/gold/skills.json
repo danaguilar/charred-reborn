@@ -2,17 +2,23 @@
   "Accounting": {
     "roots": [
       "Perception"
-    ]
+    ],
+    "type": "Academic",
+    "desc": "Accountants keep track of expenses, income, stocks and taxes. This skill is primarily used to recover taxed Resources."
   },
   "Acting": {
     "roots": [
       "Perception"
-    ]
+    ],
+    "type": "Special",
+    "desc": "The skill of imitation and recitation used to affect a performance"
   },
   "Administration": {
     "roots": [
       "Perception"
-    ]
+    ],
+    "type": "Special",
+    "desc": "Administraction is the skill of running a business or organization. This skill is primarily used to recover taxed Resources."
   },
   "Ages Of The Etharch": {
     "stock": "elven",
@@ -20,17 +26,23 @@
     "roots": [
       "Will",
       "Perception"
-    ]
+    ],
+    "type": "Academic",
+    "desc": "This is a specialized History skill relating to the ages of the Etharchs"
   },
   "Alchemy": {
     "roots": [
       "Perception"
-    ]
+    ],
+    "type": "Sorcerous",
+    "desc": "Alchemy is the distillation of materials in order to divine their essence. Also, alchemists can create mixtures of arcane substances to generate a specific effect."
   },
   "Almanac": {
     "roots": [
       "Perception"
-    ]
+    ],
+    "type": "Peasant",
+    "desc": "This particular and peculiar skill comprises a deep traditional and historical knowledge of the seaons, tides, weather, lunar phaces and other climatic phenomena. A character with eh Almanac skill can always tell the time of year, nearly to the day. In addition, he can make accurate predictions about this season's weather."
   },
   "Althing-wise": {
     "roots": [
@@ -45,50 +57,68 @@
   "Amercement": {
     "roots": [
       "Perception"
-    ]
+    ],
+    "type": "School of Thought",
+    "desc": "Amercement is the knowledge of fees and criminal fines given as judicial punishment. Such amercements are almost always offered in place of corproal punishment. Using this skill the character may set the Resouces obstacle for a fine. The skill test obstacles indicate how accurate and just the amount is according to the law."
   },
   "Ancestral Jaw": {
     "stock": "wolfish",
     "roots": [
       "Will"
-    ]
+    ],
+    "desc": "This song is very similar to the Song of the Sword. It allows the Spirit Howler to summon ancient powers into his jaws, transforming them into a spirit weapon, or worse."
   },
   "Ancient Languages": {
     "roots": [
       "Perception"
-    ]
+    ],
+    "type": "Academic",
+    "desc": "Through this skill, the character knows defunct languages appropriate to the game setting."
   },
   "Ancient Ways": {
     "stock": "wolfish",
     "roots": [
       "Perception"
-    ]
+    ],
+    "type": "Sorcerous",
+    "desc": "This skill is the wolf equivalent of the Spirit Binding skill. Wolves must have the Mark fo the Ancient trait to use this skill."
   },
   "Anatomy": {
     "roots": [
       "Perception"
-    ]
+    ],
+    "type": "Academic",
+    "desc": "Anatomy is the study of the human body's internal funtions and structure."
   },
   "Animal Husbandry": {
     "roots": [
       "Will"
-    ]
+    ],
+    "type": "Peasant",
+    "desc": "Animal Husbandry involves the raising, care and breeding of animals."
   },
   "Antiphon Union Training": {
     "stock": "elven",
     "roots": [
       "Will"
-    ]
+    ],
+    "type": "Artisan",
+    "unlockonly": "true",
+    "desc": "This specialized training allows the Elven artisan to blend his crafts or arts with spell songs. Any of the items or materials he creates via a skill song can be imbued with the power of a spell song."
   },
   "Apothecary": {
     "roots": [
       "Perception"
-    ]
+    ],
+    "type": "Medicinal",
+    "desc": "Apothecaries use herbs, roots, minerals and animalia to cure and prevent common and chronic ailments. Apothecaries may mitigate the symptoms of infection and illness; they may also alleviate wound die penalties."
   },
   "Appraisal": {
     "roots": [
       "Perception"
-    ]
+    ],
+    "type": "Special",
+    "desc": "This skill is used to judge the value or worth of certain items such as jewelry, gems, artwork and antiquities. The Appraisal skill can be used by a player before testing his Resources to ensure that he is getting an accurate price."
   },
   "Archcraft": {
     "stock": "elven",
@@ -96,24 +126,33 @@
     "roots": [
       "Will",
       "Agility"
-    ]
+    ],
+    "type": "Artisan",
+    "desc": "Archcraft is a comprehensive discipline teaching the principles of both architecture and engineering. Using the broad skill, Elven artisans create halls of sweeping beauty and depth. Combined with Antiphon and various spell songs, this skill can be used to create enchanged dwellings for the Elves."
   },
   "Architect": {
     "roots": [
       "Perception"
-    ]
+    ],
+    "type": "Academic",
+    "desc": "Architects possess knowledge of the design and construction of complex structures, such as buildings, arches and bridges. This skill can be used in game to draw accurate plans of a proposed strucutre, attempt to draw structural plans for an extant building or use existing plans and designs to navigate buildings and structure."
   },
   "Armor Training": {
     "roots": [
       "Power",
       "Speed"
-    ]
+    ],
+    "type": "Martial",
+    "unlockonly": "true",
+    "desc": "To the unaccustomed, armor is heavy, hot and uncomfortable. Characters without armor trainig suffer penalties when wearing armor. Armor Training mitigates these penalties completely."
   },
   "Armorer": {
     "roots": [
       "Perception",
       "Agility"
-    ]
+    ],
+    "type": "Craftsman",
+    "desc": "This specialized and dedicated craft is used to manufacture personal protection worn by soldiers in battle. The skill's knowledge base is diverse, encompassing aspects of a blacksmith, a tailer and a tanner."
   },
   "Army-wise": {
     "roots": [
@@ -124,7 +163,9 @@
     "roots": [
       "Perception",
       "Agility"
-    ]
+    ],
+    "type": "Special",
+    "desc": "This skill allows the character to use common household items to quickly set a building on fire."
   },
   "Artificer-wise": {
     "roots": [
@@ -134,36 +175,49 @@
   "Artillerist": {
     "roots": [
       "Perception"
-    ]
+    ],
+    "type": "Military",
+    "desc": "Artillerists use basic physics and mathematics topped with some healthy guesswork to lob indirect-fire projectiles from war machines. They also know the designs for constructing various war engines."
   },
   "Artillery Hand": {
+    "stock": "dwarven",
     "roots": [
       "Perception",
       "Agility"
-    ]
+    ],
+    "type": "Special",
+    "desc": "This skill allows the character to assemble and dismantle artillery pieces, as well as fire direct-fire type mechanisms like siege crossbows or ballistae."
   },
   "Astrology": {
     "roots": [
       "Perception"
-    ]
+    ],
+    "type": "Academic",
+    "desc": "The stuy of the stars, the planets and the zodiac - astrology is a deep and ancient science that describes the relations of the celestial sphere to the terrestrial."
   },
   "Atilliator": {
     "roots": [
       "Perception",
       "Agility"
-    ]
+    ],
+    "type": "Craftsman",
+    "desc": "The manufacture and maintenance of crossbows."
   },
   "Aura Reading": {
     "roots": [
       "Will",
       "Perception"
-    ]
+    ],
+    "type": "Sorcerous",
+    "desc": "This is the talent to read an aura and see within it the presnet, future and past. Aura readers can deciper gossamer veils of emotion, deception, clarity and purpose. This skill does not grant the character the ability to see auras. That ability must be acquired through a trait, prayer or spell."
   },
   "Axe": {
     "roots": [
       "Power",
       "Agility"
-    ]
+    ],
+    "type": "Martial",
+    "desc": "This skill teachs the character how to use one and two-handed axes to chop off arms, legs and heads in battle. The Axe skill can be used to make blade strikes with the weapon, as well as strikes with the haft."
   },
   "Back Alley-wise": {
     "roots": [
@@ -179,14 +233,18 @@
     "roots": [
       "Perception",
       "Agility"
-    ]
+    ],
+    "type": "Peasant",
+    "desc": "His bread, flatcakes and pastries make the baker an important fixture in any civilized town."
   },
   "Ballad Of History": {
     "stock": "elven",
     "magic": 1,
     "roots": [
       "Perception"
-    ]
+    ],
+    "type": "Academic",
+    "desc": "Elves learn their history and that of many others in mnemonic songs."
   },
   "Banner-wise": {
     "roots": [
@@ -207,14 +265,18 @@
     "stock": "orcish",
     "roots": [
       "Hatred"
-    ]
+    ],
+    "type": "Artisan",
+    "desc": "This skill blends Architect and Engineer for the purpose of creating the looming tower fortresses in which the Orcs dwell. Also, using this skill, Orcs may corrupt or adopt caves or pre-existing towers and turn them into something more suitable to the horde's taste."
   },
   "Beer Appraisal": {
     "stock": "dwarven",
     "roots": [
       "Will",
       "Perception"
-    ]
+    ],
+    "type": "Craftsman",
+    "desc": "Years of training are required to fine-tune the sensitive tast of a discerning Dwarf. But once hones, said taste can determine the type of grain used, the type and length of the brewing, how long it has been in the cask and even the wood of the barrel."
   },
   "Beer-wise": {
     "roots": [
@@ -224,12 +286,16 @@
   "Begging": {
     "roots": [
       "Will"
-    ]
+    ],
+    "type": "Social",
+    "desc": "Begging can elicit a few coins from the victim (1D of cash). It may also be used to replenish taxed Resources."
   },
   "Bird Husbandry": {
     "roots": [
       "Will"
-    ]
+    ],
+    "type": "Forester",
+    "desc": "Bird Husbandry is the art of raising and caring for our avian friends."
   },
   "Black Legion-wise": {
     "stock": "orcish",
@@ -243,29 +309,39 @@
     "roots": [
       "Will",
       "Agility"
-    ]
+    ],
+    "type": "Craftsman",
+    "desc": "This is the skill with which Dwarves caret all their mundane and household metals. However, the Artificers know a secret or two and may imbue even their pots and horseshoes with intense quality."
   },
   "Blacksmith": {
     "roots": [
       "Agility",
       "Power"
-    ]
+    ],
+    "type": "Craftsman",
+    "desc": "A blacksmith forges iron and steel tools, implements and weapons. This is an arduous and time-consuming task, requiring tools and a workshop. Blacksmith can also be used to replenish taxed Resources if the character can find a suitable place to ply his trade."
   },
   "Bloodletting": {
     "roots": [
       "Perception"
-    ]
+    ],
+    "type": "Medicinal",
+    "desc": "Bloodletters believe that when a person is ill, his blood is contaminated with disease and impurities. By draining blood from the system, the bloodletter seeks to purify him."
   },
   "Boatwright": {
     "roots": [
       "Perception",
       "Agility"
-    ]
+    ],
+    "type": "Craftsman",
+    "desc": "This skill allows the character to construct small watercraft, including canoes, dugouts, barges and planked and tarred longboats."
   },
   "Bow": {
     "roots": [
       "Agility"
-    ]
+    ],
+    "type": "Martial",
+    "desc": "The bow is a simple, effective, tension-drawn weapon that launces this shafts at high velocity. This skill allows character to use said device as a weapon in battle."
   },
   "Bowcraft": {
     "stock": "elven",
@@ -273,35 +349,47 @@
     "roots": [
       "Will",
       "Agility"
-    ]
+    ],
+    "type": "Craftsman",
+    "desc": "This skill counts as Bowyer and Fletcher."
   },
   "Bowyer": {
     "roots": [
       "Perception",
       "Agility"
-    ]
+    ],
+    "type": "Craftsman",
+    "desc": "A Bowyer creates bows and arrows from suitable wood. He also knows how to make bowstrings from gut."
   },
   "Boxing (Martial Arts)": {
     "roots": [
       "Power",
       "Agility"
-    ]
+    ],
+    "type": "Martial",
+    "desc": "This is the blanket term used to describe all trained, unarmed \"martial arts\". Boxing and Martial Arts skills allow a character to use all attack, defense, basic and special actions."
   },
   "Brawling": {
     "roots": [
       "Power"
-    ]
+    ],
+    "type": "Martial",
+    "desc": "Brawling is the \"undisciplined\" side of bare-fisted combat. Brawling grants access to attack, defense and basic actions, but not special actions."
   },
   "Brazen Horn Of Despair": {
     "stock": "orcish",
     "roots": [
       "Hatred"
-    ]
+    ],
+    "type": "Musical",
+    "desc": "Cavernous horns are sounded before the Orcs join battle. The horns strick one note: Despair"
   },
   "Brewer": {
     "roots": [
       "Perception"
-    ]
+    ],
+    "type": "Craftsman",
+    "desc": "A Brewer is a specialized miller who grinds grain to ferment into alcohol."
   },
   "Bribe-wise": {
     "roots": [
@@ -312,7 +400,9 @@
     "stock": "orcish",
     "roots": [
       "Hatred"
-    ]
+    ],
+    "type": "Social",
+    "desc": "The most cunning and brutal of Orcs learn how to channel their own inner fires to cow their brethren. Brutal Intimidation is special Intimidation skill, rooted from Hatred."
   },
   "Burden Of The Crown-wise": {
     "roots": [
@@ -322,13 +412,17 @@
   "Bureaucracy": {
     "roots": [
       "Will"
-    ]
+    ],
+    "type": "Special",
+    "desc": "Bureacracy is the knowledge of the hierarchies within a codified goverment of officials. This skill allows characters to navigate said structures in order to accomplish certain tasks or impel the bureaucracy to move in an certain direction. "
   },
   "Butchery": {
     "roots": [
       "Perception",
       "Agility"
-    ]
+    ],
+    "type": "Peasant",
+    "desc": "Butchers know how to kill, cut and carve an animal or carcass into edible portions."
   },
   "Cadence-wise": {
     "roots": [
@@ -341,13 +435,17 @@
     "roots": [
       "Perception",
       "Agility"
-    ]
+    ],
+    "type": "Peasant",
+    "desc": "Call of the Wild is used to capture or kill prey animals in the wild so that they might be consumed as food."
   },
   "Calligraphy": {
     "roots": [
       "Perception",
       "Agility"
-    ]
+    ],
+    "type": "Academic",
+    "desc": "Calligraphy is a formal, stylized handwriting that is required for communicating with religious, royal or governmental bodies."
   },
   "Campaign-wise": {
     "roots": [
@@ -363,25 +461,33 @@
     "roots": [
       "Perception",
       "Agility"
-    ]
+    ],
+    "type": "Craftsman",
+    "desc": "A carpenter can select suitable trees, cut the lumber and use it to build structures, implements and furniture. Carpentry is a great way to replenish taxed Resources."
   },
   "Cartography": {
     "roots": [
       "Perception",
       "Agility"
-    ]
+    ],
+    "type": "Academic",
+    "desc": "Cartography is the school of map-making. This skill imparts a hand for illustration and an eye for detail. And since Cartography is somewhat a language of its own, this skill also allows the interpretation of other maps."
   },
   "Cartwright": {
     "roots": [
       "Perception",
       "Agility"
-    ]
+    ],
+    "type": "Craftsman",
+    "desc": "Cartwrights build wheeled conveyances to be haulted by animals."
   },
   "Carving": {
     "roots": [
       "Perception",
       "Agility"
-    ]
+    ],
+    "type": "Craftsman",
+    "desc": "Carving is the careful shaping and engraving of wood."
   },
   "Cave-in-wise": {
     "roots": [
@@ -402,7 +508,9 @@
     "roots": [
       "Perception",
       "Agility"
-    ]
+    ],
+    "type": "Craftsman",
+    "desc": "The Chandler skill allows characters to make candles from wax and tallow."
   },
   "Chattel-wise": {
     "roots": [
@@ -417,18 +525,24 @@
   "Child Rearing": {
     "roots": [
       "Will"
-    ]
+    ],
+    "type": "Social",
+    "desc": "Child-Rearing is used to raise children with the proper values and manners. This skill can also be used as Instruction, Cooking, and Field Dressing, but only for the benefit of children."
   },
   "Chronology Of Kings": {
     "stock": "dwarven",
     "roots": [
       "Perception"
-    ]
+    ],
+    "type": "Academic",
+    "desc": "A ballad of history, telling the story of all the great Dwarven kings, their deeds and their riches."
   },
   "Church Law": {
     "roots": [
       "Perception"
-    ]
+    ],
+    "type": "School of Thought",
+    "desc": "This is a specialized legal skill dealing only with ecclesiastical law. Church Law is quite different than civil or courtly law. The punishments for crimes are religious in nature, not monetary or corporal."
   },
   "Citadel-wise": {
     "roots": [
@@ -444,7 +558,9 @@
     "stock": "dwarven",
     "roots": [
       "Perception"
-    ]
+    ],
+    "type": "Academic",
+    "desc": "This Dwarf knows the long and sordid past of the various clans- their oaths, grudges, great works of art and the probably size of the hoards and halls."
   },
   "Clan-wise": {
     "roots": [
@@ -454,26 +570,34 @@
   "Climbing": {
     "roots": [
       "Speed"
-    ]
+    ],
+    "type": "Physical",
+    "desc": "This skill allows the character to navigate sheer surfaces using rope, harnesses and really strong finger muscles. In addition, rougher surfaces can be scaled with bare hands."
   },
   "Cloth Dyeing": {
     "roots": [
       "Perception",
       "Agility"
-    ]
+    ],
+    "type": "Craftsman",
+    "desc": "The fine are of dyeing cloth and making the color keep."
   },
   "Coarse Persuasion": {
     "stock": "dwarven",
     "magic": 1,
     "roots": [
       "Will"
-    ]
+    ],
+    "type": "Social",
+    "desc": "This bizarre social art is apparently a method of coercion and persuasion among Dwarvenkind and consists of a lot of backslapping, grinning and reassurances. That other folk often find it charming and endearing is one of the wonders of the world."
   },
   "Cobbler": {
     "roots": [
       "Perception",
       "Agility"
-    ]
+    ],
+    "type": "Craftsman",
+    "desc": "Shoes, glorious shows. The Cobbler makes all types of foot coverings, from the utilitarian to the fashionable."
   },
   "Code Of Citadels": {
     "stock": "elven",
@@ -481,23 +605,31 @@
     "roots": [
       "Will",
       "Perception"
-    ]
+    ],
+    "type": "Social",
+    "desc": "This is a specialized natural magic skill that is similar to Etiquette. The Elves' long years allow them to delve deep into the culture of a place and people. When dealing with any Citadel-born Elf, Code of the Citadels may be used in place of Etiquette."
   },
   "Command": {
     "roots": [
       "Will"
-    ]
+    ],
+    "type": "Social",
+    "desc": "Command is the ability to deliver curt and effect order on the field of battle."
   },
   "Composition": {
     "roots": [
       "Will",
       "Perception"
-    ]
+    ],
+    "type": "Academic",
+    "desc": "Composition is the discipline of formally arranging one's ideas in written form. Using this skill, a character may compose lengthy books or pen erudite letters."
   },
   "Conspicuous": {
     "roots": [
       "Will"
-    ]
+    ],
+    "type": "Social",
+    "desc": "Characters with the Conspicuous skill can make themselves noticed above all in a crowd or scene."
   },
   "Contract-wise": {
     "roots": [
@@ -507,25 +639,33 @@
   "Cooking": {
     "roots": [
       "Perception"
-    ]
+    ],
+    "type": "Peasant",
+    "desc": "Preparing meat, veggies and grains for consumption."
   },
   "Cooper": {
     "roots": [
       "Perception",
       "Agility"
-    ]
+    ],
+    "type": "Peasant",
+    "desc": "A Cooper uses iron, wood and wax to make barrels to store wine, grain and other sundries necessary for the survival of the village."
   },
   "Coppersmith": {
     "roots": [
       "Perception",
       "Agility"
-    ]
+    ],
+    "type": "Craftsman",
+    "desc": "Similar to a Blacksmith or Whitesmith, a Coppersmith specializes in the use of copper."
   },
   "Counterfeiting": {
     "roots": [
       "Perception",
       "Agility"
-    ]
+    ],
+    "type": "Craftsman",
+    "desc": "Counterfeiting is the time-honored art of illegally duplicating money - either cliping coins or cutting dies to replicate printed material."
   },
   "Countryside-wise": {
     "roots": [
@@ -540,7 +680,9 @@
   "Crossbow": {
     "roots": [
       "Agility"
-    ]
+    ],
+    "type": "Martial",
+    "desc": "The Crossbow skill allows the character to use the crossbow in battle situations."
   },
   "Crowd-wise": {
     "roots": [
@@ -550,12 +692,16 @@
   "Cryptography": {
     "roots": [
       "Perception"
-    ]
+    ],
+    "type": "Academic",
+    "desc": "Cryptography is the art of creating and deciphering codes."
   },
   "Cudgel": {
     "roots": [
       "Agility"
-    ]
+    ],
+    "type": "Martial",
+    "desc": "This skill allows the character to use short, single-handed and lon, double-handed blunt implements as weapons."
   },
   "Daily Bread-wise": {
     "roots": [
@@ -565,7 +711,9 @@
   "Dance": {
     "roots": [
       "Speed"
-    ]
+    ],
+    "type": "Physical",
+    "desc": "The art of moving the body in time with rhythm in an expressive manner."
   },
   "Darkened Street-wise": {
     "roots": [
@@ -580,12 +728,15 @@
   "Demonology": {
     "roots": [
       "Perception"
-    ]
+    ],
+    "type": "Academic",
+    "desc": "Demonology is the study of the history and behavior of demons and devils. This is an academic skill that does not necessarily involve the act of summoning."
   },
   "Digging": {
     "roots": [
       "Power"
-    ]
+    ],
+    "type": "Peasant"
   },
   "Dignity Of The Wilderlands": {
     "stock": "elven",
@@ -593,30 +744,40 @@
     "roots": [
       "Will",
       "Perception"
-    ]
+    ],
+    "type": "Social",
+    "desc": "Dignity of the Wilderlands is an exploration of the culture and ritual of the Elves of the Wilderlands. This skill song may be used in place of Etiquette when dealing with Wilder-born Elves."
   },
   "Disguise": {
     "roots": [
       "Perception",
       "Agility"
-    ]
+    ],
+    "type": "Special",
+    "desc": "Disguise is the art of changing one's face or appearance to look like another person or ethnicity."
   },
   "Ditch Digging": {
     "roots": [
       "Power"
-    ]
+    ],
+    "type": "Peasant",
+    "desc": "The fine and rarefied art of putting holes in the ground."
   },
   "Doctrine": {
     "roots": [
       "Perception"
-    ]
+    ],
+    "type": "School of Thought",
+    "desc": "Doctrine describes the tenets and beliefs of a particular religious faith."
   },
   "Doctrine Of Night's Blood": {
     "stock": "orcish",
     "roots": [
       "Will",
       "Perception"
-    ]
+    ],
+    "type": "School of Thought",
+    "desc": "The Doctrine of Night's Blood contains the terrible loaws of the Servant's Cult - whom they serve and why."
   },
   "Drama-wise": {
     "roots": [
@@ -626,19 +787,25 @@
   "Drinking": {
     "roots": [
       "Forte"
-    ]
+    ],
+    "type": "Special",
+    "desc": "Drinking is the skill of getting drunk and not showing it."
   },
   "Driving": {
     "roots": [
       "Will",
       "Agility"
-    ]
+    ],
+    "type": "Peasant",
+    "desc": "Motivating a team of oxen or horses is an arduous task that requires skill and a certain delicacy. The Driving skill is used for maneuverying carts and carriages over roads."
   },
   "Drum Maker": {
     "roots": [
       "Perception",
       "Agility"
-    ]
+    ],
+    "type": "Craftsman",
+    "desc": "The Drum Maker skill involves the curing of skins, carving of wood and tuning of hollows for the manufacture of percussion instruments."
   },
   "Drunkard-wise": {
     "roots": [
@@ -651,7 +818,9 @@
     "roots": [
       "Will",
       "Forte"
-    ]
+    ],
+    "type": "Special",
+    "desc": "Use this skill when a Dwarf needs to get drunk and loud quckly. The most successes, the faster he gets drunk."
   },
   "Dwarf-wise": {
     "roots": [
@@ -672,13 +841,17 @@
     "stock": "dwarven",
     "roots": [
       "Perception"
-    ]
+    ],
+    "type": "Academic",
+    "desc": "Dwarven Society is a literate one. Dwarven children are taught to decipher and inscribe runes from a very young age. This skill counts as both Read and Write for Dwarves. "
   },
   "Dye Manufacture": {
     "roots": [
       "Perception",
       "Agility"
-    ]
+    ],
+    "type": "Craftsman",
+    "desc": "Dye Manufacture teaches where to find materials and how to convert natural substances into dyes."
   },
   "Earth-wise": {
     "roots": [
@@ -719,33 +892,39 @@
     "stock": "elven",
     "roots": [
       "Perception"
-    ]
+    ],
+    "type": "Academic"
   },
   "Embroidery": {
     "roots": [
       "Perception",
       "Agility"
-    ]
+    ],
+    "type": "Craftsman"
   },
   "Empyrealia": {
     "roots": [
       "Perception"
-    ]
+    ],
+    "type": "Academic"
   },
   "Enchanting": {
     "roots": [
       "Perception"
-    ]
+    ],
+    "type": "Sorcerous"
   },
   "Engineering": {
     "roots": [
       "Perception"
-    ]
+    ],
+    "type": "Artisan"
   },
   "Engraving": {
     "roots": [
       "Agility"
-    ]
+    ],
+    "type": "Artisan"
   },
   "Escape Artist": {
     "stock": "wolfish",
@@ -757,7 +936,8 @@
   "Estate Management": {
     "roots": [
       "Perception"
-    ]
+    ],
+    "type": "Special"
   },
   "Estate-wise": {
     "roots": [
@@ -767,7 +947,8 @@
   "Etching": {
     "roots": [
       "Agility"
-    ]
+    ],
+    "type": "Craftsman"
   },
   "Etharch-wise": {
     "roots": [
@@ -778,7 +959,8 @@
     "roots": [
       "Will",
       "Perception"
-    ]
+    ],
+    "type": "Social"
   },
   "Everybody's Innocent-wise": {
     "roots": [
@@ -791,12 +973,14 @@
     "roots": [
       "Perception",
       "Power"
-    ]
+    ],
+    "type": "Craftsman"
   },
   "Extortion": {
     "roots": [
       "Will"
-    ]
+    ],
+    "type": "Social"
   },
   "Faith-wise": {
     "roots": [
@@ -807,12 +991,14 @@
     "roots": [
       "Will",
       "Perception"
-    ]
+    ],
+    "type": "Forester"
   },
   "Falsehood": {
     "roots": [
       "Will"
-    ]
+    ],
+    "type": "Social"
   },
   "Family-wise": {
     "roots": [
@@ -827,7 +1013,8 @@
   "Farming": {
     "roots": [
       "Perception"
-    ]
+    ],
+    "type": "Peasant"
   },
   "Fealty-wise": {
     "roots": [
@@ -837,12 +1024,14 @@
   "Fence Building": {
     "roots": [
       "Perception"
-    ]
+    ],
+    "type": "Special"
   },
   "Field Dressing": {
     "roots": [
       "Perception"
-    ]
+    ],
+    "type": "Medicinal"
   },
   "Fire And Steel-wise": {
     "roots": [
@@ -853,31 +1042,36 @@
     "roots": [
       "Perception",
       "Agility"
-    ]
+    ],
+    "type": "Martial"
   },
   "Firebombs": {
     "stock": "roden",
     "roots": [
       "Perception",
       "Agility"
-    ]
+    ],
+    "type": "Craftsman"
   },
   "Firebuilding": {
     "roots": [
       "Perception"
-    ]
+    ],
+    "type": "Forester"
   },
   "Fishing": {
     "roots": [
       "Perception",
       "Agility"
-    ]
+    ],
+    "type": "Peasant"
   },
   "Fletcher": {
     "roots": [
       "Perception",
       "Agility"
-    ]
+    ],
+    "type": "Craftsman"
   },
   "Flock-wise": {
     "roots": [
@@ -887,17 +1081,20 @@
   "Folklore": {
     "roots": [
       "Perception"
-    ]
+    ],
+    "type": "Special"
   },
   "Foraging": {
     "roots": [
       "Perception"
-    ]
+    ],
+    "type": "Forester"
   },
   "Foreign Languages": {
     "roots": [
       "Perception"
-    ]
+    ],
+    "type": "Social"
   },
   "Forest-wise": {
     "roots": [
@@ -910,40 +1107,49 @@
     "roots": [
       "Will",
       "Perception"
-    ]
+    ],
+    "type": "Artisan"
   },
   "Forgery": {
     "roots": [
       "Perception",
       "Agility"
-    ]
+    ],
+    "type": "Special"
   },
   "Formation Fighting": {
     "training": 1,
     "roots": [
       "Will"
-    ]
+    ],
+    "unlockonly": true,
+    "type": "Military"
   },
   "Fortifications": {
     "roots": [
       "Perception"
-    ]
+    ],
+    "type": "Military"
   },
   "Gambling": {
     "roots": [
       "Will",
       "Perception"
-    ]
+    ],
+    "type": "Special"
   },
   "Games Of Chance": {
     "roots": [
       "Perception"
-    ]
+    ],
+    "type": "Special"
   },
   "Garrote": {
+    "stock": "roden",
     "roots": [
       "Agility"
-    ]
+    ],
+    "type": "Martial"
   },
   "Gas Pocket-wise": {
     "roots": [
@@ -956,7 +1162,8 @@
     "roots": [
       "Will",
       "Agility"
-    ]
+    ],
+    "type": "Artisan"
   },
   "Gemcraft": {
     "stock": "elven",
@@ -964,7 +1171,8 @@
     "roots": [
       "Will",
       "Agility"
-    ]
+    ],
+    "type": "Craftsman"
   },
   "Genius-wise": {
     "roots": [
@@ -980,14 +1188,16 @@
     "stock": "dwarven",
     "roots": [
       "Perception"
-    ]
+    ],
+    "type": "Craftsman"
   },
   "Grain Song": {
     "stock": "elven",
     "magic": 1,
     "roots": [
       "Perception"
-    ]
+    ],
+    "type": "Peasant"
   },
   "Grain-wise": {
     "roots": [
@@ -998,7 +1208,8 @@
     "stock": "wolfish",
     "roots": [
       "Ancestral Taint"
-    ]
+    ],
+    "type": "Special"
   },
   "Graybeard-wise": {
     "roots": [
@@ -1018,7 +1229,8 @@
   "Great Wolf Husbandry": {
     "roots": [
       "Will"
-    ]
+    ],
+    "type": "Peasant"
   },
   "Grift-wise": {
     "roots": [
@@ -1033,7 +1245,8 @@
   "Haggling": {
     "roots": [
       "Will"
-    ]
+    ],
+    "type": "Social"
   },
   "Hallmaster": {
     "stock": "dwarven",
@@ -1041,12 +1254,14 @@
     "roots": [
       "Will",
       "Perception"
-    ]
+    ],
+    "type": "Artisan"
   },
   "Hammer": {
     "roots": [
       "Agility"
-    ]
+    ],
+    "type": "Martial"
   },
   "Handwriting-wise": {
     "roots": [
@@ -1062,17 +1277,20 @@
     "roots": [
       "Will",
       "Power"
-    ]
+    ],
+    "type": "Peasant"
   },
   "Heraldry": {
     "roots": [
       "Perception"
-    ]
+    ],
+    "type": "Special"
   },
   "Herbalism": {
     "roots": [
       "Perception"
-    ]
+    ],
+    "type": "Medicinal"
   },
   "Hills-wise": {
     "roots": [
@@ -1082,7 +1300,8 @@
   "History": {
     "roots": [
       "Perception"
-    ]
+    ],
+    "type": "Academic"
   },
   "Hold-wise": {
     "roots": [
@@ -1103,13 +1322,15 @@
     "stock": "wolfish",
     "roots": [
       "Will"
-    ]
+    ],
+    "type": "Social"
   },
   "Hunting": {
     "roots": [
       "Perception",
       "Agility"
-    ]
+    ],
+    "type": "Forester"
   },
   "Hymn Of Scales And Fins": {
     "stock": "elven",
@@ -1117,12 +1338,14 @@
     "roots": [
       "Perception",
       "Agility"
-    ]
+    ],
+    "type": "Peasant"
   },
   "Illuminations": {
     "roots": [
       "Agility"
-    ]
+    ],
+    "type": "Artist"
   },
   "Imperfections-wise": {
     "roots": [
@@ -1132,7 +1355,8 @@
   "Inconspicuous": {
     "roots": [
       "Will"
-    ]
+    ],
+    "type": "Social"
   },
   "Infection-wise": {
     "roots": [
@@ -1142,22 +1366,26 @@
   "Insect Husbandry": {
     "roots": [
       "Will"
-    ]
+    ],
+    "type": "Forester"
   },
   "Instruction": {
     "roots": [
       "Will"
-    ]
+    ],
+    "type": "Social"
   },
   "Interrogation": {
     "roots": [
       "Will"
-    ]
+    ],
+    "type": "Social"
   },
   "Intimidation": {
     "roots": [
       "Will"
-    ]
+    ],
+    "type": "Social"
   },
   "Intrigue-wise": {
     "roots": [
@@ -1167,12 +1395,14 @@
   "Jargon": {
     "roots": [
       "Perception"
-    ]
+    ],
+    "type": "Social"
   },
   "Javelin": {
     "roots": [
       "Agility"
-    ]
+    ],
+    "type": "Martial"
   },
   "Jewelcraft": {
     "stock": "elven",
@@ -1180,20 +1410,23 @@
     "roots": [
       "Will",
       "Agility"
-    ]
+    ],
+    "type": "Craftsman"
   },
   "Jeweler": {
     "roots": [
       "Perception",
       "Agility"
-    ]
+    ],
+    "type": "Craftsman"
   },
   "Khirurgy": {
     "stock": "dwarven",
     "roots": [
       "Perception",
       "Agility"
-    ]
+    ],
+    "type": "Medicinal"
   },
   "Kingdom-wise": {
     "roots": [
@@ -1203,24 +1436,28 @@
   "Knives": {
     "roots": [
       "Agility"
-    ]
+    ],
+    "type": "Martial"
   },
   "Knots": {
     "roots": [
       "Perception",
       "Agility"
-    ]
+    ],
+    "type": "Seafaring"
   },
   "Lance": {
     "roots": [
       "Agility",
       "Power"
-    ]
+    ],
+    "type": "Martial"
   },
   "Lapidary": {
     "roots": [
       "Perception"
-    ]
+    ],
+    "type": "Craftsman"
   },
   "Leathercraft": {
     "stock": "elven",
@@ -1228,7 +1465,8 @@
     "roots": [
       "Will",
       "Agility"
-    ]
+    ],
+    "type": "Craftsman"
   },
   "Ledger-wise": {
     "roots": [
@@ -1245,7 +1483,8 @@
     "roots": [
       "Will",
       "Forte"
-    ]
+    ],
+    "type": "Academic"
   },
   "Lithography": {
     "stock": "dwarven",
@@ -1253,24 +1492,28 @@
     "roots": [
       "Perception",
       "Agility"
-    ]
+    ],
+    "type": "Artisan"
   },
   "Lock Pick": {
     "roots": [
       "Perception",
       "Agility"
-    ]
+    ],
+    "type": "Special"
   },
   "Locksmith": {
     "roots": [
       "Perception",
       "Agility"
-    ]
+    ],
+    "type": "Craftsman"
   },
   "Logistics": {
     "roots": [
       "Perception"
-    ]
+    ],
+    "type": "Military"
   },
   "Lost Treasures-wise": {
     "roots": [
@@ -1282,13 +1525,15 @@
     "magic": 1,
     "roots": [
       "Perception"
-    ]
+    ],
+    "type": "Academic"
   },
   "Mace": {
     "roots": [
       "Power",
       "Agility"
-    ]
+    ],
+    "type": "Martial"
   },
   "Maker's Mark-wise": {
     "roots": [
@@ -1304,24 +1549,21 @@
     "roots": [
       "Perception",
       "Agility"
-    ]
-  },
-  "Martial Arts": {
-    "roots": [
-      "Power",
-      "Agility"
-    ]
+    ],
+    "type": "Artisan"
   },
   "Meditation": {
     "roots": [
       "Will"
-    ]
+    ],
+    "type": "School of Thought"
   },
   "Mending": {
     "roots": [
       "Perception",
       "Agility"
-    ]
+    ],
+    "type": "Peasant"
   },
   "Mercenary Company-wise": {
     "roots": [
@@ -1337,7 +1579,8 @@
     "roots": [
       "Will",
       "Perception"
-    ]
+    ],
+    "type": "Medicinal"
   },
   "Mill-wise": {
     "roots": [
@@ -1347,17 +1590,20 @@
   "Miller": {
     "roots": [
       "Perception"
-    ]
+    ],
+    "type": "Peasant"
   },
   "Mimicry": {
     "roots": [
       "Perception"
-    ]
+    ],
+    "type": "Forester"
   },
   "Mining": {
     "roots": [
       "Perception"
-    ]
+    ],
+    "type": "Craftsman"
   },
   "Monk-wise": {
     "roots": [
@@ -1368,13 +1614,17 @@
     "roots": [
       "Will",
       "Power"
-    ]
+    ],
+    "unlockonly": "true",
+    "type": "Martial"
   },
   "Mounted Combat: Bowman Training": {
     "roots": [
       "Will",
       "Power"
-    ]
+    ],
+    "unlockonly": "true",
+    "type": "Martial"
   },
   "Mouth Of Hell-wise": {
     "roots": [
@@ -1390,19 +1640,22 @@
     "roots": [
       "Perception",
       "Agility"
-    ]
+    ],
+    "type": "Artisan"
   },
   "Music Composition": {
     "roots": [
       "Will",
       "Perception"
-    ]
+    ],
+    "type": "Musical"
   },
   "Musical Instrument": {
     "roots": [
       "Will",
       "Agility"
-    ]
+    ],
+    "type": "Musical"
   },
   "Mystery Meat-wise": {
     "roots": [
@@ -1414,19 +1667,22 @@
     "roots": [
       "Will",
       "Perception"
-    ]
+    ],
+    "type": "Special"
   },
   "Nature Of All Things": {
     "stock": "wolfish",
     "roots": [
       "Will",
       "Perception"
-    ]
+    ],
+    "type": "Academic"
   },
   "Navigation": {
     "roots": [
       "Perception"
-    ]
+    ],
+    "type": "Seafaring"
   },
   "Nogger": {
     "stock": "dwarven",
@@ -1434,14 +1690,16 @@
     "roots": [
       "Will",
       "Perception"
-    ]
+    ],
+    "type": "Craftsman"
   },
   "Nursing": {
     "stock": "wolfish",
     "roots": [
       "Will",
       "Perception"
-    ]
+    ],
+    "type": "Special"
   },
   "Oath-wise": {
     "roots": [
@@ -1461,12 +1719,14 @@
   "Observation": {
     "roots": [
       "Perception"
-    ]
+    ],
+    "type": "Forester"
   },
   "Oratory": {
     "roots": [
       "Will"
-    ]
+    ],
+    "type": "Social"
   },
   "Orc-wise": {
     "roots": [
@@ -1481,26 +1741,38 @@
   "Orienteering": {
     "roots": [
       "Perception"
-    ]
+    ],
+    "type": "Forester"
+  },
+  "Pack Hunting": {
+    "stock": "wolfish",
+    "roots": [
+      "Perception",
+      "Speed"
+    ],
+    "type": "Forester"
   },
   "Pack Etiquette": {
     "stock": "wolfish",
     "roots": [
       "Perception"
-    ]
+    ],
+    "type": "Social"
   },
   "Paean Of Deeds": {
     "stock": "elven",
     "magic": 1,
     "roots": [
       "Will"
-    ]
+    ],
+    "type": "Social"
   },
   "Painting": {
     "roots": [
       "Will",
       "Agility"
-    ]
+    ],
+    "type": "Artist"
   },
   "Pattern-wise": {
     "roots": [
@@ -1515,13 +1787,15 @@
   "Persuasion": {
     "roots": [
       "Will"
-    ]
+    ],
+    "type": "Social"
   },
   "Philosophy": {
     "roots": [
       "Will",
       "Perception"
-    ]
+    ],
+    "type": "School of Thought"
   },
   "Pilgrimage-wise": {
     "roots": [
@@ -1532,23 +1806,27 @@
     "roots": [
       "Perception",
       "Power"
-    ]
+    ],
+    "type": "Seafaring"
   },
   "Playwright": {
     "roots": [
       "Will",
       "Perception"
-    ]
+    ],
+    "type": "School of Thought"
   },
   "Plumbing": {
     "roots": [
       "Perception"
-    ]
+    ],
+    "type": "Artisan"
   },
   "Poetry": {
     "roots": [
       "Will"
-    ]
+    ],
+    "type": "Musical"
   },
   "Poison-wise": {
     "roots": [
@@ -1559,35 +1837,41 @@
     "stock": "orcish",
     "roots": [
       "Hatred"
-    ]
+    ],
+    "type": "Social"
   },
   "Poisons": {
     "roots": [
       "Perception"
-    ]
+    ],
+    "type": "Special"
   },
   "Polearm": {
     "roots": [
       "Power",
       "Agility"
-    ]
+    ],
+    "type": "Martial"
   },
   "Potter": {
     "roots": [
       "Perception",
       "Agility"
-    ]
+    ],
+    "type": "Craftsman"
   },
   "Primal Bark": {
     "stock": "wolfish",
     "roots": [
       "Will"
-    ]
+    ],
+    "type": "Special"
   },
   "Prospecting": {
     "roots": [
       "Perception"
-    ]
+    ],
+    "type": "Artisan"
   },
   "Purple Song": {
     "stock": "elven",
@@ -1595,36 +1879,42 @@
     "roots": [
       "Perception",
       "Agility"
-    ]
+    ],
+    "type": "Peasant"
   },
   "Ratiquette": {
     "roots": [
       "Will"
-    ]
+    ],
+    "type": "Social"
   },
   "Read": {
     "roots": [
       "Perception"
-    ]
+    ],
+    "type": "Academic"
   },
   "Rearing": {
     "stock": "wolfish",
     "roots": [
       "Will",
       "Perception"
-    ]
+    ],
+    "type": "Social"
   },
   "Reason Of Old Stone": {
     "stock": "dwarven",
     "magic": 1,
     "roots": [
       "Will"
-    ]
+    ],
+    "type": "Sorcerous"
   },
   "Religious Diatribe": {
     "roots": [
       "Will"
-    ]
+    ],
+    "type": "Social"
   },
   "Reputation-wise": {
     "roots": [
@@ -1634,12 +1924,14 @@
   "Research": {
     "roots": [
       "Perception"
-    ]
+    ],
+    "type": "Academic"
   },
   "Rhetoric": {
     "roots": [
       "Perception"
-    ]
+    ],
+    "type": "Academic"
   },
   "Rhyme Of The Gatherer": {
     "stock": "elven",
@@ -1654,14 +1946,16 @@
     "roots": [
       "Agility",
       "Speed"
-    ]
+    ],
+    "type": "Peasant"
   },
   "Rhyme Of The Pathfinder": {
     "stock": "elven",
     "magic": 1,
     "roots": [
       "Perception"
-    ]
+    ],
+    "type": "Forester"
   },
   "Rhythm Of The City-wise": {
     "roots": [
@@ -1674,7 +1968,8 @@
     "roots": [
       "Will",
       "Agility"
-    ]
+    ],
+    "type": "Craftsman"
   },
   "Rediculous Request-wise": {
     "roots": [
@@ -1684,31 +1979,36 @@
   "Riding": {
     "roots": [
       "Will"
-    ]
+    ],
+    "type": "Physical"
   },
   "Rigging": {
     "roots": [
       "Agility",
       "Speed"
-    ]
+    ],
+    "type": "Seafaring"
   },
   "Ritual": {
     "roots": [
       "Will",
       "Perception"
-    ]
+    ],
+    "type": "Academic"
   },
   "Rituals Of Blood": {
     "stock": "orcish",
     "roots": [
       "Will"
-    ]
+    ],
+    "type": "Sorcerous"
   },
   "Rituals Of Night": {
     "stock": "orcish",
     "roots": [
       "Perception"
-    ]
+    ],
+    "type": "Sorcerous"
   },
   "Rituals-wise": {
     "roots": [
@@ -1725,14 +2025,16 @@
     "magic": 1,
     "roots": [
       "Agility"
-    ]
+    ],
+    "type": "Seafaring"
   },
   "Round Of Harvest": {
     "stock": "elven",
     "magic": 1,
     "roots": [
       "Perception"
-    ]
+    ],
+    "type": "Peasant"
   },
   "Royal Secret-wise": {
     "roots": [
@@ -1744,12 +2046,14 @@
     "roots": [
       "Perception",
       "Agility"
-    ]
+    ],
+    "type": "Craftsman"
   },
   "Rule Of Law": {
     "roots": [
       "Perception"
-    ]
+    ],
+    "type": "School of Thought"
   },
   "Rumour-wise": {
     "roots": [
@@ -1762,13 +2066,15 @@
     "roots": [
       "Will",
       "Perception"
-    ]
+    ],
+    "type": "Sorcerous"
   },
   "Saddlery": {
     "roots": [
       "Perception",
       "Agility"
-    ]
+    ],
+    "type": "Craftsman"
   },
   "Saint-wise": {
     "roots": [
@@ -1780,18 +2086,21 @@
     "roots": [
       "Agility",
       "Speed"
-    ]
+    ],
+    "type": "Martial"
   },
   "Scavenging": {
     "roots": [
       "Perception"
-    ]
+    ],
+    "type": "Peasant"
   },
   "Sculpture": {
     "roots": [
       "Will",
       "Agility"
-    ]
+    ],
+    "type": "Artist"
   },
   "Scutwork-wise": {
     "roots": [
@@ -1801,12 +2110,14 @@
   "Seamanship": {
     "roots": [
       "Perception"
-    ]
+    ],
+    "type": "Seafaring"
   },
   "Seduction": {
     "roots": [
       "Will"
-    ]
+    ],
+    "type": "Social"
   },
   "Servant-wise": {
     "roots": [
@@ -1816,17 +2127,21 @@
   "Sewing": {
     "roots": [
       "Agility"
-    ]
+    ],
+    "type": "Peasant"
   },
   "Shield Training": {
     "roots": [
       "Agility"
-    ]
+    ],
+    "unlockonly": "true",
+    "type": "Martial"
   },
   "Ship Management": {
     "roots": [
       "Perception"
-    ]
+    ],
+    "type": "Seafaring"
   },
   "Ship-wise": {
     "roots": [
@@ -1836,7 +2151,8 @@
   "Shipwright": {
     "roots": [
       "Perception"
-    ]
+    ],
+    "type": "Craftsman"
   },
   "Shortcut-wise": {
     "roots": [
@@ -1848,41 +2164,49 @@
     "magic": 1,
     "roots": [
       "Perception"
-    ]
+    ],
+    "type": "Social"
   },
   "Siege Engineer": {
     "roots": [
       "Perception"
-    ]
+    ],
+    "type": "Artisan"
   },
   "Signaling": {
     "roots": [
       "Perception"
-    ]
+    ],
+    "type": "Seafaring"
   },
   "Silent Fury": {
     "stock": "elven",
     "magic": 1,
     "roots": [
       "Will"
-    ]
+    ],
+    "type": "Social"
   },
   "Silver Trumpet": {
     "stock": "elven",
     "roots": [
       "Will"
-    ]
+    ],
+    "type": "Musical"
   },
   "Sing": {
     "roots": [
       "Will"
-    ]
+    ],
+    "type": "Musical"
   },
   "Skirmish Tactics": {
     "roots": [
       "Will",
       "Perception"
-    ]
+    ],
+    "unlockonly": "true",
+    "type": "Military"
   },
   "Slave Deck-wise": {
     "roots": [
@@ -1892,14 +2216,16 @@
   "Sleight Of Hand": {
     "roots": [
       "Agility"
-    ]
+    ],
+    "type": "Special"
   },
   "Slip Of Currents": {
     "stock": "elven",
     "magic": 1,
     "roots": [
       "Perception"
-    ]
+    ],
+    "type": "Seafaring"
   },
   "Smithcraft": {
     "stock": "elven",
@@ -1907,19 +2233,22 @@
     "roots": [
       "Will",
       "Agility"
-    ]
+    ],
+    "type": "Craftsman"
   },
   "Soldiering": {
     "roots": [
       "Will",
       "Perception"
-    ]
+    ],
+    "type": "Military"
   },
   "Song Of The Eldar": {
     "stock": "elven",
     "roots": [
       "Perception"
-    ]
+    ],
+    "type": "Academic"
   },
   "Song Of Feasting": {
     "stock": "elven",
@@ -1927,35 +2256,40 @@
     "roots": [
       "Perception",
       "Agility"
-    ]
+    ],
+    "type": "Peasant"
   },
   "Song Of Flocks And Herds": {
     "stock": "elven",
     "magic": 1,
     "roots": [
       "Will"
-    ]
+    ],
+    "type": "Peasant"
   },
   "Song Of Form": {
     "stock": "elven",
     "magic": 1,
     "roots": [
       "Will"
-    ]
+    ],
+    "type": "Artist"
   },
   "Song Of Lordship": {
     "stock": "elven",
     "magic": 1,
     "roots": [
       "Will"
-    ]
+    ],
+    "type": "Social"
   },
   "Song Of Paths And Ways": {
     "stock": "elven",
     "magic": 1,
     "roots": [
       "Perception"
-    ]
+    ],
+    "type": "Forester"
   },
   "Song Of Soothing": {
     "stock": "elven",
@@ -1963,17 +2297,20 @@
     "roots": [
       "Will",
       "Perception"
-    ]
+    ],
+    "type": "Medicinal"
   },
   "Soothing Platitudes": {
     "roots": [
       "Will"
-    ]
+    ],
+    "type": "Social"
   },
   "Sorcery": {
     "roots": [
       "Perception"
-    ]
+    ],
+    "type": "Sorcerous"
   },
   "Sorcery-wise": {
     "roots": [
@@ -1983,7 +2320,8 @@
   "Spear": {
     "roots": [
       "Agility"
-    ]
+    ],
+    "type": "Martial"
   },
   "Spearcraft": {
     "stock": "elven",
@@ -1991,18 +2329,21 @@
     "roots": [
       "Will",
       "Agility"
-    ]
+    ],
+    "type": "Craftsman"
   },
   "Spider Husbandry": {
     "stock": "orcish",
     "roots": [
       "Will"
-    ]
+    ],
+    "type": "Peasant"
   },
   "Spirit Binding": {
     "roots": [
       "Will"
-    ]
+    ],
+    "type": "Sorcerous"
   },
   "Spiel-wise": {
     "roots": [
@@ -2012,7 +2353,8 @@
   "Staff": {
     "roots": [
       "Agility"
-    ]
+    ],
+    "type": "Martial"
   },
   "Starcraft": {
     "stock": "elven",
@@ -2020,26 +2362,30 @@
     "roots": [
       "Will",
       "Agility"
-    ]
+    ],
+    "type": "Artisan"
   },
   "Stealthy": {
     "roots": [
       "Speed"
-    ]
+    ],
+    "type": "Forester"
   },
   "Stentorious Debate": {
     "stock": "dwarven",
     "magic": 1,
     "roots": [
       "Will"
-    ]
+    ],
+    "type": "Social"
   },
   "Stentorious Singing": {
     "stock": "dwarven",
     "magic": 1,
     "roots": [
       "Will"
-    ]
+    ],
+    "type": "Musical"
   },
   "Stone Artifice": {
     "stock": "dwarven",
@@ -2047,7 +2393,8 @@
     "roots": [
       "Will",
       "Power"
-    ]
+    ],
+    "type": "Artisan"
   },
   "Stonecraft": {
     "stock": "elven",
@@ -2055,24 +2402,28 @@
     "roots": [
       "Will",
       "Agility"
-    ]
+    ],
+    "type": "Craftsman"
   },
   "Strategy": {
     "roots": [
       "Will",
       "Perception"
-    ]
+    ],
+    "type": "Military"
   },
   "Strategy Games": {
     "roots": [
       "Will",
       "Perception"
-    ]
+    ],
+    "type": "Special"
   },
   "Streetwise": {
     "roots": [
       "Perception"
-    ]
+    ],
+    "type": "Special"
   },
   "Structural Weakness-wise": {
     "roots": [
@@ -2088,7 +2439,8 @@
   "Suasion": {
     "roots": [
       "Will"
-    ]
+    ],
+    "type": "Social"
   },
   "Suicidal Bravery-wise": {
     "roots": [
@@ -2096,9 +2448,11 @@
     ]
   },
   "Summoning": {
+    "stock": "manish",
     "roots": [
       "Perception"
-    ]
+    ],
+    "type": "Sorcerous"
   },
   "Supplier-wise": {
     "roots": [
@@ -2114,29 +2468,34 @@
     "roots": [
       "Perception",
       "Agility"
-    ]
+    ],
+    "type": "Medicinal"
   },
   "Survival": {
     "roots": [
       "Will",
       "Perception"
-    ]
+    ],
+    "type": "Forester"
   },
   "Sword": {
     "roots": [
       "Agility"
-    ]
+    ],
+    "type": "Martial"
   },
   "Symbology": {
     "roots": [
       "Perception"
-    ]
+    ],
+    "type": "Academic"
   },
   "Tactics": {
     "roots": [
       "Will",
       "Perception"
-    ]
+    ],
+    "type": "Military"
   },
   "Tall Grass-wise": {
     "roots": [
@@ -2147,7 +2506,8 @@
     "roots": [
       "Agility",
       "Forte"
-    ]
+    ],
+    "type": "Craftsman"
   },
   "Taskmaster-wise": {
     "roots": [
@@ -2162,7 +2522,8 @@
   "Taxidermy": {
     "roots": [
       "Perception"
-    ]
+    ],
+    "type": "Medicinal"
   },
   "Terroir-wise": {
     "roots": [
@@ -2173,14 +2534,16 @@
     "roots": [
       "Will",
       "Perception"
-    ]
+    ],
+    "type": "Special"
   },
   "The Way Of The First Hunter": {
     "stock": "wolfish",
     "roots": [
       "Will",
       "Perception"
-    ]
+    ],
+    "type": "Academic"
   },
   "Threading Chant": {
     "stock": "elven",
@@ -2188,35 +2551,41 @@
     "roots": [
       "Perception",
       "Agility"
-    ]
+    ],
+    "type": "Craftsman"
   },
   "Throwing": {
     "roots": [
       "Agility"
-    ]
+    ],
+    "type": "Martial"
   },
   "Tongue Of The Ancient One": {
     "stock": "wolfish",
     "roots": [
       "Perception"
-    ]
+    ],
+    "type": "Sorcerous"
   },
   "Torture": {
     "roots": [
       "Will",
       "Perception"
-    ]
+    ],
+    "type": "Special"
   },
   "Orcish Torture": {
     "stock": "orcish",
     "roots": [
       "Hatred"
-    ]
+    ],
+    "type": "Special"
   },
   "Tracking": {
     "roots": [
       "Perception"
-    ]
+    ],
+    "type": "Forester"
   },
   "Tragic End-wise": {
     "roots": [
@@ -2232,7 +2601,8 @@
     "roots": [
       "Perception",
       "Agility"
-    ]
+    ],
+    "type": "Forester"
   },
   "Treasure-wise": {
     "roots": [
@@ -2243,19 +2613,23 @@
     "roots": [
       "Perception",
       "Power"
-    ]
+    ],
+    "type": "Peasant"
   },
   "Tree Pulling": {
     "stock": "orcish",
     "roots": [
       "Hatred"
-    ]
+    ],
+    "type": "Peasant"
   },
   "Troll Etiquette": {
+    "stock": "orcish",
     "roots": [
       "Will",
       "Perception"
-    ]
+    ],
+    "type": "Social"
   },
   "Troll-wise": {
     "roots": [
@@ -2271,13 +2645,15 @@
     "stock": "roden",
     "roots": [
       "Power"
-    ]
+    ],
+    "type": "Peasant"
   },
   "Preaching": {
     "stock": "roden",
     "roots": [
       "Will"
-    ]
+    ],
+    "type": "Social"
   },
   "Tunnel-wise": {
     "roots": [
@@ -2287,12 +2663,15 @@
   "Two-fisted Fighting Training": {
     "roots": [
       "Perception"
-    ]
+    ],
+    "unlockonly": "true",
+    "type": "Martial"
   },
   "Ugly Truth": {
     "roots": [
       "Perception"
-    ]
+    ],
+    "type": "Social"
   },
   "Vein-wise": {
     "roots": [
@@ -2304,7 +2683,8 @@
     "roots": [
       "Perception",
       "Agility"
-    ]
+    ],
+    "type": "Medicinal"
   },
   "Village Secret-wise": {
     "roots": [
@@ -2325,7 +2705,8 @@
     "roots": [
       "Will",
       "Perception"
-    ]
+    ],
+    "type": "Peasant"
   },
   "Visage-wise": {
     "roots": [
@@ -2337,7 +2718,8 @@
     "roots": [
       "Will",
       "Power"
-    ]
+    ],
+    "type": "Social"
   },
   "Wagon-wise": {
     "roots": [
@@ -2347,7 +2729,8 @@
   "Waiting Tables": {
     "roots": [
       "Will"
-    ]
+    ],
+    "type": "Special"
   },
   "War Art": {
     "stock": "dwarven",
@@ -2355,7 +2738,8 @@
     "roots": [
       "Will",
       "Agility"
-    ]
+    ],
+    "type": "Craftsman"
   },
   "War Engineer": {
     "stock": "dwarven",
@@ -2363,19 +2747,22 @@
     "roots": [
       "Will",
       "Perception"
-    ]
+    ],
+    "type": "Artisan"
   },
   "Weaponsmith": {
     "roots": [
       "Perception",
       "Agility"
-    ]
+    ],
+    "type": "Craftsman"
   },
   "Weaving": {
     "roots": [
       "Perception",
       "Agility"
-    ]
+    ],
+    "type": "Peasant"
   },
   "Weaving Way": {
     "stock": "elven",
@@ -2383,7 +2770,8 @@
     "roots": [
       "Will",
       "Agility"
-    ]
+    ],
+    "type": "Peasant"
   },
   "Web-wise": {
     "roots": [
@@ -2411,13 +2799,15 @@
     "roots": [
       "Will",
       "Agility"
-    ]
+    ],
+    "type": "Craftsman"
   },
   "Whitesmith": {
     "roots": [
       "Perception",
       "Agility"
-    ]
+    ],
+    "type": "Craftsman"
   },
   "Windage-wise": {
     "roots": [
@@ -2427,7 +2817,8 @@
   "Wine Tasting": {
     "roots": [
       "Perception"
-    ]
+    ],
+    "type": "Special"
   },
   "Wolf-wise": {
     "roots": [
@@ -2438,7 +2829,8 @@
     "stock": "wolfish",
     "roots": [
       "Perception"
-    ]
+    ],
+    "type": "Forester"
   },
   "Wood-wise": {
     "roots": [
@@ -2451,13 +2843,15 @@
     "roots": [
       "Will",
       "Agility"
-    ]
+    ],
+    "type": "Craftsman"
   },
   "Write": {
     "roots": [
       "Perception",
       "Agility"
-    ]
+    ],
+    "type": "Academic"
   },
   "Air Of Gates": {
     "stock": "elven",

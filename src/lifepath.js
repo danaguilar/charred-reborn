@@ -88,7 +88,7 @@ class LifepathList {
 
 export class Lifepath {
   constructor(lifepathSetting, lifepathTitle) {
-    const lifePathData = dwarfLP[lifepathSetting][lifepathTitle]
+    const lifePathData = dwarfLPJSON[lifepathSetting][lifepathTitle]
     this.id = lifepathTitle,
     this.time =  lifePathData.time,
     this.res = lifePathData.res,
