@@ -6,6 +6,9 @@ import vue2 from '@vitejs/plugin-vue2'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: process.env.NODE_ENV === 'production'
+          ? '/charred-reborn/' // prod
+          : '/', // dev
   plugins: [
     vue2(),
     legacy({
