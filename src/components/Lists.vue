@@ -120,7 +120,6 @@
         </template>
         <template #cell(pointsSpent)="row">
           {{ row.item.pointsSpent }} <span v-if="row.item.generalPointsSpent > 0">({{ row.item.generalPointsSpent }})</span>
-          
         </template>
         <template #cell(final)="row">
             <div v-show="row.item.totalPoints == 0">-</div>
@@ -189,7 +188,14 @@
     footerClass="p-0 border-top-0"
     title="Skill List">
     <template #modal-header>
-      <h2>Skills</h2>
+      <div class="d-flex justify-content-between w-100">
+        <h1>Skills</h1>
+        <div>
+          <b-button size="sm" variant="outline-primary" disabled class="w-100 mb-2"><em>Open ended (Magic) skill</em></b-button>
+          <b-button size="sm" variant="secondary" disabled class="w-100"><em>Training Skill (2 pts)</em></b-button>
+        </div>
+      </div>
+
     </template>
     <template #modal-footer>
       <span></span>

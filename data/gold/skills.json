@@ -10,14 +10,14 @@
     "roots": [
       "Perception"
     ],
-    "type": "Special",
+    "type": "Artist",
     "desc": "The skill of imitation and recitation used to affect a performance"
   },
   "Administration": {
     "roots": [
       "Perception"
     ],
-    "type": "Special",
+    "type": "Governance",
     "desc": "Administraction is the skill of running a business or organization. This skill is primarily used to recover taxed Resources."
   },
   "Ages Of The Etharch": {
@@ -58,7 +58,7 @@
     "roots": [
       "Perception"
     ],
-    "type": "School of Thought",
+    "type": "Governance",
     "desc": "Amercement is the knowledge of fees and criminal fines given as judicial punishment. Such amercements are almost always offered in place of corproal punishment. Using this skill the character may set the Resouces obstacle for a fine. The skill test obstacles indicate how accurate and just the amount is according to the law."
   },
   "Ancestral Jaw": {
@@ -117,7 +117,7 @@
     "roots": [
       "Perception"
     ],
-    "type": "Special",
+    "type": "Social",
     "desc": "This skill is used to judge the value or worth of certain items such as jewelry, gems, artwork and antiquities. The Appraisal skill can be used by a player before testing his Resources to ensure that he is getting an accurate price."
   },
   "Archcraft": {
@@ -164,7 +164,7 @@
       "Perception",
       "Agility"
     ],
-    "type": "Special",
+    "type": "Criminal",
     "desc": "This skill allows the character to use common household items to quickly set a building on fire."
   },
   "Artificer-wise": {
@@ -185,7 +185,7 @@
       "Perception",
       "Agility"
     ],
-    "type": "Special",
+    "type": "Military",
     "desc": "This skill allows the character to assemble and dismantle artillery pieces, as well as fire direct-fire type mechanisms like siege crossbows or ballistae."
   },
   "Astrology": {
@@ -381,7 +381,7 @@
     "roots": [
       "Hatred"
     ],
-    "type": "Musical",
+    "type": "Artist",
     "desc": "Cavernous horns are sounded before the Orcs join battle. The horns strick one note: Despair"
   },
   "Brewer": {
@@ -413,7 +413,7 @@
     "roots": [
       "Will"
     ],
-    "type": "Special",
+    "type": "Governance",
     "desc": "Bureacracy is the knowledge of the hierarchies within a codified goverment of officials. This skill allows characters to navigate said structures in order to accomplish certain tasks or impel the bureaucracy to move in an certain direction. "
   },
   "Butchery": {
@@ -712,7 +712,7 @@
     "roots": [
       "Speed"
     ],
-    "type": "Physical",
+    "type": "Artist",
     "desc": "The art of moving the body in time with rhythm in an expressive manner."
   },
   "Darkened Street-wise": {
@@ -753,7 +753,7 @@
       "Perception",
       "Agility"
     ],
-    "type": "Special",
+    "type": "Criminal",
     "desc": "Disguise is the art of changing one's face or appearance to look like another person or ethnicity."
   },
   "Ditch Digging": {
@@ -788,7 +788,7 @@
     "roots": [
       "Forte"
     ],
-    "type": "Special",
+    "type": "Carousing",
     "desc": "Drinking is the skill of getting drunk and not showing it."
   },
   "Driving": {
@@ -819,7 +819,7 @@
       "Will",
       "Forte"
     ],
-    "type": "Special",
+    "type": "Carousing",
     "desc": "Use this skill when a Dwarf needs to get drunk and loud quckly. The most successes, the faster he gets drunk."
   },
   "Dwarf-wise": {
@@ -937,7 +937,7 @@
     "roots": [
       "Perception"
     ],
-    "type": "Special"
+    "type": "Governance"
   },
   "Estate-wise": {
     "roots": [
@@ -1022,10 +1022,11 @@
     ]
   },
   "Fence Building": {
+    "stock": "dwarven",
     "roots": [
       "Perception"
     ],
-    "type": "Special"
+    "type": "Governance"
   },
   "Field Dressing": {
     "roots": [
@@ -1082,7 +1083,7 @@
     "roots": [
       "Perception"
     ],
-    "type": "Special"
+    "type": "Sorcerous"
   },
   "Foraging": {
     "roots": [
@@ -1115,7 +1116,7 @@
       "Perception",
       "Agility"
     ],
-    "type": "Special"
+    "type": "Criminal"
   },
   "Formation Fighting": {
     "training": 1,
@@ -1136,13 +1137,13 @@
       "Will",
       "Perception"
     ],
-    "type": "Special"
+    "type": "Carousing"
   },
   "Games Of Chance": {
     "roots": [
       "Perception"
     ],
-    "type": "Special"
+    "type": "Carousing"
   },
   "Garrote": {
     "stock": "roden",
@@ -1284,7 +1285,7 @@
     "roots": [
       "Perception"
     ],
-    "type": "Special"
+    "type": "Governance"
   },
   "Herbalism": {
     "roots": [
@@ -1500,7 +1501,7 @@
       "Perception",
       "Agility"
     ],
-    "type": "Special"
+    "type": "Criminal"
   },
   "Locksmith": {
     "roots": [
@@ -1648,14 +1649,14 @@
       "Will",
       "Perception"
     ],
-    "type": "Musical"
+    "type": "Artist"
   },
   "Musical Instrument": {
     "roots": [
       "Will",
       "Agility"
     ],
-    "type": "Musical"
+    "type": "Artist"
   },
   "Mystery Meat-wise": {
     "roots": [
@@ -1826,7 +1827,7 @@
     "roots": [
       "Will"
     ],
-    "type": "Musical"
+    "type": "Artist"
   },
   "Poison-wise": {
     "roots": [
@@ -1844,7 +1845,7 @@
     "roots": [
       "Perception"
     ],
-    "type": "Special"
+    "type": "Criminal"
   },
   "Polearm": {
     "roots": [
@@ -2192,13 +2193,13 @@
     "roots": [
       "Will"
     ],
-    "type": "Musical"
+    "type": "Artist"
   },
   "Sing": {
     "roots": [
       "Will"
     ],
-    "type": "Musical"
+    "type": "Artist"
   },
   "Skirmish Tactics": {
     "roots": [
@@ -2217,7 +2218,7 @@
     "roots": [
       "Agility"
     ],
-    "type": "Special"
+    "type": "Criminal"
   },
   "Slip Of Currents": {
     "stock": "elven",
@@ -2310,6 +2311,7 @@
     "roots": [
       "Perception"
     ],
+    "magic": 1,
     "type": "Sorcerous"
   },
   "Sorcery-wise": {
@@ -2385,7 +2387,7 @@
     "roots": [
       "Will"
     ],
-    "type": "Musical"
+    "type": "Artist"
   },
   "Stone Artifice": {
     "stock": "dwarven",
@@ -2417,13 +2419,13 @@
       "Will",
       "Perception"
     ],
-    "type": "Special"
+    "type": "Carousing"
   },
   "Streetwise": {
     "roots": [
       "Perception"
     ],
-    "type": "Special"
+    "type": "Criminal"
   },
   "Structural Weakness-wise": {
     "roots": [
@@ -2535,7 +2537,7 @@
       "Will",
       "Perception"
     ],
-    "type": "Special"
+    "type": "Artist"
   },
   "The Way Of The First Hunter": {
     "stock": "wolfish",
@@ -2572,7 +2574,7 @@
       "Will",
       "Perception"
     ],
-    "type": "Special"
+    "type": "Criminal"
   },
   "Orcish Torture": {
     "stock": "orcish",
@@ -2730,7 +2732,7 @@
     "roots": [
       "Will"
     ],
-    "type": "Special"
+    "type": "Carousing"
   },
   "War Art": {
     "stock": "dwarven",
@@ -2818,7 +2820,7 @@
     "roots": [
       "Perception"
     ],
-    "type": "Special"
+    "type": "Carousing"
   },
   "Wolf-wise": {
     "roots": [

@@ -1,6 +1,6 @@
 import { reactive } from 'vue'
 import { Lifepath, DwarfLPList } from './lifepath'
-import { Shade, Attribute, StatType} from './core'
+import { Shade, Attribute, StatType, Skill } from './core'
 import dwarfStartingStatsJSON from '../data/gold/starting_stat_pts/dwarf.json'
 
 export const dwarfStartingStats = dwarfStartingStatsJSON
@@ -32,6 +32,12 @@ class Character {
     this.GeneralSkills = []
     this.AvailableLifepathList = DwarfLPList
     this.CalculateAvailableLifepaths()
+  }
+
+  AddGeneralSkill(skill) {
+    const newSkill = new Skill(skill.name, false)
+    newSkill.IncrementGeneralPoints()
+    this.GeneralSkills.push(newSkill)
   }
 
 
