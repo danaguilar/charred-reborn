@@ -35,11 +35,34 @@ class Character {
   }
 
   AddGeneralSkill(skill) {
-    const newSkill = new Skill(skill.name, false)
-    newSkill.IncrementGeneralPoints()
-    this.GeneralSkills.push(newSkill)
+    if(this.HasGeneralSkillPointsLeft()) {
+      const newSkill = new Skill(skill.name, false)
+      newSkill.IncrementGeneralPoints()
+      this.GeneralSkills.push(newSkill)
+    }
   }
 
+  IncrementGeneralSkill(skill) {
+    if(this.HasGeneralSkillPointsLeft()) {
+      skill.IncrementGeneralPoints()
+    }
+  }
+
+  DecrementGeneralSkill(skill) {
+    if(this.SpentGeneralSkillPoints() <= this.GetTotalGeneralSkillPoints() ) {
+      skill.DecrementGeneralPoints()
+      if(skill.generalPointsSpent == 0) {
+        const index = this.GeneralSkills.indexOf(skill);
+        if (index !== -1) {
+          this.GeneralSkills.splice(index, 1);
+        }
+      }
+    }
+  }
+
+  HasGeneralSkillPointsLeft() {
+    return this.GetTotalGeneralSkillPoints() - this.SpentGeneralSkillPoints() > 0 
+  }
 
   CalculateAvailableLifepaths() {
     if(this.availableSettings.length == 0) return this.AvailableLifepathList.DisableWhen((lifepath) => {
@@ -124,7 +147,6 @@ class Character {
     let currentLifepath = this.Lifepaths[this.Lifepaths.length - 1]
     const settings = [currentLifepath.setting]
     this.availableSettings = settings.concat(currentLifepath.key_leads)
-    console.log(this.availableSettings)
   }
 
   CalculateSkillListChanges() {
@@ -307,7 +329,7 @@ class Character {
     if(this.GetTotalLPSkillPoints() > this.SpentSkillPoints()) {
       skill.IncrementPoints()
     }
-    else if(this.GetTotalGeneralSkillPoints() - this.SpentGeneralSkillPoints() > 0 ) {
+    else if(this.HasGeneralSkillPointsLeft()) {
       skill.IncrementGeneralPoints()
     }
   }
@@ -326,7 +348,11 @@ class Character {
       .filter(skill => { return skill.active })
       .reduce((total, skill) => {
         return total + skill.generalPointsSpent
+      }, 0) +
+      this.GeneralSkills.reduce((total, skill) => {
+        return total + skill.generalPointsSpent
       }, 0)
+
   }
 
   SpentSkillPoints() {

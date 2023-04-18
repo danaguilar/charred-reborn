@@ -81,7 +81,7 @@
                 <small class="text-white"><em>Lifepath</em></small>
               </b-col>
               <b-col>
-                <small class="text-white"><em>General</em></small>
+                <small class="text-white"><em>(General)</em></small>
               </b-col>
             </b-row>
             <b-row>
@@ -145,7 +145,7 @@
         <template #custom-foot>
           <b-tr>
             <b-th colspan="5">
-              <b-button  v-b-modal.skillListModal size="sm" block variant="outline-primary" style="width: 100%">
+              <b-button  v-show="characterData.HasGeneralSkillPointsLeft()" v-b-modal.skillListModal size="sm" block variant="outline-primary" style="width: 100%">
                 <b-icon icon="plus"></b-icon>
                   Add General Skill
                 <b-icon icon="plus"></b-icon>
@@ -155,10 +155,10 @@
         </template>
 
         <template #cell(addPoints)="row">
-          <b-icon icon="plus" @click="characterData.IncrementSkill(row.item)"></b-icon>
+          <b-icon icon="plus" @click="characterData.IncrementGeneralSkill(row.item)"></b-icon>
         </template>
         <template #cell(removePoints)="row">
-          <b-icon icon="dash" @click="characterData.DecrementSkill(row.item)"></b-icon>
+          <b-icon icon="dash" @click="characterData.DecrementGeneralSkill(row.item)"></b-icon>
         </template>
         <template #cell(name)="row">
           <strong v-if="row.item.required">{{ row.item.name }}</strong>
