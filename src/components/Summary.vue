@@ -8,7 +8,7 @@
       return {
         character: CharacterData,
         characterLP: CharacterData.Lifepaths,
-        characterWisdom: CharacterData.MentalAttributes.WillAttr,
+        characterWill: CharacterData.MentalAttributes.WillAttr,
         characterPerception: CharacterData.MentalAttributes.PerceptionAttr,
         characterAgility: CharacterData.PhysicalAttributes.AgilityAttr,
         characterPower: CharacterData.PhysicalAttributes.PowerAttr,
@@ -41,7 +41,7 @@
       },
       physicalLeft() {
         return CharacterData.GetPhysicalPool() - CharacterData.SpentPhysical
-      }
+      },
     }
   }
 </script>
@@ -61,18 +61,34 @@
       <h3>Attributes</h3>
       <b-row>
         <b-col>Mental Pool</b-col>
-        <b-col><b>{{ mentalLeft }} / {{ totalMentalPool }}</b></b-col>
+        <b-col>
+          <b>{{ mentalLeft }} / {{ totalMentalPool }}
+          <b-icon 
+            v-b-tooltip.hover title="Distribute Mental Points Evenly"
+            @click="CharacterData.RebalanceMentalAttributes()"
+            icon="arrow-clockwise" />
+          </b>
+        
+        </b-col>
       </b-row>
       <hr />
       <b-row>
-        <Attribute :attribute="characterWisdom" :character="character"/>
+        <Attribute :attribute="characterWill" :character="character"/>
         <Attribute :attribute="characterPerception" :character="character" />
       </b-row>
       <br />
       <br />
       <b-row>
         <b-col>Physical Pool</b-col>
-        <b-col><b>{{ physicalLeft }} / {{ totalPhysicalPool }}</b></b-col>
+        <b-col>
+          <b>{{ physicalLeft }} / {{ totalPhysicalPool }}
+          <b-icon 
+            v-b-tooltip.hover title="Distribute Physical Points Evenly"
+            @click="CharacterData.RebalancePhysicalAttributes()"
+            icon="arrow-clockwise" />
+          </b>
+        </b-col>
+
       </b-row>
       <hr />
       <b-row>

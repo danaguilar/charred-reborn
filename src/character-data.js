@@ -10,6 +10,7 @@ class Character {
   constructor() {
     this.Lifepaths = [],
     this.AvailableLPSkills = [],
+    this.AvailableLPTraits = [],
     this.MentalAttributes = {
       WillAttr: new Attribute("Will", Shade.Black, 0, StatType.Mental),
       PerceptionAttr: new Attribute("Perception", Shade.Black, 0, StatType.Mental)
@@ -116,9 +117,6 @@ class Character {
   AddLifepath(setting, title) {
     const newLifepath = new Lifepath(setting, title)
     this.Lifepaths.push(newLifepath)
-    for(let lp in this.Lifepaths) {
-      // lp.ResetSkillRequirements()
-    }
     this.CalculateLPChanges()
   }
 
@@ -138,6 +136,7 @@ class Character {
     this.CalculateSkillListChanges()
     this.CalculateTraitListChanges()
     this.CreateNewSkillList()
+    this.CreatenewTraitList()
     this.UpdateAvailableSettings()
     this.CalculateAvailableLifepaths()
   }
@@ -175,6 +174,31 @@ class Character {
     }
   }
 
+  CreatenewTraitList() {
+    let newTraitArray = []
+    for(const LPIndex in this.Lifepaths) {
+      if(this.Lifepaths[LPIndex].traits) {
+        newTraitArray.push(this.Lifepaths[LPIndex].traits)
+      }
+    }
+    newTraitArray = newTraitArray.flat()
+    for(let traitIndex in newTraitArray) {
+      const newTrait = newTraitArray[traitIndex]
+      const foundTraitIndex = this.AvailableLPTraits.findIndex(trait => trait.name == newTrait.name)
+      if(foundTraitIndex == -1) {
+        this.AvailableLPTraits.push(newTrait)
+        newTrait.active = true
+      }
+      else {
+        const oldTrait = this.AvailableLPTraits[foundTraitIndex]
+        if(oldTrait.required == true && newTrait.required == false) continue
+        this.AvailableLPTraits[foundTraitIndex] = newTrait
+        this.AvailableLPTraits[foundTraitIndex].active = true
+      }
+    }
+  }
+
+
   CreateNewSkillList() {
     let newSkillArray = []
     for(const LPIndex in this.Lifepaths) {
@@ -197,7 +221,6 @@ class Character {
         this.AvailableLPSkills[foundSkillIndex].pointsSpent = oldSkill.pointsSpent
         this.AvailableLPSkills[foundSkillIndex].final = oldSkill.final
         this.AvailableLPSkills[foundSkillIndex].active = true
-
       }
     }
     let filteredSkillList = []
@@ -279,12 +302,13 @@ class Character {
   }
 
   RebalanceMentalAttributes(currentMentalPool) {
+    if(!currentMentalPool) currentMentalPool = this.GetMentalPool()
     this.SpentMental = currentMentalPool
     for(let attrIndex in this.MentalAttributes) {
       this.MentalAttributes[attrIndex].ResetValues()
     }
     const mentalAttrArr = [
-      this.MentalAttributes.WisdomAttr,
+      this.MentalAttributes.WillAttr,
       this.MentalAttributes.PerceptionAttr
     ]
     for(let i = 0; i < currentMentalPool; i++) {
@@ -310,6 +334,7 @@ class Character {
   }
 
   RebalancePhysicalAttributes(currentPhysicalPool) {
+    if(!currentPhysicalPool) currentPhysicalPool = this.GetPhysicalPool()
     this.SpentPhysical = currentPhysicalPool
     const PhysicalAttrArr = [
       this.PhysicalAttributes.AgilityAttr,

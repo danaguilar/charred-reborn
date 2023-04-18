@@ -179,6 +179,8 @@ export class Trait {
     this.desc =traitsData[traitName].desc,
     this.required = isRequired,
     this.bonus = traitsData[traitName].bonus,
+    this.cost = traitsData[traitName].cost,
+    this.restrict = traitsData[traitName].restrict,
     this.active = true
  }
 }
