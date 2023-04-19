@@ -2,6 +2,7 @@
   import Lifepaths from './components/LifePaths.vue'
   import Summary from './components/Summary.vue'
   import Lists from './components/Lists.vue'
+  import CharacterTraits from './components/CharacterTraits.vue'
 </script>
 
 <template>
@@ -10,17 +11,25 @@
       <b-navbar-brand href="#">Character Burner</b-navbar-brand>
     </b-navbar>
     <b-container fluid>
-      <b-row class="mt-4">
-        <b-col cols="4">
+      <b-row>
+        <b-col cols="4" class="pt-4" style="overflow: auto; height: 100vh">
           <Lifepaths />
         </b-col>
-        <b-col cols="4">
-          <Summary />
-        </b-col>
-        <b-col cols="4">
-          <Lists />
+        <b-col cols="8" class="pt-4" style="overflow: auto; height: 100vh">
+          <b-row>
+            <b-col>
+              <Summary />
+            </b-col>
+            <b-col>
+              <Lists />
+            </b-col>
+          </b-row>
+          <b-row>
+            <CharacterTraits />
+          </b-row>
         </b-col>
       </b-row>
+      <br>
     </b-container>
   </div>
 </template>

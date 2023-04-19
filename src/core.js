@@ -182,6 +182,12 @@ export class Trait {
     this.cost = traitsData[traitName].cost,
     this.restrict = traitsData[traitName].restrict,
     this.active = true
+    this.bought = isRequired
+ }
+
+ SetRequired(require) {
+  this.required = require
+  this.bought = require
  }
 }
 

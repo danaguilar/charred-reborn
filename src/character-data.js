@@ -235,20 +235,31 @@ class Character {
 
   CalculateTraitListChanges() {
     for(let i = 1; i < this.Lifepaths.length; i++) {
+      // For each lifepath after the first...
       let LpUnderTest = this.Lifepaths[i]
       for(let j = 0;  j < i ; j++) {
+        // Fot each lifepath before the selected lifepath
         let previousLP = this.Lifepaths[j]
 
         for(let k = 0;  k < LpUnderTest.traits.length; k++) {
+          // For each trait in the first lifepath
           let traitUnderTest = LpUnderTest.traits[k]
+          // Set the cost of that trait to 1
+          traitUnderTest.cost = 1
           for(let l = 0;  l < previousLP.traits.length; l++) {
+            // For each trait in the second (previous) lifepath
             let previousTrait = previousLP.traits[l]
 
+            // If the traits are the same (by having the same name)
             if(traitUnderTest.name == previousTrait.name) {
+              // If the the trait from the first lifepath is required
               if(traitUnderTest.required) {
+                // And the trait from the previous lifepath was required
                 if(previousTrait.required) {
-                  traitUnderTest.required = false
-                  if((k+1) < LpUnderTest.traits.length) LpUnderTest.traits[k+1].required = true
+                  // Make the first trait non-required
+                  traitUnderTest.required.SetRequired(false)
+                  // If there is a "next trait" in the lifepath, make it required
+                  if((k+1) < LpUnderTest.traits.length) LpUnderTest.traits[k+1].SetRequired(true)
                 }
               }
             }
@@ -256,6 +267,18 @@ class Character {
         }
       }
     }
+  }
+  
+  SpentTraitPoints() {
+    const result = this.AvailableLPTraits.filter(trait => trait.active).reduce((total,trait) => {
+      if(trait.bought) {
+        return total + trait.cost
+      }
+      else {
+        return total
+      }
+    }, 0)
+    return result ? result : 0
   }
 
   GetAge() {

@@ -8,12 +8,10 @@
     data() {
       return {
         fields: [
-          { key: 'name', label: 'Skill' },
+          { key: 'name', label: 'Name' },
           { key: 'root', label: 'Root'},
-          { key: 'pointsSpent', label: 'Points Spent' },
-          { key: 'final', label: 'Final' },
-          { key: 'removePoints', label: '' },
-          { key: 'addPoints', label: '' }
+          { key: 'pointsSpent', label: 'Spent' },
+          { key: 'final', label: 'Final' }
         ]
       }
     },
@@ -90,17 +88,9 @@
       :fields="fields"
       :tbody-tr-class="rowClass"
       :borderless=true
-      thead-class="d-none"
       :hover=true
       small
     >
-      <template #cell(addPoints)="row">
-        <!-- <b-icon icon="plus" @click="row.item.IncrementPoints()"></b-icon> -->
-        <b-icon icon="plus" @click="CharacterData.IncrementSkill(row.item)"></b-icon>
-      </template>
-      <template #cell(removePoints)="row">
-        <b-icon icon="dash" @click="CharacterData.DecrementSkill(row.item)"></b-icon>
-      </template>
       <template #cell(name)="row">
         <strong v-if="row.item.required">{{ row.item.name }}</strong>
         <div v-else>{{ row.item.name }}</div>
@@ -110,7 +100,11 @@
           {{ row.item.shade }}{{ row.item.CalculateStartingSkills(CharacterData) }}
       </template>
       <template #cell(pointsSpent)="row">
-        {{ row.item.pointsSpent }} <span v-if="row.item.generalPointsSpent > 0">({{ row.item.generalPointsSpent }})</span>
+        <b-icon icon="dash" @click="CharacterData.DecrementSkill(row.item)"></b-icon>
+        <span class="user-select-none">
+          {{ row.item.pointsSpent }} <span v-if="row.item.generalPointsSpent > 0">({{ row.item.generalPointsSpent }})</span>
+        </span>
+        <b-icon icon="plus" @click="CharacterData.IncrementSkill(row.item)"></b-icon>
       </template>
       <template #cell(final)="row">
           <div v-show="row.item.totalPoints == 0">-</div>

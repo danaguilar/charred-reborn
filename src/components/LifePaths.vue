@@ -40,6 +40,10 @@
         <SelectedLifepath :lifepath-data = "lifePath" />
       </b-row>
     </div>
+    <br>
+    <br>
+    <br>
+    <br>
   </div>
 </template>
 
