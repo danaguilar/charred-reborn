@@ -201,6 +201,7 @@ class SkillListItem {
   }
 }
 
+
 class SkillList {
   constructor(jsonData, stock) {
     for(let skillName in jsonData) {
@@ -218,4 +219,36 @@ class SkillList {
   }
 }
 
+class TraitListItem {
+  static DescLengthBreakPoints = [ 450, 1000 ]
+  constructor(traitName, traitData) {
+    this.name = traitName,
+    this.desc = traitData.desc
+    this.cost = traitData.cost
+    this.type = traitData.type
+  }
+
+  ColSize() {
+    if(this.type == 'character') return 4
+    if(this.type == 'call_on') return 6
+    return 12
+  }
+
+}
+
+class TraitList {
+  constructor(jsonData, stock) {
+    for(let traitName in jsonData) {
+      let traitData = jsonData[traitName]
+      if((!traitData.restrict || traitData.restrict[0] == stock) && traitData.cost != 0) {
+        if(!this[traitData.type]) {
+          this[traitData.type] = []
+        }
+        this[traitData.type].push(new TraitListItem(traitName, traitData))
+      }
+    }
+  }
+}
+
 export const DwarfSkillList = new SkillList(skillsJSON, "dwarven")
+export const DwarfTraitList = new TraitList(traitsJSON, "dwarven")

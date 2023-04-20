@@ -1,5 +1,6 @@
 <script setup>
   import Trait from './Trait.vue'
+  import TraitList from './TraitList.vue'
 </script>
 
 <script>
@@ -31,7 +32,7 @@
     <b-card>
       <b-row>
         <b-col class="d-flex justify-content-between">
-          <b-button  size="sm" block variant="outline-danger">
+          <b-button  size="sm" block variant="outline-danger" v-b-modal.traitListModal>
             <b-icon icon="plus"></b-icon>
               Add New Trait
             <b-icon icon="plus"></b-icon>
@@ -76,5 +77,23 @@
     <br><br>
     <br><br>
     <br><br>
+
+    <b-modal 
+      id="traitListModal" 
+      size="xl" 
+      centered 
+      footerClass="p-0 border-top-0"
+      title="Trait List">
+      <template #modal-header>
+        <div class="d-flex justify-content-between w-100">
+          <h1>Traits</h1>
+        </div>
+
+      </template>
+      <template #modal-footer>
+        <span></span>
+      </template>
+      <TraitList />
+    </b-modal>
   </div>
 </template>

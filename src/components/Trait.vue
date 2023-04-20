@@ -26,7 +26,7 @@
         return "mb-4"
       },
       bodyClassText() {
-        if(!this.trait.desc) return "d-none"
+        if(this.trait.type == "character") return "d-none"
         return ""
       }
     }
@@ -34,25 +34,28 @@
 </script>
 
 <template>
-  <b-card 
-    style="cursor: pointer"
-    :header-bg-variant="headerColor()"
-    :header-text-variant="headerTextColor()"
-    :border-variant="borderColor()"
-    :header-border-variant="borderColor()"
-    @click="toggleTraitBuying"
-    :class="cardClassText()"
-    :body-class="bodyClassText()"
-    >
-    <template #header>
-      <b-row>
-        <b-col class="d-flex justify-content-between">
-          <div></div>
-          <b>{{ trait.name }}</b>
-          <div>{{ trait.cost }}{{ trait.cost > 1 ? "pts" : "pt"}}</div>
-        </b-col>
-      </b-row>
-    </template>
-    <div class="text-muted">{{ trait.desc }}</div>
-  </b-card>
+  <div>
+    <b-card 
+      style="cursor: pointer"
+      :header-bg-variant="headerColor()"
+      :header-text-variant="headerTextColor()"
+      :border-variant="borderColor()"
+      :header-border-variant="borderColor()"
+      @click="toggleTraitBuying"
+      :class="cardClassText()"
+      :body-class="bodyClassText()"
+      >
+      <template #header>
+        <b-row>
+          <b-col class="d-flex justify-content-between">
+            <div></div>
+            <b>{{ trait.name }}</b>
+            <div>{{ trait.cost }}{{ trait.cost > 1 ? "pts" : "pt"}}</div>
+          </b-col>
+        </b-row>
+      </template>
+      <div class="text-muted">{{ trait.desc }}</div>
+    </b-card>
+
+  </div>
 </template>

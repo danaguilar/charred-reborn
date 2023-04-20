@@ -1,7 +1,7 @@
 <script>
   import { DwarfSkillList } from '../core';
   import { CharacterData } from '../character-data';
- export default {
+  export default {
     data() {
       return {
         skillList: DwarfSkillList,
