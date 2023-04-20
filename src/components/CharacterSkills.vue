@@ -52,36 +52,17 @@
 <template>
   <div>
   <b-card
-    header="Secondary"
     header-bg-variant="secondary"
     header-text-variant="light"
   >
-    <template #header>
-      <b-row align-v="center">
-        <b-col>
-          <h2>Skills</h2>
-        </b-col>
-        <b-col>
-          <b-row>
-            <b-col>
-              <small class="text-white"><em>Lifepath</em></small>
-            </b-col>
-            <b-col>
-              <small class="text-white"><em>(General)</em></small>
-            </b-col>
-          </b-row>
-          <b-row>
-            <b-col>
-              <h4>{{ currentLPSkillPoints - spentSkillPoints }} / {{ currentLPSkillPoints }}</h4>
-            </b-col>
-            <b-col>
-              <h5>{{ currentGeneralSkillPoints - spentGeneralPoints }} / {{ currentGeneralSkillPoints }}</h5>
-            </b-col>
-          </b-row>
-        </b-col>
-      </b-row>
-    </template>
-    <h5>Lifepath Skills</h5>
+    <b-row>
+      <b-col>
+        <h5>Lifepath Skills</h5>
+      </b-col>
+      <b-col class="text-end">
+        <h5>{{ currentLPSkillPoints - spentSkillPoints }} / {{ currentLPSkillPoints }}</h5>
+      </b-col>
+    </b-row>
     <hr>
     <b-table
       :items="activeSkills"
@@ -112,10 +93,16 @@
           {{ row.item.shade }}{{ row.item.CalculateStartingSkills(CharacterData) + row.item.totalPoints - 1}}
           </div>
       </template>
-      
     </b-table>
 
-    <h5>General Skills</h5>
+    <b-row>
+      <b-col>
+        <h5>General Skills</h5>
+      </b-col>
+      <b-col class="text-end">
+        <h5>{{ currentGeneralSkillPoints - spentGeneralPoints }} / {{ currentGeneralSkillPoints }}</h5>
+      </b-col>
+    </b-row>
     <hr>
     <b-table
       :items="activeGeneralSkill"

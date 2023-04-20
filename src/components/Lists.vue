@@ -33,7 +33,7 @@
 
 <template>
   <div>
-    <h2>The Lists</h2>
+    <h2>Skills</h2>
     <hr />
     <CharacterSkills />
   </div>

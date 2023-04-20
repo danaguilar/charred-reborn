@@ -185,6 +185,12 @@ export class Trait {
     this.bought = isRequired
  }
 
+ IconString() {
+  if(this.type == "character" ) return "person-fill"
+  if(this.type == "call_on" ) return "chat-fill"
+  if(this.type == "die" ) return "dice-6-fill"
+ }
+
  SetRequired(require) {
   this.required = require
   this.bought = require

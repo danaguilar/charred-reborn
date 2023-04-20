@@ -8,6 +8,12 @@
     props: {
       AvailableLifepathList: Object,
       showDisabled: false
+    },
+    methods: {
+      lifepathsToShow(lifepathList) {
+        if(this.showDisabled) return lifepathList
+        return lifepathList.filter(lifepath => !lifepath.disabled)
+      }
     }
   }
 </script>
@@ -34,9 +40,9 @@
       </div>
 
       <b-row>
-        <b-col class="col-6" v-for="(lifepathData, index) in settingLifepaths">
+        <b-col class="col-6" v-for="(lifepathData, index) in settingLifepaths" v-show="showDisabled || !lifepathData.disabled">
           <div v-if="lifepathData.disabled">
-            <DisabledLifepath v-show="showDisabled" :lifepath-data = "lifepathData" />
+            <DisabledLifepath :lifepath-data = "lifepathData" />
           </div>
           <div v-else>
             <Lifepath :lifepath-data = "lifepathData" />

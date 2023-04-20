@@ -1,6 +1,7 @@
 <script setup>
   import Attribute from './Attribute.vue'
 </script>
+
 <script>
   import { CharacterData } from '../character-data';
   export default {
@@ -47,18 +48,9 @@
 </script>
 <template>
   <div>
-    <h2>Summary</h2>
+    <h2>Attributes</h2>
     <hr />
     <b-card>
-      <h3>Basic</h3>
-      <b-row>
-        <b-col>Name:</b-col>
-        <b-col><em>Cool Man</em></b-col>
-        <b-col>Age:</b-col>
-        <b-col>{{ currentAge }}</b-col>
-      </b-row>
-      <br /><br />
-      <h3>Attributes</h3>
       <b-row>
         <b-col>Mental Pool</b-col>
         <b-col>
