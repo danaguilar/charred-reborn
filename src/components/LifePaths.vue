@@ -31,13 +31,19 @@
       </b-col>
       <b-col class="d-flex align-items-center justify-content-between">
         <div></div>
-        <b-button v-b-toggle.sidebar-1 variant="success">Add New Lifepath</b-button>
       </b-col>
     </b-row>
     <hr />
     <div class="p-3">
       <b-row class="mb-4" v-for="lifePath in characterLP">
         <SelectedLifepath :lifepath-data = "lifePath" />
+      </b-row>
+      <b-row>
+        <b-button v-b-toggle.sidebar-1 variant="outline-success">
+          <b-icon icon="plus"></b-icon>
+          Add New Lifepath
+          <b-icon icon="plus"></b-icon>
+        </b-button>
       </b-row>
     </div>
     <br>

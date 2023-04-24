@@ -13,7 +13,6 @@
 </script>
 <template>
   <b-col>
-
     <b-row>
       <b-col>
         {{ attribute.name }}

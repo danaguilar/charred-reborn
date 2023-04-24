@@ -101,7 +101,6 @@ export class Skill {
     this.pointsSpent = 0
     this.generalPointsSpent = 0
     this.shade = Shade.Black
-    this.final = 0
     this.firstSkill = isRequired
     this.active = true
     this.SetRequired(isRequired)
@@ -109,6 +108,7 @@ export class Skill {
 
   DecrementPoints() {
     let minPoints = this.required ? 1 : 0
+    console.log(`${this.name} points decrementing`)
     if(this.pointsSpent - 1 >= minPoints) {
       this.pointsSpent--
       this.totalPoints--
@@ -173,7 +173,7 @@ export class Skill {
 }
 
 export class Trait {
- constructor(traitName, isRequired) {
+  constructor(traitName, isRequired) {
     this.name = traitName,
     this.type = traitsData[traitName].type,
     this.desc =traitsData[traitName].desc,
@@ -183,18 +183,18 @@ export class Trait {
     this.restrict = traitsData[traitName].restrict,
     this.active = true
     this.bought = isRequired
- }
+  }
 
- IconString() {
-  if(this.type == "character" ) return "person-fill"
-  if(this.type == "call_on" ) return "chat-fill"
-  if(this.type == "die" ) return "dice-6-fill"
- }
+  IconString() {
+    if(this.type == "character" ) return "person-fill"
+    if(this.type == "call_on" ) return "chat-fill"
+    if(this.type == "die" ) return "dice-6-fill"
+  }
 
- SetRequired(require) {
-  this.required = require
-  this.bought = require
- }
+  SetRequired(require) {
+    this.required = require
+    this.bought = require
+  }
 }
 
 class SkillListItem {
@@ -234,6 +234,12 @@ class TraitListItem {
     this.type = traitData.type
   }
 
+  IconString() {
+    if(this.type == "character" ) return "person-fill"
+    if(this.type == "call_on" ) return "chat-fill"
+    if(this.type == "die" ) return "dice-6-fill"
+  }
+
   ColSize() {
     if(this.type == 'character') return 4
     if(this.type == 'call_on') return 6
@@ -242,8 +248,19 @@ class TraitListItem {
 
 }
 
-class TraitList {
+export class TraitList {
+  static formattedType(type) {
+    switch(type) {
+      case 'die': return 'Die'
+      case 'call_on': return 'Call On'
+      case 'character': return 'Character'
+   }
+  }
+
   constructor(jsonData, stock) {
+    this['die'] = []
+    this['call_on'] = []
+    this['character'] = []
     for(let traitName in jsonData) {
       let traitData = jsonData[traitName]
       if((!traitData.restrict || traitData.restrict[0] == stock) && traitData.cost != 0) {
@@ -254,6 +271,7 @@ class TraitList {
       }
     }
   }
+
 }
 
 export const DwarfSkillList = new SkillList(skillsJSON, "dwarven")

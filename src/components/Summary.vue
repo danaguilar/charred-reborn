@@ -48,7 +48,7 @@
 </script>
 <template>
   <div>
-    <h2>Attributes</h2>
+    <h2>Stats</h2>
     <hr />
     <b-card>
       <b-row>

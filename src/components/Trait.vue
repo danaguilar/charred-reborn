@@ -1,12 +1,19 @@
-
 <script>
   export default {
     props: {
-      trait: Object
+      trait: Object,
+      IsCharacterTrait: Boolean,
+      TraitFunctions: Array
     },
     methods:{
-      toggleTraitBuying(event) {
-        if(!this.trait.required) this.trait.bought = !this.trait.bought
+      handleClick(event) {
+        console.log("Handling Event")
+        if(this.IsCharacterTrait) {
+          this.TraitFunctions[1](this.trait)
+        }
+        else {
+          this.TraitFunctions[0](this.trait)
+        }
       },
       borderColor() {
         if(this.trait.bought) return "dark"
@@ -22,8 +29,7 @@
         return "muted"
       },
       cardClassText() {
-        if(this.trait.bought) return "mb-4 shadow"
-        return "mb-4"
+        return `mb-4 ${this.trait.bought ? "shadow" : ""} ${this.trait.required ? "" : "pointer"}`
       },
       bodyClassText() {
         if(this.trait.type == "character") return "d-none"
@@ -36,12 +42,11 @@
 <template>
   <div>
     <b-card 
-      style="cursor: pointer"
       :header-bg-variant="headerColor()"
       :header-text-variant="headerTextColor()"
       :border-variant="borderColor()"
       :header-border-variant="borderColor()"
-      @click="toggleTraitBuying"
+      @click="handleClick"
       :class="cardClassText()"
       :body-class="bodyClassText()"
       >
@@ -49,7 +54,8 @@
         <b-row>
           <b-col class="d-flex justify-content-between">
             <div></div>
-            <b>{{ trait.name }}</b>
+            <b v-show="trait.required"><em>{{ trait.name }}</em></b>
+            <b v-show="!trait.required">{{ trait.name }}</b>
             <div>{{ trait.cost }}{{ trait.cost > 1 ? "pts" : "pt"}}</div>
           </b-col>
         </b-row>
@@ -59,3 +65,9 @@
 
   </div>
 </template>
+
+<style>
+  .pointer {
+    cursor: pointer
+  }
+</style>

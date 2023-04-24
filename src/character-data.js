@@ -1,6 +1,6 @@
 import { reactive } from 'vue'
 import { Lifepath, DwarfLPList } from './lifepath'
-import { Shade, Attribute, StatType, Skill } from './core'
+import { Shade, Attribute, StatType, Skill, Trait } from './core'
 import dwarfStartingStatsJSON from '../data/gold/starting_stat_pts/dwarf.json'
 
 export const dwarfStartingStats = dwarfStartingStatsJSON
@@ -31,6 +31,7 @@ class Character {
     this.SpentMental = 0
     this.availableSettings = []
     this.GeneralSkills = []
+    this.GeneralTraits = []
     this.AvailableLifepathList = DwarfLPList
     this.CalculateAvailableLifepaths()
   }
@@ -43,6 +44,41 @@ class Character {
     }
   }
 
+  TraitFunctions() {
+    return [
+      this.AddGeneralTrait.bind(this),
+      this.ToggleTraitBuying.bind(this)
+    ]
+  }
+
+  AddGeneralTrait(trait) {
+    if(this.GetTraitPointsLeft() >= trait.cost) {
+      const newTrait = new Trait(trait.name, false)
+      newTrait.bought = true
+      this.GeneralTraits.push(newTrait)
+    }
+  }
+
+  ToggleTraitBuying(trait) {
+    // Remove trait from general traits if it is currently in general traits
+    const foundIndex  = this.GeneralTraits.indexOf(trait)
+    if(foundIndex != -1) { 
+      console.log(`${trait.name} to be removed at ${foundIndex}`)
+      this.GeneralTraits.splice(foundIndex, 1)
+    }
+    else {
+      trait.bought = !trait.bought
+    }
+  }
+
+  TotalTraitList() {
+    return this.AvailableLPTraits.concat(this.GeneralTraits)
+  }
+
+  GetTraitPointsLeft() {
+    return this.GetTotalTraitPoints() - this.SpentTraitPoints()
+  }
+
   IncrementGeneralSkill(skill) {
     if(this.HasGeneralSkillPointsLeft()) {
       skill.IncrementGeneralPoints()
@@ -50,13 +86,11 @@ class Character {
   }
 
   DecrementGeneralSkill(skill) {
-    if(this.SpentGeneralSkillPoints() <= this.GetTotalGeneralSkillPoints() ) {
-      skill.DecrementGeneralPoints()
-      if(skill.generalPointsSpent == 0) {
-        const index = this.GeneralSkills.indexOf(skill);
-        if (index !== -1) {
-          this.GeneralSkills.splice(index, 1);
-        }
+    skill.DecrementGeneralPoints()
+    if(skill.generalPointsSpent == 0) {
+      const index = this.GeneralSkills.indexOf(skill);
+      if (index !== -1) {
+        this.GeneralSkills.splice(index, 1);
       }
     }
   }
@@ -71,6 +105,7 @@ class Character {
     })
     this.AvailableLifepathList.ActivateSettings(this)
   }
+
 
   GetArrayOfAttributes() {
     let attrArray = []
@@ -136,34 +171,74 @@ class Character {
     this.CalculateSkillListChanges()
     this.CalculateTraitListChanges()
     this.CreateNewSkillList()
-    this.CreatenewTraitList()
+    this.CreateNewTraitList()
+    this.UpdateLPSkillPts()
+    this.UpdateGeneralSkillPts()
     this.UpdateAvailableSettings()
     this.CalculateAvailableLifepaths()
   }
 
+  UpdateLPSkillPts() {
+    while(this.GetTotalLPSkillPoints() - this.SpentSkillPoints() < 0) {
+      let skillsWithPoints = this.AvailableLPSkills.filter(skill => {
+        if(skill.required) return skill.pointsSpent > 1
+        return skill.pointsSpent > 0
+      }).reverse()
+      skillsWithPoints[0].DecrementPoints()
+    }
+  }
+
+  UpdateGeneralSkillPts() {
+    while(this.GetTotalGeneralSkillPoints() - this.SpentGeneralSkillPoints() < 0) {
+      console.log("SHOULDN'T BE DOING THIS!!")
+      let skillsWithGeneralPoints = this.AvailableLPSkills.filter(skill => {
+        return skill.generalPointsSpent > 0
+      })
+      if(skillsWithGeneralPoints.length > 0) {
+        skillsWithGeneralPoints[0].DecrementGeneralPoints()
+      }
+      else {
+        this.DecrementGeneralSkill(this.GeneralSkills[0])
+      }
+    }
+  }
+
   UpdateAvailableSettings() {
-    if(this.Lifepaths.length == 0) return
+    if(this.Lifepaths.length == 0) {
+      this.availableSettings = []
+      return
+    }
     let currentLifepath = this.Lifepaths[this.Lifepaths.length - 1]
     const settings = [currentLifepath.setting]
     this.availableSettings = settings.concat(currentLifepath.key_leads)
   }
 
   CalculateSkillListChanges() {
+    // For every lifepath past the first
     for(let i = 1; i < this.Lifepaths.length; i++) {
       let LpUnderTest = this.Lifepaths[i]
+      // Check all previous lifepaths
       for(let j = 0;  j < i ; j++) {
         let previousLP = this.Lifepaths[j]
+        // It the previous lifepath does not have skills, move onto next
         if(!previousLP.skills) continue
 
+        // For all skills in the current lifepath...
         for(let k = 0;  k < LpUnderTest.skills.length; k++) {
           let skillUnderTest = LpUnderTest.skills[k]
+          // And all skills in the previous lifepath...
           for(let l = 0;  l < previousLP.skills.length; l++) {
             let previousSkill = previousLP.skills[l]
 
+            // If there is a matching skill between the two
             if(skillUnderTest.name == previousSkill.name) {
+              // And the current skill is required
               if(skillUnderTest.IsRequired()) {
+                // And the previous skill is also required
                 if(previousSkill.IsRequired()) {
+                  // Make the current skill unrequired
                   skillUnderTest.SetRequired(false)
+                  // If there is a next skill in the current lifepath, make that one required
                   if((k+1) < LpUnderTest.skills.length) LpUnderTest.skills[k+1].SetRequired(true)
                 }
               }
@@ -174,7 +249,7 @@ class Character {
     }
   }
 
-  CreatenewTraitList() {
+  CreateNewTraitList() {
     let newTraitArray = []
     for(const LPIndex in this.Lifepaths) {
       if(this.Lifepaths[LPIndex].traits) {
@@ -196,40 +271,62 @@ class Character {
         this.AvailableLPTraits[foundTraitIndex].active = true
       }
     }
+
+    let filteredTraitArray = []
+    // For each skill in the AvailableSkills
+    for(let traitIndex in this.AvailableLPTraits) {
+      let checkedTrait = this.AvailableLPTraits[traitIndex]
+      // If the available skill exists in the new skill array... 
+      if(newTraitArray.findIndex(trait => trait.name == checkedTrait.name) != -1) {
+        filteredTraitArray.push(checkedTrait)
+      }
+    }
+    this.AvailableLPTraits = filteredTraitArray
   }
 
 
   CreateNewSkillList() {
+    // Create new array to store all lifepaths skills in
     let newSkillArray = []
+    // For all lifepathfs
     for(const LPIndex in this.Lifepaths) {
       if(this.Lifepaths[LPIndex].skills) {
+        // Add the skills of that lifepath to the skill array if skills exist
         newSkillArray.push(this.Lifepaths[LPIndex].skills)
       }
     }
+    // For each skill in the newSkillArray
     newSkillArray = newSkillArray.flat()
     for(let skillIndex in newSkillArray) {
       const newSkill = newSkillArray[skillIndex]
+      // Find if the skill currently exists in the AvailableLPSkills list
       const foundSkillIndex = this.AvailableLPSkills.findIndex(skill => skill.name == newSkill.name)
+      // If it does not exist....
       if(foundSkillIndex == -1) {
+        // Add the found skill to the Available list and set active
         this.AvailableLPSkills.push(newSkill)
         newSkill.active = true
       }
+      // If it does exist... 
       else {
-        const oldSkill = this.AvailableLPSkills[foundSkillIndex]
-        if(oldSkill.required == true && newSkill.required == false) continue
         this.AvailableLPSkills[foundSkillIndex] = newSkill
-        this.AvailableLPSkills[foundSkillIndex].pointsSpent = oldSkill.pointsSpent
-        this.AvailableLPSkills[foundSkillIndex].final = oldSkill.final
         this.AvailableLPSkills[foundSkillIndex].active = true
       }
     }
+
+    // Create filtered skill list
     let filteredSkillList = []
+    // For each skill in the AvailableSkills
     for(let skillIndex in this.AvailableLPSkills) {
       let checkedSkill = this.AvailableLPSkills[skillIndex]
+      // If the available skill exists in the new skill array... 
       if(newSkillArray.findIndex(skill => skill.name == checkedSkill.name) != -1) {
+        // Add to filtered skill list
         filteredSkillList.push(checkedSkill)
       }
     }
+
+    // Set AvailableSkills equal to filtered skills, ensuring that only skills in the current lifepath list remain
     this.AvailableLPSkills = filteredSkillList
   }
 
@@ -270,7 +367,7 @@ class Character {
   }
   
   SpentTraitPoints() {
-    const result = this.AvailableLPTraits.filter(trait => trait.active).reduce((total,trait) => {
+    const result = this.TotalTraitList().filter(trait => trait.active).reduce((total,trait) => {
       if(trait.bought) {
         return total + trait.cost
       }

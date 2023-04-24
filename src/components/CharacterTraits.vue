@@ -11,13 +11,13 @@
         return CharacterData.GetTotalTraitPoints();
       },
       activeDieTraits() {
-        return CharacterData.AvailableLPTraits.filter(trait => trait.type == "die")
+        return CharacterData.TotalTraitList().filter(trait => trait.type == "die")
       },
       activeCallOnTraits() {
-        return CharacterData.AvailableLPTraits.filter(trait => trait.type == "call_on")
+        return CharacterData.TotalTraitList().filter(trait => trait.type == "call_on")
       },
       activeCharacterTraits() {
-        return CharacterData.AvailableLPTraits.filter(trait => trait.type == "character")
+        return CharacterData.TotalTraitList().filter(trait => trait.type == "character")
       },
       spentCharacterTraits() {
         return CharacterData.SpentTraitPoints()
@@ -48,7 +48,7 @@
           <hr>
           <b-row v-for="trait in activeDieTraits">
             <b-col>
-              <Trait :trait="trait" />
+              <Trait :trait="trait" :is-character-trait="true" :trait-functions="CharacterData.TraitFunctions()" />
             </b-col>
           </b-row>
         </b-col>
@@ -57,7 +57,7 @@
           <hr>
           <b-row v-for="trait in activeCallOnTraits">
             <b-col>
-              <Trait :trait="trait" />
+              <Trait :trait="trait" :is-character-trait="true" :trait-functions="CharacterData.TraitFunctions()" />
             </b-col>
           </b-row>
         </b-col>
@@ -68,7 +68,7 @@
           <hr>
           <b-row>
             <b-col cols="4" v-for="trait in activeCharacterTraits">
-              <Trait :trait="trait" />
+              <Trait :trait="trait" :is-character-trait="true" :trait-functions="CharacterData.TraitFunctions()" />
             </b-col>
           </b-row>
         </b-col>

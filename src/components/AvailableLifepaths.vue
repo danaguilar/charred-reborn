@@ -1,5 +1,6 @@
 <script setup>
-  import { LeadsToIcons } from '../lifepath'
+  import { AvailableLifepathList } from '../character-data';
+import { LeadsToIcons } from '../lifepath'
   import Lifepath from './LifepathChoice.vue'
   import DisabledLifepath from './LifepathDisabledChoice.vue'
 </script>
@@ -10,9 +11,12 @@
       showDisabled: false
     },
     methods: {
-      lifepathsToShow(lifepathList) {
-        if(this.showDisabled) return lifepathList
-        return lifepathList.filter(lifepath => !lifepath.disabled)
+      shouldShowSetting(setting) {
+        if(this.showDisabled) return true
+        return AvailableLifepathList.SettingList[setting].reduce(
+          (total, lifepath) => {
+            return total + !lifepath.disabled
+          },0)  != 0
       }
     }
   }
@@ -31,7 +35,7 @@
       </b-col>
     </b-row>
     <div class="px-4 py-3" v-for="(settingLifepaths, setting) in AvailableLifepathList.SettingList">
-      <div class="separator">
+      <div class="separator" v-show="shouldShowSetting(setting)">
         <h3>
           <b-icon :icon="AvailableLifepathList.SettingNameToIcons(setting, LeadsToIcons)"></b-icon>
           {{ setting }}
