@@ -3,13 +3,34 @@
   import Summary from './components/Summary.vue'
   import Lists from './components/Lists.vue'
   import CharacterTraits from './components/CharacterTraits.vue'
+  import CharacterResources from './components/CharacterResources.vue'
 </script>
 
 <template>
   <div class="bg-light">
-    <b-navbar toggleable="lg" type="dark" variant="dark" class="p-2">
-      <b-navbar-brand href="#">Character Burner</b-navbar-brand>
-    </b-navbar>
+    <b-row class="bg-dark text-light p-2">
+      <b-col>
+        <h3>(NAME)</h3>
+      </b-col>
+      <b-col>
+        Perception
+      </b-col>
+      <b-col>
+        Will
+      </b-col>
+      <b-col>
+        Power
+      </b-col>
+      <b-col>
+        Forte
+      </b-col>
+      <b-col>
+        Agility
+      </b-col>
+      <b-col>
+        Speed
+      </b-col>
+    </b-row>
     <b-container fluid>
       <b-row>
         <b-col cols="4" class="pt-4" style="overflow: auto; height: 100vh">
@@ -18,14 +39,17 @@
         <b-col cols="8" class="pt-4" style="overflow: auto; height: 100vh">
           <b-row>
             <b-col>
-              <Summary />
-            </b-col>
-            <b-col>
+              <!-- <Summary /> -->
               <Lists />
             </b-col>
+            <b-col>
+              <CharacterTraits />
+            </b-col>
           </b-row>
-          <b-row>
-            <CharacterTraits />
+          <b-row class="mt-1">
+            <b-col>
+              <CharacterResources />
+            </b-col>
           </b-row>
         </b-col>
       </b-row>

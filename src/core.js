@@ -1,8 +1,10 @@
 import skillsJSON from '../data/gold/skills.json'
 import traitsJSON from '../data/gold/traits.json'
+import dwarfResourceJSON from '../data/gold/resources/dwarf.json'
 
 const traitsData = traitsJSON
 const skillsData = skillsJSON
+const resourceData = dwarfResourceJSON
 
 export class Shade {
   static Black = new Shade('Black');
@@ -274,5 +276,28 @@ export class TraitList {
 
 }
 
+export class ResourceListItem {
+  constructor(resourceData) {
+    this.name = resourceData.name
+    this.rp = resourceData.rp
+    this.type = resourceData.type
+  }
+
+}
+
+export class ResourceList {
+  constructor(jsonData, stock) {
+    this['property'] = []
+    this['gear'] = []
+    for(let element in jsonData) {
+      const resorceData = jsonData[element]
+      this[resorceData.type].push(new ResourceListItem(resorceData))
+    }
+    this['gear'].sort((a, b) => { return a.rp > b.rp })
+    this['property'].sort((a, b) => { return a.rp > b.rp })
+  }
+}
+
 export const DwarfSkillList = new SkillList(skillsJSON, "dwarven")
 export const DwarfTraitList = new TraitList(traitsJSON, "dwarven")
+export const DwarfResourceList = new ResourceList(resourceData, "dwarven")

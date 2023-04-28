@@ -6,9 +6,9 @@
       TraitFunctions: Array
     },
     methods:{
-      handleClick(event) {
-        console.log("Handling Event")
+      handleClick() {
         if(this.IsCharacterTrait) {
+          if(this.trait.required) return
           this.TraitFunctions[1](this.trait)
         }
         else {

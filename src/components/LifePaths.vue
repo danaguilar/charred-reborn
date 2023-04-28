@@ -26,11 +26,11 @@
       <AvailableLifepaths :available-lifepath-list = "availableLifepathList" />
     </b-sidebar>
     <b-row>
-      <b-col>
-        <h2>LIFEPATHS</h2>
-      </b-col>
-      <b-col class="d-flex align-items-center justify-content-between">
-        <div></div>
+      <b-col class="d-flex justify-content-between">
+        <h3>Lifepaths</h3>
+        <h3>
+          {{ characterLP.Lifepaths ? characterLP.Lifepaths.length : 0 }} LP
+        </h3>
       </b-col>
     </b-row>
     <hr />

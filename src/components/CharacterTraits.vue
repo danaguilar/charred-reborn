@@ -28,18 +28,19 @@
 
 <template>
   <div>
+    <h2>Traits</h2>
     <hr>
     <b-card>
       <b-row>
         <b-col class="d-flex justify-content-between">
-          <b-button  size="sm" block variant="outline-danger" v-b-modal.traitListModal>
+          <b-button  size="sm" block variant="outline-primary" v-b-modal.traitListModal>
             <b-icon icon="plus"></b-icon>
               Add New Trait
             <b-icon icon="plus"></b-icon>
           </b-button>
-          <h3>
+          <h4>
             {{ currentTraitPoints - spentCharacterTraits }} / {{ currentTraitPoints }}
-          </h3>
+          </h4>
         </b-col>
       </b-row>
       <b-row>
@@ -52,6 +53,8 @@
             </b-col>
           </b-row>
         </b-col>
+      </b-row>
+      <b-row>
         <b-col>
           <h4 class="text-center">Call-On Traits</h4>
           <hr>
@@ -74,9 +77,6 @@
         </b-col>
       </b-row>
     </b-card>
-    <br><br>
-    <br><br>
-    <br><br>
 
     <b-modal 
       id="traitListModal" 

@@ -48,7 +48,7 @@
           <b-col cols="2" class="fs-6"><small>Res</small></b-col>
           <b-col cols="2" class="fs-6"><small>Years</small></b-col>
           <b-col cols="2" class="fs-6"><small>Stats</small></b-col>
-          <b-col cols="2" class="fs-6"><small>Leads To</small></b-col>
+          <b-col cols="2" class="fs-6"><small>Leads</small></b-col>
           <b-col cols="1" class="d-flex justify-content-between">
             <div></div>
           </b-col>
