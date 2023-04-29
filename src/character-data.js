@@ -33,9 +33,32 @@ class Character {
     this.GeneralSkills = []
     this.GeneralTraits = []
     this.AvailableLifepathList = DwarfLPList
+    this.gear = []
+    this.property = []
+    this.affiliations = []
+    this.reputations = []
+    this.contacts = []
     this.CalculateAvailableLifepaths()
   }
 
+  AddResource(gear) {
+    if(gear.type == "property") {
+      this.property.push(gear)
+    }
+    else {
+      this.gear.push(gear)
+    }
+  }
+  RemoveResource(resource) {
+    if(resource.type == "property") {
+      const foundIndex = this.property.indexOf(resource)
+      if(foundIndex != -1) this.property.splice(foundIndex, 1)
+    }
+    else {
+      const foundIndex = this.gear.indexOf(resource)
+      if(foundIndex != -1) this.gear.splice(foundIndex, 1)
+    }
+  }
   AddGeneralSkill(skill) {
     if(this.HasGeneralSkillPointsLeft()) {
       const newSkill = new Skill(skill.name, false)

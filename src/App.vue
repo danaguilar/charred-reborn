@@ -31,6 +31,7 @@
         Speed
       </b-col>
     </b-row>
+    <b-row>
     <b-container fluid>
       <b-row>
         <b-col cols="4" class="pt-4" style="overflow: auto; height: 100vh">
@@ -55,5 +56,6 @@
       </b-row>
       <br>
     </b-container>
+    </b-row>
   </div>
 </template>

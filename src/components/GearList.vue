@@ -1,18 +1,32 @@
 
 <script>
+  import { CharacterData } from '../character-data';
   export default {
     props: {
       GearList: Array
+    },
+    methods: {
+      addResource(gear) {
+        CharacterData.AddResource(gear)
+        this.$bvModal.hide('gearListModal')
+        this.$bvModal.hide('propertyListModal')
+      }
     }
   }
-
 </script>
 
 <template>
   <div>
     <b-row>
       <b-col cols="4" class="pb-3" v-for="gear in GearList">
-        <b-card
+        <b-button @click="addResource(gear)" size="md" variant="outline-dark" class="w-100 d-flex justify-content-between">
+          <div></div>
+          <b>{{ gear.name }}</b>
+          <div>
+            {{ gear.rp }} <b-icon icon="currency-exchange"></b-icon>
+          </div>
+        </b-button>
+        <!-- <b-card
           body-class="d-none"
         >
           <template #header>
@@ -22,7 +36,7 @@
               <div>{{ gear.rp }} <b-icon icon="currency-exchange"></b-icon></div>
             </div>
           </template>
-        </b-card>
+        </b-card> -->
       </b-col>
     </b-row>
   </div>
