@@ -47,60 +47,77 @@
   }
 </script>
 <template>
-  <div>
-    <h2>Stats</h2>
-    <hr />
-    <b-card>
-      <b-row>
-        <b-col>Mental Pool</b-col>
-        <b-col>
-          <b>{{ mentalLeft }} / {{ totalMentalPool }}
-          <b-icon 
-            v-b-tooltip.hover title="Distribute Mental Points Evenly"
-            @click="CharacterData.RebalanceMentalAttributes()"
-            icon="arrow-clockwise" />
-          </b>
-        
-        </b-col>
-      </b-row>
+  <b-row>
+    <b-col>
+      <h2>Stats</h2>
       <hr />
-      <b-row>
-        <Attribute :attribute="characterWill" :character="character"/>
-        <Attribute :attribute="characterPerception" :character="character" />
-      </b-row>
-      <br />
-      <br />
-      <b-row>
-        <b-col>Physical Pool</b-col>
-        <b-col>
-          <b>{{ physicalLeft }} / {{ totalPhysicalPool }}
-          <b-icon 
-            v-b-tooltip.hover title="Distribute Physical Points Evenly"
-            @click="CharacterData.RebalancePhysicalAttributes()"
-            icon="arrow-clockwise" />
-          </b>
-        </b-col>
-
-      </b-row>
+      <b-card>
+        <b-row>
+          <b-col>
+            <b-row class="d-flex justify-content-between">
+              <b-col>
+                <h4 class="text-primary">Mental</h4>
+              </b-col>
+              <b-col class="d-flex justify-content-between align-items-center">
+                <div></div>
+                <h4 class="text-success">Physical</h4>
+              </b-col>
+            </b-row>
+            <b-row class="d-flex justify-content-between">
+              <b-col>
+                <span class="text-primary">
+                  <h4>{{ mentalLeft }} / {{ totalMentalPool }}
+                  <b-icon 
+                    v-b-tooltip.hover title="Distribute Mental Points Evenly"
+                    @click="CharacterData.RebalanceMentalAttributes()"
+                    icon="arrow-clockwise" />
+                  </h4>
+                </span>
+              </b-col>
+              <b-col class="d-flex justify-content-between align-items-center">
+                <div></div>
+                <span class="text-success">
+                  <h4>{{ physicalLeft }} / {{ totalPhysicalPool }}
+                  <b-icon 
+                    v-b-tooltip.hover title="Distribute Physical Points Evenly"
+                    @click="CharacterData.RebalancePhysicalAttributes()"
+                    icon="arrow-clockwise" />
+                  </h4>
+                </span>
+              </b-col>
+            </b-row>
+            <hr>
+            <b-row>
+              <b-col cols="1"></b-col>
+              <Attribute :attribute="characterWill" :character="character"/>
+              <Attribute :attribute="characterPerception" :character="character" />
+              <Attribute :attribute="characterPower" :character="character"/>
+            </b-row>
+            <b-row>
+              <b-col cols="1"></b-col>
+              <Attribute :attribute="characterForte" :character="character"/>
+              <Attribute :attribute="characterAgility" :character="character"/>
+              <Attribute :attribute="characterSpeed" :character="character"/>
+            </b-row>
+          </b-col>
+        </b-row>
+        <b-row class="mt-2">
+        </b-row>
+        <b-row>
+        </b-row>
+      </b-card>
+    </b-col>
+    <b-col>
+      <h2>Attributes</h2>
       <hr />
-      <b-row>
-        <Attribute :attribute="characterPower" :character="character"/>
-        <Attribute :attribute="characterForte" :character="character"/>
-        <Attribute :attribute="characterAgility" :character="character"/>
-        <Attribute :attribute="characterSpeed" :character="character"/>
-      </b-row>
-      <br />
-      <br />
-      <b-row>
-        <b-col>Derived</b-col>
-      </b-row>
-      <hr />
-      <b-row>
-        <Attribute :attribute="characterHealth" :character="character"/>
-        <Attribute :attribute="characterReflexes" :character="character"/>
-        <Attribute :attribute="characterSteel" :character="character"/>
-        <Attribute :attribute="characterEmotion" :character="character"/>
-      </b-row>
-    </b-card>
-  </div>
+      <b-card>
+        <b-row>
+          <Attribute :attribute="characterHealth" :character="character"/>
+          <Attribute :attribute="characterReflexes" :character="character"/>
+          <Attribute :attribute="characterSteel" :character="character"/>
+          <Attribute :attribute="characterEmotion" :character="character"/>
+        </b-row>
+      </b-card>
+    </b-col>
+  </b-row>
 </template>
