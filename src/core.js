@@ -30,6 +30,18 @@ export class Shade {
   }
 }
 
+export class ReputationType {
+  static Minor = new ReputationType('Local/Minor', 7)
+  static Notable = new Shade('Regional/Notable', 25);
+  static Major = new Shade('Nationanl/Major', 45);
+
+  constructor(name, cost) {
+    this.name = name;
+    this.rp = cost;
+  }
+}
+
+
 export class StatType {
   static Physical = new StatType('Physical');
   static Mental = new StatType('Mental');
@@ -91,6 +103,19 @@ export class Attribute {
   ResetValues() {
     this.value = 0
     this.shade = Shade.Black
+  }
+}
+
+export class Reputation {
+  constructor() {
+    this.name = ""
+    this.type = ReputationType.Minor
+    this.rp = this.type.rp
+  }
+
+  SetReputation(type) {
+    this.type = type
+    this.rp = this.type.rp
   }
 }
 

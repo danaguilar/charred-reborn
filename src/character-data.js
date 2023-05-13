@@ -41,6 +41,22 @@ class Character {
     this.CalculateAvailableLifepaths()
   }
 
+  AvailableResourcePoints() {
+    return this.GetResourcePoints() - this.SpentResourcePoints()
+  }
+
+  SpentResourcePoints() {
+    return this.SumOfResourcePoints(this.gear) +
+      this.SumOfResourcePoints(this.property)
+  }
+
+  SumOfResourcePoints(resourceList) {
+    if(resourceList.length <= 0) return 0
+    return resourceList.reduce((total, resource) => {
+      return total + resource.rp
+    },0)
+  }
+
   AddResource(gear) {
     if(gear.type == "property") {
       this.property.push(gear)

@@ -3,11 +3,11 @@
 </script>
 
 <script>
-
   import { CharacterData } from '../character-data';
-  import { DwarfResourceList } from '../core';
+  import { DwarfResourceList, Reputation, ReputationType} from '../core';
   export default {
     data() {
+      let new_reputation = new Reputation()
       return {
           character: CharacterData,
           gear: CharacterData.gear,
@@ -16,6 +16,12 @@
           fields: [
             { key: 'rp', label: 'cost'},
             { key: 'name', label: 'name'}
+          ],
+          selected: new_reputation.type,
+          options: [
+            { text: ReputationType.Minor.name, value: 'Minor Rep' },
+            { text: ReputationType.Notable.name, value: 'Major Rep' },
+            { text: ReputationType.Major.name, value: 'Extreme Rep' }
           ]
         }
       },
@@ -37,7 +43,7 @@
           <h5> 
           </h5>
           <h4 class="text-right">
-            {{ character.GetResourcePoints() }} / {{ character.GetResourcePoints() }} <b-icon icon="currency-exchange"></b-icon>
+            {{ character.AvailableResourcePoints() }} / {{ character.GetResourcePoints() }} <b-icon icon="currency-exchange"></b-icon>
           </h4>
         </b-col>
       </b-row>
@@ -96,7 +102,7 @@
             <template #modal-footer>
               <span></span>
             </template>
-            <GearList :gear-list="resourceList.gear" />
+            <GearList :gear-list="resourceList.gear" :avaiable-resource-points="character.AvailableResourcePoints()" />
           </b-modal>
         <b-col class="mx-2">
           <b-row class="border-bottom border-2">
@@ -147,11 +153,14 @@
             <template #modal-footer>
               <span></span>
             </template>
-            <GearList :gear-list="resourceList.property" />
+            <GearList :gear-list="resourceList.property" :avaiable-resource-points="character.AvailableResourcePoints()"/>
           </b-modal>
           </b-row>
         </b-col>
       </b-row>
+      <br>
+      <hr>
+      <br>
       <b-row>
         <b-col>
             <h3>Circles B1</h3>
@@ -164,12 +173,46 @@
           </b-row>
           <b-row>
             <b-col>
-              <b-button  size="sm" block class="w-100" variant="outline-primary" v-b-modal.traitListModal>
+              <b-button  size="sm" block class="w-100" variant="outline-primary" v-b-modal.reputationModal>
                 <b-icon icon="plus"></b-icon>
                   Add New Reputation
                 <b-icon icon="plus"></b-icon>
               </b-button>
             </b-col>
+            <b-modal 
+              id="reputationModal" 
+              size="xl" 
+              centered 
+              footerClass="p-0 border-top-0"
+              title="Trait List">
+              <template #modal-header>
+                <div class="d-flex justify-content-between w-100">
+                  <h2>New Reputation</h2>
+                  <h2>7 <b-icon icon="currency-exchange"></b-icon></h2>
+                </div>
+              </template>
+              <b-row>
+                <b-col class="d-flex justify-content-center">
+                  <b-form-radio-group
+                    id="btn-radios-2"
+                    v-model="selected"
+                    :options="options"
+                    button-variant="outline-success"
+                    size="lg"
+                    name="radio-btn-outline"
+                    buttons
+                  ></b-form-radio-group>
+                </b-col>
+              </b-row>
+              <template #modal-footer>
+                <b-row>
+                  <b-col>
+                    <button class="button">Add Reputation</button>
+                  </b-col>
+                </b-row>
+              </template>
+
+            </b-modal>
           </b-row>
         </b-col>
         <b-col>
@@ -209,3 +252,9 @@
     <br>
   </div>
 </template>
+
+<style>
+  [type='radio'] {
+    display: none; 
+  }
+</style>
