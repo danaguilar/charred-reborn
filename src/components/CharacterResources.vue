@@ -1,5 +1,6 @@
 <script setup>
   import GearList from './GearList.vue'
+  import ReputationModal from './NewReputationModal.vue'
 </script>
 
 <script>
@@ -7,30 +8,27 @@
   import { DwarfResourceList, Reputation, ReputationType} from '../core';
   export default {
     data() {
-      let new_reputation = new Reputation()
       return {
           character: CharacterData,
           gear: CharacterData.gear,
           property: CharacterData.property,
+          reputations: CharacterData.reputations,
           resourceList: DwarfResourceList,
           fields: [
             { key: 'rp', label: 'cost'},
             { key: 'name', label: 'name'}
-          ],
-          selected: new_reputation.type,
-          options: [
-            { text: ReputationType.Minor.name, value: 'Minor Rep' },
-            { text: ReputationType.Notable.name, value: 'Major Rep' },
-            { text: ReputationType.Major.name, value: 'Extreme Rep' }
           ]
         }
       },
       methods: {
         removeGear(gear) {
           CharacterData.RemoveResource(gear)
+        },
+        removeRep(rep) {
+          CharacterData.RemoveRep(rep)
         }
       }
-    }
+  }
 </script>
 
 <template>
@@ -172,6 +170,29 @@
             <h4 class="text-center">Reputations<b-icon icon="trophy-fill"></b-icon></h4>
           </b-row>
           <b-row>
+            <b-table
+              :items="reputations"
+              :fields="fields"
+              thead-class="d-none"
+              borderless
+              small
+              hover
+            >
+              <template #cell(rp)="row">
+                {{ row.item.rp }} <b-icon icon="currency-exchange"></b-icon>
+              </template>
+
+              <template #cell(name)="row">
+                <div class="d-flex justify-content-between align-items-center">
+                  <b>{{ row.item.name }}</b>
+                  <div class="pointer text-muted" @click="removeRep(row.item)">
+                    <b-icon icon="x"></b-icon>
+                  </div>
+                </div>
+              </template>
+            </b-table>
+          </b-row>
+          <b-row>
             <b-col>
               <b-button  size="sm" block class="w-100" variant="outline-primary" v-b-modal.reputationModal>
                 <b-icon icon="plus"></b-icon>
@@ -179,41 +200,9 @@
                 <b-icon icon="plus"></b-icon>
               </b-button>
             </b-col>
-            <b-modal 
-              id="reputationModal" 
-              size="xl" 
-              centered 
-              footerClass="p-0 border-top-0"
-              title="Trait List">
-              <template #modal-header>
-                <div class="d-flex justify-content-between w-100">
-                  <h2>New Reputation</h2>
-                  <h2>7 <b-icon icon="currency-exchange"></b-icon></h2>
-                </div>
-              </template>
-              <b-row>
-                <b-col class="d-flex justify-content-center">
-                  <b-form-radio-group
-                    id="btn-radios-2"
-                    v-model="selected"
-                    :options="options"
-                    button-variant="outline-success"
-                    size="lg"
-                    name="radio-btn-outline"
-                    buttons
-                  ></b-form-radio-group>
-                </b-col>
-              </b-row>
-              <template #modal-footer>
-                <b-row>
-                  <b-col>
-                    <button class="button">Add Reputation</button>
-                  </b-col>
-                </b-row>
-              </template>
-
-            </b-modal>
+            <ReputationModal :character-data="character"/>
           </b-row>
+
         </b-col>
         <b-col>
           <b-row>

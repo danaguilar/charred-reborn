@@ -1,6 +1,6 @@
 import { reactive } from 'vue'
 import { Lifepath, DwarfLPList } from './lifepath'
-import { Shade, Attribute, StatType, Skill, Trait } from './core'
+import { Shade, Attribute, StatType, Skill, Trait, Reputation } from './core'
 import dwarfStartingStatsJSON from '../data/gold/starting_stat_pts/dwarf.json'
 
 export const dwarfStartingStats = dwarfStartingStatsJSON
@@ -38,7 +38,21 @@ class Character {
     this.affiliations = []
     this.reputations = []
     this.contacts = []
+    this.new_reputation = new Reputation()
     this.CalculateAvailableLifepaths()
+  }
+
+  CreateNewReputation() {
+    this.new_reputation = new Reputation()
+  }
+
+  AddNewReputationToRepList() {
+    this.reputations.push(this.new_reputation)
+    this.CreateNewReputation()
+  }
+
+  UpdateNewReputationType(repType) {
+    this.new_reputation.SetReputationType(repType)
   }
 
   AvailableResourcePoints() {
@@ -47,7 +61,8 @@ class Character {
 
   SpentResourcePoints() {
     return this.SumOfResourcePoints(this.gear) +
-      this.SumOfResourcePoints(this.property)
+      this.SumOfResourcePoints(this.property) +
+      this.SumOfResourcePoints(this.reputations)
   }
 
   SumOfResourcePoints(resourceList) {
@@ -74,6 +89,10 @@ class Character {
       const foundIndex = this.gear.indexOf(resource)
       if(foundIndex != -1) this.gear.splice(foundIndex, 1)
     }
+  }
+  RemoveRep(rep) {
+    const foundIndex = this.reputations.indexOf(rep)
+    if(foundIndex != -1) this.reputations.splice(foundIndex, 1)
   }
   AddGeneralSkill(skill) {
     if(this.HasGeneralSkillPointsLeft()) {

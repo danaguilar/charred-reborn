@@ -32,8 +32,8 @@ export class Shade {
 
 export class ReputationType {
   static Minor = new ReputationType('Local/Minor', 7)
-  static Notable = new Shade('Regional/Notable', 25);
-  static Major = new Shade('Nationanl/Major', 45);
+  static Notable = new ReputationType('Regional/Notable', 25);
+  static Major = new ReputationType('National/Major', 45);
 
   constructor(name, cost) {
     this.name = name;
@@ -113,7 +113,7 @@ export class Reputation {
     this.rp = this.type.rp
   }
 
-  SetReputation(type) {
+  SetReputationType(type) {
     this.type = type
     this.rp = this.type.rp
   }
@@ -135,7 +135,6 @@ export class Skill {
 
   DecrementPoints() {
     let minPoints = this.required ? 1 : 0
-    console.log(`${this.name} points decrementing`)
     if(this.pointsSpent - 1 >= minPoints) {
       this.pointsSpent--
       this.totalPoints--
