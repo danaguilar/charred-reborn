@@ -41,6 +41,16 @@ export class ReputationType {
   }
 }
 
+export class AffiliationType {
+  static Small = new AffiliationType('Small', 10)
+  static Large = new AffiliationType('Large', 25);
+  static National = new AffiliationType('National', 50);
+
+  constructor(name, cost) {
+    this.name = name;
+    this.rp = cost;
+  }
+}
 
 export class StatType {
   static Physical = new StatType('Physical');
@@ -118,6 +128,20 @@ export class Reputation {
     this.rp = this.type.rp
   }
 }
+
+export class Affiliation {
+  constructor() {
+    this.name = ""
+    this.type = AffiliationType.Small
+    this.rp = this.type.rp
+  }
+
+  SetAffiliationType(type) {
+    this.type = type
+    this.rp = this.type.rp
+  }
+}
+
 
 export class Skill {
   constructor(skillName, isRequired) {

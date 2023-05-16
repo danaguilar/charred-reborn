@@ -1,6 +1,6 @@
 
 <script>
-  import { Reputation, ReputationType } from '../core'
+  import { ReputationType } from '../core'
   export default {
     props: {
       CharacterData: Object

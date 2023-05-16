@@ -1,11 +1,12 @@
 <script setup>
   import GearList from './GearList.vue'
   import ReputationModal from './NewReputationModal.vue'
+  import AffiliationModal from './NewAffiliationModal.vue'
 </script>
 
 <script>
   import { CharacterData } from '../character-data';
-  import { DwarfResourceList, Reputation, ReputationType} from '../core';
+  import { DwarfResourceList } from '../core';
   export default {
     data() {
       return {
@@ -13,6 +14,7 @@
           gear: CharacterData.gear,
           property: CharacterData.property,
           reputations: CharacterData.reputations,
+          affiliations: CharacterData.affiliations,
           resourceList: DwarfResourceList,
           fields: [
             { key: 'rp', label: 'cost'},
@@ -26,6 +28,9 @@
         },
         removeRep(rep) {
           CharacterData.RemoveRep(rep)
+        },
+        removeAff(aff) {
+          CharacterData.RemoveAff(aff)
         }
       }
   }
@@ -202,7 +207,6 @@
             </b-col>
             <ReputationModal :character-data="character"/>
           </b-row>
-
         </b-col>
         <b-col>
           <b-row>
@@ -223,13 +227,37 @@
             <h4 class="text-center">Affiliations<b-icon icon="people-fill"></b-icon></h4>
           </b-row>
           <b-row>
+            <b-table
+              :items="affiliations"
+              :fields="fields"
+              thead-class="d-none"
+              borderless
+              small
+              hover
+            >
+              <template #cell(rp)="row">
+                {{ row.item.rp }} <b-icon icon="currency-exchange"></b-icon>
+              </template>
+
+              <template #cell(name)="row">
+                <div class="d-flex justify-content-between align-items-center">
+                  <b>{{ row.item.name }}</b>
+                  <div class="pointer text-muted" @click="removeAff(row.item)">
+                    <b-icon icon="x"></b-icon>
+                  </div>
+                </div>
+              </template>
+            </b-table>
+          </b-row>
+          <b-row>
             <b-col>
-              <b-button  size="sm" block class="w-100" variant="outline-primary" v-b-modal.traitListModal>
+              <b-button  size="sm" block class="w-100" variant="outline-primary" v-b-modal.affiliationModal>
                 <b-icon icon="plus"></b-icon>
                   Add New Affiliation
                 <b-icon icon="plus"></b-icon>
               </b-button>
             </b-col>
+            <AffiliationModal :character-data="character"/>
           </b-row>
         </b-col>
       </b-row>
