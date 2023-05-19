@@ -52,6 +52,17 @@ export class AffiliationType {
   }
 }
 
+export class RelationshipType {
+  static Minor = new RelationshipType('Minor', 5)
+  static Important = new RelationshipType('Important', 10);
+  static Powerful = new RelationshipType('Powerful', 15);
+
+  constructor(name, cost) {
+    this.name = name;
+    this.rp = cost;
+  }
+}
+
 export class StatType {
   static Physical = new StatType('Physical');
   static Mental = new StatType('Mental');
@@ -142,6 +153,46 @@ export class Affiliation {
   }
 }
 
+export class RelationshipModifier {
+  static ImmediateFamily = new RelationshipModifier("Immediate family", -2)
+  static OtherFamily =  new RelationshipModifier("Other family",  -1)
+  static Romantic = new RelationshipModifier("Romantic",  -2)
+  static Forbidden = new RelationshipModifier("Forbidden", -1)
+  static Hateful = new RelationshipModifier("Hateful", -2)
+
+  constructor(name, rp) {
+    this.name = name;
+    this.rp = rp
+  }
+}
+
+export class Relationship {
+  constructor() {
+    this.name = ""
+    this.type = RelationshipType.Minor
+    this.rp = this.type.rp
+    this.rel_modifiers = []
+  }
+
+  CalculateRP() {
+    this.rp = Math.max(this.type.rp +
+      this.rel_modifiers.reduce((total, rel_mod) => {
+        return total + rel_mod.rp
+      }, 0), 1)
+  }
+
+  ToggleModifier(rel_mod) {
+    const foundIndex = this.rel_modifiers.indexOf(rel_mod)
+    if(foundIndex != -1) this.rel_modifiers.splice(foundIndex, 1)
+    else this.rel_modifiers.push(rel_mod)
+    this.CalculateRP()
+  }
+
+  SetRelationshipType(relType) {
+    this.type = relType
+    this.CalculateRP()
+  }
+}
 
 export class Skill {
   constructor(skillName, isRequired) {
@@ -224,6 +275,7 @@ export class Skill {
 
 export class Trait {
   constructor(traitName, isRequired) {
+    if(!traitsData[traitName]) console.log(traitName)
     this.name = traitName,
     this.type = traitsData[traitName].type,
     this.desc =traitsData[traitName].desc,

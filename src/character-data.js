@@ -1,6 +1,6 @@
 import { reactive } from 'vue'
 import { Lifepath, DwarfLPList } from './lifepath'
-import { Shade, Attribute, StatType, Skill, Trait, Reputation, Affiliation } from './core'
+import { Shade, Attribute, StatType, Skill, Trait, Reputation, Affiliation, Relationship } from './core'
 import dwarfStartingStatsJSON from '../data/gold/starting_stat_pts/dwarf.json'
 
 export const dwarfStartingStats = dwarfStartingStatsJSON
@@ -37,10 +37,16 @@ class Character {
     this.property = []
     this.affiliations = []
     this.reputations = []
-    this.contacts = []
+    this.relationships = []
     this.new_reputation = new Reputation()
     this.new_affiliation = new Affiliation()
+    this.new_relationship = new Relationship()
     this.CalculateAvailableLifepaths()
+  }
+
+  AddNewRelationshipToRelationships() {
+    this.relationships.push(this.new_relationship)
+    this.new_relationship = new Relationship()
   }
 
   AddNewReputationToRepList() {
@@ -61,6 +67,14 @@ class Character {
     this.new_affiliation.SetAffiliationType(affType)
   }
 
+  UpdateNewRelationshipType(relType) {
+    this.new_relationship.SetRelationshipType(relType)
+  }
+
+  ToggleNewRelationshipMod(modifier) {
+    this.new_relationship.ToggleModifier(modifier)
+  }
+
   AvailableResourcePoints() {
     return this.GetResourcePoints() - this.SpentResourcePoints()
   }
@@ -69,7 +83,8 @@ class Character {
     return this.SumOfResourcePoints(this.gear) +
       this.SumOfResourcePoints(this.property) +
       this.SumOfResourcePoints(this.reputations) +
-      this.SumOfResourcePoints(this.affiliations)
+      this.SumOfResourcePoints(this.affiliations) +
+      this.SumOfResourcePoints(this.relationships)
   }
 
   SumOfResourcePoints(resourceList) {
@@ -104,6 +119,10 @@ class Character {
   RemoveAff(aff) {
     const foundIndex = this.affiliations.indexOf(aff)
     if(foundIndex != -1) this.affiliations.splice(foundIndex, 1)
+  }
+  RemoveRelationship(rel) {
+    const foundIndex = this.relationships.indexOf(rel)
+    if(foundIndex != -1) this.relationships.splice(foundIndex, 1)
   }
   AddGeneralSkill(skill) {
     if(this.HasGeneralSkillPointsLeft()) {
@@ -174,7 +193,6 @@ class Character {
     })
     this.AvailableLifepathList.ActivateSettings(this)
   }
-
 
   GetArrayOfAttributes() {
     let attrArray = []

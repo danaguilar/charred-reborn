@@ -7,7 +7,7 @@
 </script>
 
 <template>
-  <div class="bg-light">
+  <div class="bg-light" style="min-height: 100vh;">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
        <h1 class="navbar-brand m-2">Charred Reborn</h1>
         <ul class="navbar-nav mr-auto">
@@ -28,12 +28,12 @@
         </ul>
     </nav>
     <b-row class="pt-4 px-2">
-      <b-container fluid>
+      <b-container>
         <b-row>
-          <b-col cols="4" class="pt-4" style="overflow: auto; height: 100vh">
+          <b-col cols="4" class="pt-4">
             <Lifepaths />
           </b-col>
-          <b-col cols="8" class="pt-4" style="overflow: auto; height: 100vh">
+          <b-col cols="8" class="pt-4">
             <b-tabs>
               <b-tab title="Stats and Attributes">
                 <Summary />

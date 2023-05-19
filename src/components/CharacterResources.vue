@@ -2,6 +2,7 @@
   import GearList from './GearList.vue'
   import ReputationModal from './NewReputationModal.vue'
   import AffiliationModal from './NewAffiliationModal.vue'
+  import RelationshipModal from './NewRelationshipModal.vue'
 </script>
 
 <script>
@@ -15,6 +16,7 @@
           property: CharacterData.property,
           reputations: CharacterData.reputations,
           affiliations: CharacterData.affiliations,
+          relationships: CharacterData.relationships,
           resourceList: DwarfResourceList,
           fields: [
             { key: 'rp', label: 'cost'},
@@ -31,6 +33,9 @@
         },
         removeAff(aff) {
           CharacterData.RemoveAff(aff)
+        },
+        removeRelationship(rel) {
+          CharacterData.RemoveRelationship(rel)
         }
       }
   }
@@ -170,8 +175,8 @@
         </b-col>
       </b-row>
       <b-row>
-        <b-col>
-          <b-row>
+        <b-col class="mx-2">
+          <b-row class="border-bottom border-2">
             <h4 class="text-center">Reputations<b-icon icon="trophy-fill"></b-icon></h4>
           </b-row>
           <b-row>
@@ -208,22 +213,46 @@
             <ReputationModal :character-data="character"/>
           </b-row>
         </b-col>
-        <b-col>
+        <b-col class="mx-2">
+          <b-row class="border-bottom border-2">
+            <h4 class="text-center">Relationships<b-icon icon="person-badge-fill"></b-icon></h4>
+          </b-row>
           <b-row>
-            <h4 class="text-center">Contacts<b-icon icon="person-badge-fill"></b-icon></h4>
+            <b-table
+              :items="relationships"
+              :fields="fields"
+              thead-class="d-none"
+              borderless
+              small
+              hover
+            >
+              <template #cell(rp)="row">
+                {{ row.item.rp }} <b-icon icon="currency-exchange"></b-icon>
+              </template>
+
+              <template #cell(name)="row">
+                <div class="d-flex justify-content-between align-items-center">
+                  <b>{{ row.item.name }}</b>
+                  <div class="pointer text-muted" @click="removeRelationship(row.item)">
+                    <b-icon icon="x"></b-icon>
+                  </div>
+                </div>
+              </template>
+            </b-table>
           </b-row>
           <b-row>
             <b-col>
-              <b-button  size="sm" block class="w-100" variant="outline-primary" v-b-modal.traitListModal>
+              <b-button  size="sm" block class="w-100" variant="outline-primary" v-b-modal.relationshipModal>
                 <b-icon icon="plus"></b-icon>
-                  Add New Contact
+                  Add New Relationship
                 <b-icon icon="plus"></b-icon>
               </b-button>
             </b-col>
+            <RelationshipModal :character-data="character"/>
           </b-row>
         </b-col>
-        <b-col>
-          <b-row>
+        <b-col class="mx-2">
+          <b-row class="border-bottom border-2">
             <h4 class="text-center">Affiliations<b-icon icon="people-fill"></b-icon></h4>
           </b-row>
           <b-row>

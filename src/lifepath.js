@@ -95,7 +95,6 @@ export class Lifepath {
     this.stat = lifePathData.stat,
     this.generalSkillPts = 0,
     this.skillpts = 0,
-    this.common_traits = lifePathData.common_traits,
     this.leads = lifePathData.leads.map(lead => LeadsToIcons[lead]),
     this.requires = lifePathData.requires,
     this.requires_expr = lifePathData.requires_expr
@@ -103,9 +102,12 @@ export class Lifepath {
     this.key_leads = lifePathData.key_leads
     this.isBornLP = lifepathTitle.indexOf("Born") != -1 ? true : false
     this.disabled = false
+    this.traits = []
+    this.common_traits = []
 
     this.SetupLpSkills(lifePathData.skills)
     this.SetupLpTraits(lifePathData.traits)
+    this.SetupLpCommonTraits(lifePathData.common_traits)
   }
 
   RequiredName() {
@@ -114,6 +116,15 @@ export class Lifepath {
 
   RequiredNameWithSetting() {
     return `${this.setting.toLowerCase()}:${this.RequiredName()}`
+  }
+
+  SetupLpCommonTraits(lpCommonTraits) {
+    if(!lpCommonTraits) return
+    let traitGroup = []
+    for(let j = 0; j < lpCommonTraits.length; j++) {
+      traitGroup.push(new Trait(lpCommonTraits[j], true))
+    }
+    this.common_traits =traitGroup
   }
 
   SetupLpTraits(lpTraitData) {
