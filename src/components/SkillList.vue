@@ -22,6 +22,7 @@
       },
       addSkill(skill) {
         CharacterData.AddGeneralSkill(skill)
+        this.$bvModal.hide('skillListModal')
       }
     },
     computed: {

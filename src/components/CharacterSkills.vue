@@ -87,7 +87,7 @@
         </span>
         <b-icon icon="plus" @click="CharacterData.IncrementSkill(row.item)"></b-icon>
       </template>
-      <template #cell(final)="row">
+      <template #cell(totalPoints)="row">
           <div v-show="row.item.totalPoints == 0">-</div>
           <div v-show="row.item.totalPoints != 0">
           {{ row.item.shade }}{{ row.item.CalculateStartingSkills(CharacterData) + row.item.totalPoints - 1}}
@@ -140,7 +140,7 @@
         </span>
         <b-icon icon="plus" @click="CharacterData.IncrementGeneralSkill(row.item)"></b-icon>
       </template>
-      <template #cell(final)="row">
+      <template #cell(totalPoints)="row">
           <div v-show="row.item.totalPoints == 0">-</div>
           <div v-show="row.item.totalPoints != 0">
           {{ row.item.shade }}{{ row.item.CalculateStartingSkills(CharacterData) + row.item.totalPoints - 1 }}

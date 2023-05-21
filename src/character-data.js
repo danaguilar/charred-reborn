@@ -131,11 +131,14 @@ class Character {
       this.GeneralSkills.push(newSkill)
     }
   }
-
+  HasTraitPointsLeft() {
+    return this.GetTraitPointsLeft > 0
+  }
   TraitFunctions() {
     return [
       this.AddGeneralTrait.bind(this),
-      this.ToggleTraitBuying.bind(this)
+      this.ToggleTraitBuying.bind(this),
+      this.HasTraitPointsLeft.bind(this)
     ]
   }
 

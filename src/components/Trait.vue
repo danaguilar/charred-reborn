@@ -14,6 +14,7 @@
         else {
           this.TraitFunctions[0](this.trait)
         }
+        this.$bvModal.hide('traitListModal')
       },
       borderColor() {
         if(this.trait.bought) return "dark"
@@ -29,7 +30,7 @@
         return "muted"
       },
       cardClassText() {
-        return `mb-4 ${this.trait.bought ? "shadow" : ""} ${this.trait.required ? "" : "pointer"}`
+        return `mb-4 ${this.trait.bought ? "shadow" : ""} ${this.trait.required ? "" : "pointer"} ${this.IsCharacterTrait && !this.trait.bought && this.TraitFunctions[2]() ? "d-none" : "" }`
       },
       bodyClassText() {
         if(this.trait.type == "character") return "d-none"
@@ -48,6 +49,7 @@
       :header-border-variant="borderColor()"
       @click="handleClick"
       :class="cardClassText()"
+      display="false"
       :body-class="bodyClassText()"
       >
       <template #header>
