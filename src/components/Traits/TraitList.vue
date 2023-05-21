@@ -1,10 +1,10 @@
 <script setup>
-  import Trait from './Trait.vue'
+  import Trait from 'components/Traits/Trait.vue'
 </script>
 
 <script>
-  import { DwarfTraitList, TraitList } from '../core';
-  import { CharacterData } from '../character-data';
+  import { DwarfTraitList, TraitList } from 'js/core';
+  import { CharacterData } from 'js/character-data';
 
   export default {
     data() {

@@ -1,6 +1,6 @@
-import skillsJSON from '../data/gold/skills.json'
-import traitsJSON from '../data/gold/traits.json'
-import dwarfResourceJSON from '../data/gold/resources/dwarf.json'
+import skillsJSON from 'data/gold/skills.json'
+import traitsJSON from 'data/gold/traits.json'
+import dwarfResourceJSON from 'data/gold/resources/dwarf.json'
 
 const traitsData = traitsJSON
 const skillsData = skillsJSON
@@ -74,7 +74,7 @@ export class StatType {
 }
 
 export class Attribute {
-  constructor(name, shade, value, statType) {
+  constructor(name, shade, value, statType, active=true) {
     this.name = name
     this.shade = shade
     this.value = value,
@@ -111,6 +111,10 @@ export class Attribute {
 
   ShouldShowMinus() {
     return this.statType != StatType.Derived
+  }
+
+  SetValue(val) {
+    this.value = val
   }
 
   Increment() {

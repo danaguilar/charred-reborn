@@ -1,6 +1,6 @@
 <script>
-  import { DwarfSkillList } from '../core';
-  import { CharacterData } from '../character-data';
+  import { DwarfSkillList } from 'js/core';
+  import { CharacterData } from 'js/character-data';
   export default {
     data() {
       return {

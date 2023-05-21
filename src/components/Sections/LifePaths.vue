@@ -1,10 +1,10 @@
 <script setup>
-  import SelectedLifepath from './SelectedLifepath.vue'
-  import AvailableLifepaths from './AvailableLifepaths.vue'
+  import SelectedLifepath from 'components/Lifepaths/SelectedLifepath.vue'
+  import AvailableLifepaths from 'components/Lifepaths/AvailableLifepaths.vue'
 </script>
 
 <script>
-  import { CharacterData } from '../character-data';
+  import { CharacterData } from 'js/character-data';
   export default {
     data() {
       return {

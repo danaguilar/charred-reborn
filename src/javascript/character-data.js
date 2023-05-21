@@ -1,7 +1,7 @@
 import { reactive } from 'vue'
-import { Lifepath, DwarfLPList } from './lifepath'
-import { Shade, Attribute, StatType, Skill, Trait, Reputation, Affiliation, Relationship } from './core'
-import dwarfStartingStatsJSON from '../data/gold/starting_stat_pts/dwarf.json'
+import { Lifepath, DwarfLPList } from 'js/lifepath'
+import { Shade, Attribute, StatType, Skill, Trait, Reputation, Affiliation, Relationship } from 'js/core'
+import dwarfStartingStatsJSON from 'data/gold/starting_stat_pts/dwarf.json'
 
 export const dwarfStartingStats = dwarfStartingStatsJSON
 export const AvailableLifepathList = DwarfLPList
@@ -21,12 +21,21 @@ class Character {
       ForteAttr: new Attribute("Forte", Shade.Black, 0, StatType.Physical),
       SpeedAttr: new Attribute("Speed", Shade.Black, 0, StatType.Physical)
     }
-    this.DerivedAttributes=  {
+    this.DerivedAttributes = {
       HealthAttr: new Attribute("Health", Shade.Black, 3, StatType.Derived),
       ReflexesAttr: new Attribute("Reflexes", Shade.Black, 0, StatType.Derived),
       SteelAttr: new Attribute("Steel", Shade.Black, 0, StatType.Derived),
-      EmotionAttr: new Attribute("DEFAULT_EMOTION", Shade.Black, 0, StatType.Derived),
+      ResouceAttr: new Attribute("Resource", Shade.Black, 0, StatType.Derived),
+      CircleAttr: new Attribute("Circles", Shade.Black, 0, StatType.Derived),
     }
+    this.emotionAttribues = {
+      GreedAttr: new Attribute("Greed", Shade.Black, 0, StatType.Derived, false),
+      GriefAttr: new Attribute("Grief", Shade.Black, 0, StatType.Derived, false),
+      HatredAttr: new Attribute("Hatred", Shade.Black, 0, StatType.Derived, false),
+      VoidEmbraceAttr: new Attribute("Void Embrace", Shade.Black, 0, StatType.Derived, false),
+      FaithAttr: new Attribute("Faith", Shade.Black, 0, StatType.Derived, false),
+    }
+
     this.SpentPhysical = 0
     this.SpentMental = 0
     this.availableSettings = []
@@ -41,7 +50,14 @@ class Character {
     this.new_reputation = new Reputation()
     this.new_affiliation = new Affiliation()
     this.new_relationship = new Relationship()
-    this.CalculateAvailableLifepaths()
+    this.CalculateLPChanges()
+  }
+
+  GetEmotionAttribute() {
+    for(let emotion in this.emotionAttribues) {
+      if(emotion.active) return emotion
+    }
+    return null
   }
 
   AddNewRelationshipToRelationships() {
@@ -258,6 +274,7 @@ class Character {
       let LP  = this.Lifepaths[LPIndex]
       LP.ResetSkillRequirements()
     }
+    this.CalculateAttributeChanges()
     this.CalculateSkillListChanges()
     this.CalculateTraitListChanges()
     this.CreateNewSkillList()
@@ -266,6 +283,26 @@ class Character {
     this.UpdateGeneralSkillPts()
     this.UpdateAvailableSettings()
     this.CalculateAvailableLifepaths()
+  }
+
+  CalculateAttributeChanges() {
+    this.CalculateResourceChanges()
+  }
+
+  CalculateResourceChanges() {
+    const rp_total = this.property.reduce((total, property) => {
+      return total + property.rp
+    }, 0) + this.reputations.reduce((total, rep) => { 
+      return total + rep.rp
+    }, 0) + this.affiliations.reduce((total, aff) => {
+      return total + aff.rp
+    }, 0) + 3
+    const new_val = Math.floor(rp_total/15)
+    this.DerivedAttributes.ResouceAttr.SetValue(new_val)
+  }
+
+  CalculateCirclesChanges() {
+    
   }
 
   UpdateLPSkillPts() {

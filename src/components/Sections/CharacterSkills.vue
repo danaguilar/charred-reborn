@@ -1,9 +1,9 @@
 <script setup>
-  import SkillList from './SkillList.vue'
+  import SkillList from 'components/Skills/SkillList.vue'
 </script>
 
 <script>
-  import { CharacterData } from '../character-data';
+  import { CharacterData } from 'js/character-data';
   export default {
     data() {
       return {
@@ -51,10 +51,12 @@
 </script>
 <template>
   <div>
-  <b-card
-    header-bg-variant="secondary"
-    header-text-variant="light"
-  >
+    <h2>Skills</h2>
+    <hr />
+    <b-card
+      header-bg-variant="secondary"
+      header-text-variant="light"
+    >
     <b-row>
       <b-col>
         <h5>Lifepath Skills</h5>

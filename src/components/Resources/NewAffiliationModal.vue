@@ -1,6 +1,6 @@
 
 <script>
-  import { AffiliationType } from '../core'
+  import { AffiliationType } from 'js/core'
   export default {
     props: {
       CharacterData: Object

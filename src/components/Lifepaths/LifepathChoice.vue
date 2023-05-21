@@ -1,10 +1,10 @@
 <script setup>
-  import SkillsText from './SkillsText.vue'
-  import TraitsText from './TraitsText.vue'
+  import SkillsText from 'components/Skills//SkillsText.vue'
+  import TraitsText from 'components/Traits/TraitsText.vue'
+  import { CharacterData } from 'js/character-data';
 </script>
 
 <script>
-  import { CharacterData } from '../character-data';
   export default {
     props: {
       lifepathData: Object
@@ -17,6 +17,14 @@
     methods: {
       removeLifepath(event) {
         CharacterData.RemoveLifepath(this.lifepathData)
+      },
+      handleHover(hovered) {
+        if(this.lifepathData.disabled) return
+        this.isHovered = hovered
+      },
+      submitCurrentLifepath(event) {
+        if(this.lifepathData.disabled) return
+        CharacterData.AddLifepath(this.lifepathData.setting, this.lifepathData.id)
       }
     }
   }
@@ -24,10 +32,14 @@
 
 <template>
   <b-card 
-    header-bg-variant="white"
+    border-variant="secondary"
+    :header-bg-variant="isHovered ? 'secondary' : ''"
+    :header-text-variant="isHovered ? 'white' : ''"
     header-tag="header" 
     footer-tag="footer"
-    text-variant="muted"
+    v-b-hover="handleHover"
+    @click="submitCurrentLifepath"
+    v-b-toggle.sidebar-1
     class="p-0 my-4">
     <template #header>
       <div>

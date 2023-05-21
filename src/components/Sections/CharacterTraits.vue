@@ -1,10 +1,10 @@
 <script setup>
-  import Trait from './Trait.vue'
-  import TraitList from './TraitList.vue'
+  import Trait from 'components/Traits/Trait.vue'
+  import TraitList from 'components/Traits/TraitList.vue'
 </script>
 
 <script>
-  import { CharacterData } from '../character-data';
+  import { CharacterData } from 'js/character-data';
   export default {
     computed: {
       currentTraitPoints() {

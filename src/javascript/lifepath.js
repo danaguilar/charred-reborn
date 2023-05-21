@@ -1,5 +1,5 @@
-import { Skill, Trait } from './core'
-import dwarfLPJSON from '../data/gold/lifepaths/dwarf.json'
+import { Skill, Trait } from 'js/core'
+import dwarfLPJSON from 'data/gold/lifepaths/dwarf.json'
 
 const dwarfLP = dwarfLPJSON
 

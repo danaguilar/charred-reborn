@@ -1,13 +1,13 @@
 <script setup>
-  import GearList from './GearList.vue'
-  import ReputationModal from './NewReputationModal.vue'
-  import AffiliationModal from './NewAffiliationModal.vue'
-  import RelationshipModal from './NewRelationshipModal.vue'
+  import GearList from 'components/Resources/GearList.vue'
+  import ReputationModal from 'components/Resources/NewReputationModal.vue'
+  import AffiliationModal from 'components/Resources/NewAffiliationModal.vue'
+  import RelationshipModal from 'components/Resources/NewRelationshipModal.vue'
 </script>
 
 <script>
-  import { CharacterData } from '../character-data';
-  import { DwarfResourceList } from '../core';
+  import { CharacterData } from 'js/character-data';
+  import { DwarfResourceList } from 'js/core';
   export default {
     data() {
       return {

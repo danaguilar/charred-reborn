@@ -1,6 +1,5 @@
-
 <script>
-  import { CharacterData } from '../character-data';
+  import { CharacterData } from 'js/character-data';
   export default {
     props: {
       GearList: Array,

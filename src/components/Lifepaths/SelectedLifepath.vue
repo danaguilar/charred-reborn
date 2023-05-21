@@ -1,10 +1,10 @@
 <script setup>
-  import SkillsText from './SkillsText.vue'
-  import TraitsText from './TraitsText.vue'
+  import SkillsText from 'components/Skills/SkillsText.vue'
+  import TraitsText from 'components/Traits/TraitsText.vue'
 </script>
 
 <script>
-  import { CharacterData } from '../character-data';
+  import { CharacterData } from 'js/character-data';
   export default {
     props: {
       lifepathData: Object

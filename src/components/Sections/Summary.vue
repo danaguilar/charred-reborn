@@ -1,9 +1,11 @@
 <script setup>
-  import Attribute from './Attribute.vue'
+  import PhysicalAttribute from 'components/Attributes/PhysicalAttribute.vue'
+  import MentalAttribute from 'components/Attributes/MentalAttribute.vue'
+  import DerivedAttribute from 'components/Attributes/DerivedAttribute.vue'
 </script>
 
 <script>
-  import { CharacterData } from '../character-data';
+  import { CharacterData } from 'js/character-data';
   export default {
     data() {
       return {
@@ -18,7 +20,9 @@
         characterReflexes: CharacterData.DerivedAttributes.ReflexesAttr,
         characterHealth: CharacterData.DerivedAttributes.HealthAttr,
         characterSteel: CharacterData.DerivedAttributes.SteelAttr,
-        characterEmotion: CharacterData.DerivedAttributes.EmotionAttr,
+        characterResource: CharacterData.DerivedAttributes.ResouceAttr,
+        characterCircles: CharacterData.DerivedAttributes.CircleAttr,
+        characterEmotion: CharacterData.GetEmotionAttribute()
       }
     },
     computed: {
@@ -89,15 +93,15 @@
             <hr>
             <b-row>
               <b-col cols="1"></b-col>
-              <Attribute :attribute="characterWill" :character="character"/>
-              <Attribute :attribute="characterPerception" :character="character" />
-              <Attribute :attribute="characterPower" :character="character"/>
+              <MentalAttribute :attribute="characterWill" :character="character"/>
+              <MentalAttribute :attribute="characterPerception" :character="character" />
+              <PhysicalAttribute :attribute="characterPower" :character="character"/>
             </b-row>
             <b-row>
               <b-col cols="1"></b-col>
-              <Attribute :attribute="characterForte" :character="character"/>
-              <Attribute :attribute="characterAgility" :character="character"/>
-              <Attribute :attribute="characterSpeed" :character="character"/>
+              <PhysicalAttribute :attribute="characterForte" :character="character"/>
+              <PhysicalAttribute :attribute="characterAgility" :character="character"/>
+              <PhysicalAttribute :attribute="characterSpeed" :character="character"/>
             </b-row>
           </b-col>
         </b-row>
@@ -112,10 +116,7 @@
       <hr />
       <b-card>
         <b-row>
-          <Attribute :attribute="characterHealth" :character="character"/>
-          <Attribute :attribute="characterReflexes" :character="character"/>
-          <Attribute :attribute="characterSteel" :character="character"/>
-          <Attribute :attribute="characterEmotion" :character="character"/>
+          <DerivedAttribute name="Health" shade="B" :value="2" />
         </b-row>
       </b-card>
     </b-col>

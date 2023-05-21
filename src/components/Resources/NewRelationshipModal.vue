@@ -1,6 +1,6 @@
 
 <script>
-  import { RelationshipType, RelationshipModifier } from '../core'
+  import { RelationshipType, RelationshipModifier } from 'js/core'
   export default {
     props: {
       CharacterData: Object

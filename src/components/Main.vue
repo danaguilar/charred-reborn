@@ -1,9 +1,9 @@
 <script setup>
-  import Lifepaths from './components/LifePaths.vue'
-  import Summary from './components/Summary.vue'
-  import Lists from './components/Lists.vue'
-  import CharacterTraits from './components/CharacterTraits.vue'
-  import CharacterResources from './components/CharacterResources.vue'
+  import Lifepaths from 'components/Sections/LifePaths.vue'
+  import Summary from 'components/Sections/Summary.vue'
+  import CharacterSkills from 'components/Sections/CharacterSkills.vue'
+  import CharacterTraits from 'components/Sections/CharacterTraits.vue'
+  import CharacterResources from 'components/Sections/CharacterResources.vue'
 </script>
 
 <template>
@@ -41,8 +41,7 @@
               <b-tab title="Skills and Traits">
                 <b-row>
                   <b-col>
-                    <!-- <Summary /> -->
-                    <Lists />
+                    <CharacterSkills />
                   </b-col>
                   <b-col>
                     <CharacterTraits />
