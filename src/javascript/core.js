@@ -22,6 +22,11 @@ export class Shade {
     return "ERROR"
   }
 
+  CompareShade(otherShade) {
+    if(this == otherShade) return this
+    return this.Black
+  }
+
   ToNumber() {
     if(this.name == "Black") return 0
     if(this.name == "Gray") return 2

@@ -1,6 +1,7 @@
 import { reactive } from 'vue'
 import { Lifepath, DwarfLPList } from 'js/lifepath'
 import { Shade, Attribute, StatType, Skill, Trait, Reputation, Affiliation, Relationship } from 'js/core'
+import { HealthQuestionnaire, SteelQuestionnaire } from 'js/questionnaire'
 import dwarfStartingStatsJSON from 'data/gold/starting_stat_pts/dwarf.json'
 
 export const dwarfStartingStats = dwarfStartingStatsJSON
@@ -50,7 +51,22 @@ class Character {
     this.new_reputation = new Reputation()
     this.new_affiliation = new Affiliation()
     this.new_relationship = new Relationship()
+    this.health_questionnaire = HealthQuestionnaire
+    this.steel_questionnaire = SteelQuestionnaire
+    this.SetupQuestionnaireFunctions();
+    this.steelShadeShifted = false
     this.CalculateLPChanges()
+  }
+
+  AddOrSubIfWillHigh() {
+    console.log("Getting here")
+    if(this.MentalAttributes.WillAttr.value > 4) return 1
+    else if(this.MentalAttributes.WillAttr.value < 4) return -1
+    return 0
+  }
+
+  SetupQuestionnaireFunctions() {
+    this.steel_questionnaire.AddFunction("AddOrSubIfWillHigh", this.AddOrSubIfWillHigh.bind(this))
   }
 
   GetEmotionAttribute() {
@@ -58,6 +74,33 @@ class Character {
       if(emotion.active) return emotion
     }
     return null
+  }
+
+  GetHealthValue() {
+    let baseValue = 0
+    if(this.MentalAttributes.WillAttr.shade != this.PhysicalAttributes.ForteAttr.shade) {
+      baseValue = Math.floor((this.MentalAttributes.WillAttr.ValueForAverage(Shade.Black) + this.PhysicalAttributes.ForteAttr.ValueForAverage(Shade.Blacke))/2)
+    }
+    else {
+      baseValue = Math.floor((this.MentalAttributes.WillAttr.value + this.PhysicalAttributes.ForteAttr.value)/2)
+    }
+
+    baseValue += this.health_questionnaire.SumQuestions()
+    return baseValue
+  }
+
+  GetHealthShade() {
+    return this.MentalAttributes.WillAttr.shade.CompareShade(this.PhysicalAttributes.ForteAttr.shade).toString()
+  }
+
+  GetSteelValue() {
+    let baseValue = 3
+    baseValue += this.steel_questionnaire.SumQuestions()
+    return baseValue
+  }
+
+  GetSteelShade() {
+    return this.steelShadeShifted ? Shade.Gray : Shade.Black
   }
 
   AddNewRelationshipToRelationships() {

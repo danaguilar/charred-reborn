@@ -1,54 +1,56 @@
 <script setup>
   import PhysicalAttribute from 'components/Attributes/PhysicalAttribute.vue'
   import MentalAttribute from 'components/Attributes/MentalAttribute.vue'
-  import DerivedAttribute from 'components/Attributes/DerivedAttribute.vue'
+  import HealthAttribute from 'components/Attributes/HealthAttribute.vue'
 </script>
 
 <script>
   import { CharacterData } from 'js/character-data';
+import SteelAttribute from '../Attributes/SteelAttribute.vue';
   export default {
     data() {
-      return {
-        character: CharacterData,
-        characterLP: CharacterData.Lifepaths,
-        characterWill: CharacterData.MentalAttributes.WillAttr,
-        characterPerception: CharacterData.MentalAttributes.PerceptionAttr,
-        characterAgility: CharacterData.PhysicalAttributes.AgilityAttr,
-        characterPower: CharacterData.PhysicalAttributes.PowerAttr,
-        characterForte: CharacterData.PhysicalAttributes.ForteAttr,
-        characterSpeed: CharacterData.PhysicalAttributes.SpeedAttr,
-        characterReflexes: CharacterData.DerivedAttributes.ReflexesAttr,
-        characterHealth: CharacterData.DerivedAttributes.HealthAttr,
-        characterSteel: CharacterData.DerivedAttributes.SteelAttr,
-        characterResource: CharacterData.DerivedAttributes.ResouceAttr,
-        characterCircles: CharacterData.DerivedAttributes.CircleAttr,
-        characterEmotion: CharacterData.GetEmotionAttribute()
-      }
+        return {
+            character: CharacterData,
+            characterLP: CharacterData.Lifepaths,
+            characterWill: CharacterData.MentalAttributes.WillAttr,
+            characterPerception: CharacterData.MentalAttributes.PerceptionAttr,
+            characterAgility: CharacterData.PhysicalAttributes.AgilityAttr,
+            characterPower: CharacterData.PhysicalAttributes.PowerAttr,
+            characterForte: CharacterData.PhysicalAttributes.ForteAttr,
+            characterSpeed: CharacterData.PhysicalAttributes.SpeedAttr,
+            characterReflexes: CharacterData.DerivedAttributes.ReflexesAttr,
+            characterHealth: CharacterData.DerivedAttributes.HealthAttr,
+            characterSteel: CharacterData.DerivedAttributes.SteelAttr,
+            characterResource: CharacterData.DerivedAttributes.ResouceAttr,
+            characterCircles: CharacterData.DerivedAttributes.CircleAttr,
+            characterEmotion: CharacterData.GetEmotionAttribute()
+        };
     },
     computed: {
-      currentAge() {
-        return CharacterData.GetAge();
-      },
-      startingMental() {
-        return CharacterData.StartingMentalPool();
-      },
-      totalMentalPool() {
-        return CharacterData.GetMentalPool();
-      },
-      startingPhysical() {
-        return CharacterData.StartingPhysicalPool();
-      },
-      totalPhysicalPool() {
-        return CharacterData.GetPhysicalPool();
-      },
-      mentalLeft() {
-        return CharacterData.GetMentalPool() - CharacterData.SpentMental
-      },
-      physicalLeft() {
-        return CharacterData.GetPhysicalPool() - CharacterData.SpentPhysical
-      },
-    }
-  }
+        currentAge() {
+            return CharacterData.GetAge();
+        },
+        startingMental() {
+            return CharacterData.StartingMentalPool();
+        },
+        totalMentalPool() {
+            return CharacterData.GetMentalPool();
+        },
+        startingPhysical() {
+            return CharacterData.StartingPhysicalPool();
+        },
+        totalPhysicalPool() {
+            return CharacterData.GetPhysicalPool();
+        },
+        mentalLeft() {
+            return CharacterData.GetMentalPool() - CharacterData.SpentMental;
+        },
+        physicalLeft() {
+            return CharacterData.GetPhysicalPool() - CharacterData.SpentPhysical;
+        },
+    },
+    components: { SteelAttribute }
+}
 </script>
 <template>
   <b-row>
@@ -116,7 +118,12 @@
       <hr />
       <b-card>
         <b-row>
-          <DerivedAttribute name="Health" shade="B" :value="2" />
+          <b-col cols="6">
+            <HealthAttribute />
+          </b-col>
+          <b-col cols="6">
+            <SteelAttribute />
+          </b-col>
         </b-row>
       </b-card>
     </b-col>
