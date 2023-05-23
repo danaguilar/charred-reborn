@@ -327,6 +327,31 @@ class Character {
       return total + property.rp
     }, 0)
   }
+
+  GetMortalWoundsShade() {
+    if(this.PhysicalAttributes.PowerAttr.shade == this.PhysicalAttributes.ForteAttr.shade) {
+      return this.PhysicalAttributes.PowerAttr.shade
+    }
+    return Shade.Black
+  }
+
+  GetMortalWoundsValue() {
+    if(this.PhysicalAttributes.PowerAttr.shade == this.PhysicalAttributes.ForteAttr.shade) {
+      return Math.floor(
+        (this.PhysicalAttributes.PowerAttr.value + this.PhysicalAttributes.ForteAttr.value)
+        / 2
+      )
+    }
+    return Math.floor(
+      (this.PhysicalAttributes.PowerAttr.ValueForAverage(Shade.Black) + this.PhysicalAttributes.ForteAttr.ValueForAverage(Shade.Black))
+      / 2
+    )
+
+  }
+
+  GetHesitationValue() {
+    return 10 - this.MentalAttributes.WillAttr.value
+  }
   
   GetReflexesShade() {
     if(this.PhysicalAttributes.AgilityAttr.shade == this.MentalAttributes.PerceptionAttr.shade &&

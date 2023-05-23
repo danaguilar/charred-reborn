@@ -6,6 +6,8 @@
   import ResourceAttribute from 'components/Attributes/ResourceAttribute.vue'
   import CirclesAttribute from 'components/Attributes/CirclesAttribute.vue'
   import ReflexesAttribute from 'components/Attributes/ReflexesAttribute.vue'
+  import MortalWoundsAttribute from 'components/Attributes/MortalWoundsAttribute.vue'
+  import HesitationAttribute from 'components/Attributes/HesitationAttribute.vue'
 </script>
 
 <script>
@@ -130,6 +132,12 @@
           </b-col>
           <b-col cols="6">
             <ReflexesAttribute />
+          </b-col>
+          <b-col cols="6">
+            <MortalWoundsAttribute />
+          </b-col>
+          <b-col cols="6">
+            <HesitationAttribute />
           </b-col>
         </b-row>
       </b-card>
