@@ -12,15 +12,15 @@
   }
 </script>
 <template>
-  <b-col cols="5" class="m-2 p-2 border-bottom border-top border-5 rounded-pill text-dark border-primary">
+  <b-col cols="5" class="m-2 p-2 border-bottom border-top border-5 rounded-pill text-dark border-dark">
     <b-row>
-      <b-col class="text-center">
-        <b-icon class="pointer" icon="chevron-up" v-if="attribute.ShouldShowPlus()" @click="character.SpendFromPool(attribute)"></b-icon>
-        <div class="h4 my-0">
-          <em>{{ attribute.name }}</em>
-          <span class="ml-2">{{ attribute }}</span>
+      <b-col class="user-select-none text-center">
+        <div class="my-0 d-flex justify-content-between align-items-center">
+          <b-icon class="pointer" icon="chevron-double-left" v-if="attribute.ShouldShowMinus()" @click="character.ReturnToPool(attribute)"></b-icon>
+          <em class="h4">{{ attribute.name }}</em>
+          <strong class="h4">{{ attribute }}</strong>
+          <b-icon class="pointer" icon="chevron-double-right" v-if="attribute.ShouldShowPlus()" @click="character.SpendFromPool(attribute)"></b-icon>
         </div>
-        <b-icon class="pointer" icon="chevron-down" v-if="attribute.ShouldShowMinus()" @click="character.ReturnToPool(attribute)"></b-icon>
       </b-col>
     </b-row>
     <b-row>

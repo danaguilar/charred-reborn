@@ -57,48 +57,49 @@
       <b-card>
         <b-row>
           <b-col>
-            <b-row class="d-flex justify-content-between">
-              <b-col>
-                <h4 class="text-primary">Mental</h4>
-              </b-col>
-              <b-col class="d-flex justify-content-between align-items-center">
-                <div></div>
-                <h4 class="text-success">Physical</h4>
-              </b-col>
-            </b-row>
-            <b-row class="d-flex justify-content-between">
-              <b-col>
-                <span class="text-primary">
-                  <h4>{{ mentalLeft }} / {{ totalMentalPool }}
+            <b-row >
+              <b-col class="d-flex justify-content-between">
+                <h4>
+                  Mental Pool
+                </h4>
+                <h4>
+                  {{ mentalLeft }} / {{ totalMentalPool }}
                   <b-icon 
                     v-b-tooltip.hover title="Distribute Mental Points Evenly"
                     @click="CharacterData.RebalanceMentalAttributes()"
-                    icon="arrow-clockwise" />
-                  </h4>
-                </span>
-              </b-col>
-              <b-col class="d-flex justify-content-between align-items-center">
-                <div></div>
-                <span class="text-success">
-                  <h4>{{ physicalLeft }} / {{ totalPhysicalPool }}
-                  <b-icon 
-                    v-b-tooltip.hover title="Distribute Physical Points Evenly"
-                    @click="CharacterData.RebalancePhysicalAttributes()"
-                    icon="arrow-clockwise" />
-                  </h4>
-                </span>
+                    class="pointer"
+                    icon="arrow-left-right" />
+                </h4>
               </b-col>
             </b-row>
-            <hr>
             <b-row>
+              <b-col cols="1"></b-col>
               <MentalAttribute :attribute="characterWill" :character="character"/>
               <MentalAttribute :attribute="characterPerception" :character="character" />
             </b-row>
+            <hr>
             <b-row>
+              <b-col class="d-flex justify-content-between align-items-center">
+                <h4>
+                  Physical 
+                </h4>
+                <h4>
+                  {{ physicalLeft }} / {{ totalPhysicalPool }}
+                  <b-icon 
+                    v-b-tooltip.hover title="Distribute Physical Points Evenly"
+                    @click="CharacterData.RebalancePhysicalAttributes()"
+                    class="pointer"
+                    icon="arrow-left-right" />
+                </h4>
+              </b-col>
+            </b-row>
+            <b-row>
+              <b-col cols="1"></b-col>
               <PhysicalAttribute :attribute="characterPower" :character="character"/>
               <PhysicalAttribute :attribute="characterForte" :character="character"/>
             </b-row>
             <b-row>
+              <b-col cols="1"></b-col>
               <PhysicalAttribute :attribute="characterAgility" :character="character"/>
               <PhysicalAttribute :attribute="characterSpeed" :character="character"/>
             </b-row>
