@@ -2,11 +2,14 @@
   import PhysicalAttribute from 'components/Attributes/PhysicalAttribute.vue'
   import MentalAttribute from 'components/Attributes/MentalAttribute.vue'
   import HealthAttribute from 'components/Attributes/HealthAttribute.vue'
+  import SteelAttribute from 'components/Attributes/SteelAttribute.vue';
+  import ResourceAttribute from 'components/Attributes/ResourceAttribute.vue'
+  import CirclesAttribute from 'components/Attributes/CirclesAttribute.vue'
+  import ReflexesAttribute from 'components/Attributes/ReflexesAttribute.vue'
 </script>
 
 <script>
   import { CharacterData } from 'js/character-data';
-import SteelAttribute from '../Attributes/SteelAttribute.vue';
   export default {
     data() {
         return {
@@ -18,12 +21,6 @@ import SteelAttribute from '../Attributes/SteelAttribute.vue';
             characterPower: CharacterData.PhysicalAttributes.PowerAttr,
             characterForte: CharacterData.PhysicalAttributes.ForteAttr,
             characterSpeed: CharacterData.PhysicalAttributes.SpeedAttr,
-            characterReflexes: CharacterData.DerivedAttributes.ReflexesAttr,
-            characterHealth: CharacterData.DerivedAttributes.HealthAttr,
-            characterSteel: CharacterData.DerivedAttributes.SteelAttr,
-            characterResource: CharacterData.DerivedAttributes.ResouceAttr,
-            characterCircles: CharacterData.DerivedAttributes.CircleAttr,
-            characterEmotion: CharacterData.GetEmotionAttribute()
         };
     },
     computed: {
@@ -94,14 +91,14 @@ import SteelAttribute from '../Attributes/SteelAttribute.vue';
             </b-row>
             <hr>
             <b-row>
-              <b-col cols="1"></b-col>
               <MentalAttribute :attribute="characterWill" :character="character"/>
               <MentalAttribute :attribute="characterPerception" :character="character" />
-              <PhysicalAttribute :attribute="characterPower" :character="character"/>
             </b-row>
             <b-row>
-              <b-col cols="1"></b-col>
+              <PhysicalAttribute :attribute="characterPower" :character="character"/>
               <PhysicalAttribute :attribute="characterForte" :character="character"/>
+            </b-row>
+            <b-row>
               <PhysicalAttribute :attribute="characterAgility" :character="character"/>
               <PhysicalAttribute :attribute="characterSpeed" :character="character"/>
             </b-row>
@@ -123,6 +120,15 @@ import SteelAttribute from '../Attributes/SteelAttribute.vue';
           </b-col>
           <b-col cols="6">
             <SteelAttribute />
+          </b-col>
+          <b-col cols="6">
+            <ResourceAttribute />
+          </b-col>
+          <b-col cols="6">
+            <CirclesAttribute />
+          </b-col>
+          <b-col cols="6">
+            <ReflexesAttribute />
           </b-col>
         </b-row>
       </b-card>

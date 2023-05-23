@@ -22,21 +22,6 @@ class Character {
       ForteAttr: new Attribute("Forte", Shade.Black, 0, StatType.Physical),
       SpeedAttr: new Attribute("Speed", Shade.Black, 0, StatType.Physical)
     }
-    this.DerivedAttributes = {
-      HealthAttr: new Attribute("Health", Shade.Black, 3, StatType.Derived),
-      ReflexesAttr: new Attribute("Reflexes", Shade.Black, 0, StatType.Derived),
-      SteelAttr: new Attribute("Steel", Shade.Black, 0, StatType.Derived),
-      ResouceAttr: new Attribute("Resource", Shade.Black, 0, StatType.Derived),
-      CircleAttr: new Attribute("Circles", Shade.Black, 0, StatType.Derived),
-    }
-    this.emotionAttribues = {
-      GreedAttr: new Attribute("Greed", Shade.Black, 0, StatType.Derived, false),
-      GriefAttr: new Attribute("Grief", Shade.Black, 0, StatType.Derived, false),
-      HatredAttr: new Attribute("Hatred", Shade.Black, 0, StatType.Derived, false),
-      VoidEmbraceAttr: new Attribute("Void Embrace", Shade.Black, 0, StatType.Derived, false),
-      FaithAttr: new Attribute("Faith", Shade.Black, 0, StatType.Derived, false),
-    }
-
     this.SpentPhysical = 0
     this.SpentMental = 0
     this.availableSettings = []
@@ -55,11 +40,11 @@ class Character {
     this.steel_questionnaire = SteelQuestionnaire
     this.SetupQuestionnaireFunctions();
     this.steelShadeShifted = false
+    this.resourceShadeShifted = false
     this.CalculateLPChanges()
   }
 
   AddOrSubIfWillHigh() {
-    console.log("Getting here")
     if(this.MentalAttributes.WillAttr.value > 4) return 1
     else if(this.MentalAttributes.WillAttr.value < 4) return -1
     return 0
@@ -317,7 +302,6 @@ class Character {
       let LP  = this.Lifepaths[LPIndex]
       LP.ResetSkillRequirements()
     }
-    this.CalculateAttributeChanges()
     this.CalculateSkillListChanges()
     this.CalculateTraitListChanges()
     this.CreateNewSkillList()
@@ -325,27 +309,76 @@ class Character {
     this.UpdateLPSkillPts()
     this.UpdateGeneralSkillPts()
     this.UpdateAvailableSettings()
-    this.CalculateAvailableLifepaths()
+  }
+  
+  GetCirclesShade() {
+    return this.MentalAttributes.WillAttr.shade
   }
 
-  CalculateAttributeChanges() {
-    this.CalculateResourceChanges()
+  GetCirclesValue() {
+    let base_value = Math.floor(this.MentalAttributes.WillAttr.value/2)
+    let sum = this.SumOfProperty() + this.SumOfRelationships()
+    if(sum >= 50) return base_value + 1
+    return base_value
   }
 
-  CalculateResourceChanges() {
-    const rp_total = this.property.reduce((total, property) => {
+  SumOfRelationships() {
+    return this.relationships.reduce((total, relationship) => {
       return total + property.rp
-    }, 0) + this.reputations.reduce((total, rep) => { 
-      return total + rep.rp
-    }, 0) + this.affiliations.reduce((total, aff) => {
-      return total + aff.rp
-    }, 0) + 3
-    const new_val = Math.floor(rp_total/15)
-    this.DerivedAttributes.ResouceAttr.SetValue(new_val)
+    }, 0)
+  }
+  
+  GetReflexesShade() {
+    if(this.PhysicalAttributes.AgilityAttr.shade == this.MentalAttributes.PerceptionAttr.shade &&
+      this.MentalAttributes.PerceptionAttr.shade == this.PhysicalAttributes.shade) {
+        return this.PhysicalAttributes.PerceptionAttr.shade
+      }
+    return Shade.Black
   }
 
-  CalculateCirclesChanges() {
-    
+  GetReflexesValue() {
+    if(this.PhysicalAttributes.AgilityAttr.shade == this.MentalAttributes.PerceptionAttr.shade &&
+      this.MentalAttributes.PerceptionAttr.shade == this.PhysicalAttributes.SpeedAttr.shade) {
+        return Math.floor(
+          (this.PhysicalAttributes.AgilityAttr.value + this.PhysicalAttributes.SpeedAttr.value + this.MentalAttributes.PerceptionAttr.value)
+          / 3
+        )
+    }
+    return Math.floor(
+      (this.PhysicalAttributes.AgilityAttr.ValueForAverage(Shade.Black) + this.PhysicalAttributes.SpeedAttr.ValueForAverage(Shade.Black) + this.MentalAttributes.PerceptionAttr.ValueForAverage(Shade.Black))
+      / 3
+    )
+
+  }
+
+  GetResourceShade() {
+    return this.resourceShadeShifted ? Shade.Gray : Shade.Black
+  }
+
+  GetResourceValue() {
+    const rp_total =  this.SumOfProperty() + 
+      this.SumOfReputations() + 
+      this.SumOfAffiliations() 
+      + 3 // generous man leeway
+    return Math.floor(rp_total/15)
+  }
+
+  SumOfProperty() {
+    return this.property.reduce((total, property) => {
+      return total + property.rp
+    }, 0)
+  }
+
+  SumOfReputations() {
+    return this.reputations.reduce((total, rep) => { 
+      return total + rep.rp
+    }, 0)
+  }
+
+  SumOfAffiliations() {
+    return this.affiliations.reduce((total, aff) => {
+      return total + aff.rp
+    }, 0)
   }
 
   UpdateLPSkillPts() {
