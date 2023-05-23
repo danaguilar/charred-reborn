@@ -63,14 +63,14 @@
               <b-col class="d-flex justify-content-between">
                 <h4>
                   Mental Pool
-                </h4>
-                <h4>
-                  {{ mentalLeft }} / {{ totalMentalPool }}
                   <b-icon 
                     v-b-tooltip.hover title="Distribute Mental Points Evenly"
                     @click="CharacterData.RebalanceMentalAttributes()"
                     class="pointer"
-                    icon="arrow-left-right" />
+                    icon="shuffle" />
+                </h4>
+                <h4>
+                  {{ mentalLeft }} / {{ totalMentalPool }} <b-icon icon="lightbulb-fill"></b-icon>
                 </h4>
               </b-col>
             </b-row>
@@ -84,14 +84,14 @@
               <b-col class="d-flex justify-content-between align-items-center">
                 <h4>
                   Physical 
-                </h4>
-                <h4>
-                  {{ physicalLeft }} / {{ totalPhysicalPool }}
                   <b-icon 
                     v-b-tooltip.hover title="Distribute Physical Points Evenly"
                     @click="CharacterData.RebalancePhysicalAttributes()"
                     class="pointer"
-                    icon="arrow-left-right" />
+                    icon="shuffle" />
+                </h4>
+                <h4>
+                  {{ physicalLeft }} / {{ totalPhysicalPool }} <b-icon icon="heart-fill"></b-icon>
                 </h4>
               </b-col>
             </b-row>

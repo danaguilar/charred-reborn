@@ -58,13 +58,27 @@
             <b>{{ lifepathData.id }}</b>
           </b-col>
           <b-col cols="2">
-            {{ lifepathData.res }}
+            {{ lifepathData.res }} <b-icon icon="currency-exchange"></b-icon>
           </b-col>
           <b-col cols="2">
             {{ lifepathData.time }}
           </b-col>
           <b-col cols="2">
-            {{  lifepathData.GetStatString() }}
+            <span v-for="index in lifepathData.physicalStat">
+              <b-icon icon="plus"></b-icon>
+              <b-icon icon="heart-fill" ></b-icon>
+            </span>
+            <span v-for="index in lifepathData.mentalStat">
+              <b-icon icon="plus"></b-icon>
+              <b-icon icon="lightbulb-fill" ></b-icon>
+            </span>
+            <span v-if="lifepathData.chooseStat">
+              <b-icon icon="plus"></b-icon>
+              <b-icon icon="heart-fill" ></b-icon>/<b-icon icon="lightbulb-fill" ></b-icon>
+            </span>
+            <span v-if="!lifepathData.chooseStat && lifepathData.physicalStat == 0 && lifepathData.mentalStat == 0">
+              <b-icon icon="dash"></b-icon>
+            </span>
           </b-col>
           <b-col cols="3" class="d-flex justify-content-begin align-items-end">
             <span v-for="lead in lifepathData.leads" style="font-size: 1.2rem;">

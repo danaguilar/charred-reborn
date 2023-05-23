@@ -93,6 +93,11 @@ export class Lifepath {
     this.time =  lifePathData.time,
     this.res = lifePathData.res,
     this.stat = lifePathData.stat,
+    this.physicalStat = 0,
+    this.mentalStat = 0,
+    this.chooseStat = false,
+    this.mentalChoise = 0,
+    this.physicalChoise = 0,
     this.generalSkillPts = 0,
     this.skillpts = 0,
     this.leads = lifePathData.leads.map(lead => LeadsToIcons[lead]),
@@ -108,6 +113,7 @@ export class Lifepath {
 
     this.SetupLpSkills(lifePathData.skills)
     this.SetupLpTraits(lifePathData.traits)
+    this.SetupStats(lifePathData.stat)
     this.SetupLpCommonTraits(lifePathData.common_traits)
   }
 
@@ -117,6 +123,28 @@ export class Lifepath {
 
   RequiredNameWithSetting() {
     return `${this.setting.toLowerCase()}:${this.RequiredName()}`
+  }
+
+  SetupStats(statsData) {
+    if(statsData) {
+      for(let i = 0; i < statsData.length; i++) {
+        this.AddStat(statsData[i])
+      }
+    }
+  }
+
+  AddStat(stat) {
+    if(stat[1] == 'p') {
+      this.physicalStat = parseInt(stat[0])
+    }
+    if(stat[1] == 'm') {
+      this.mentalStat = parseInt(stat[0])
+    }
+    if(stat[1] == 'pm') {
+      this.chooseStat = true
+      this.mentalChoise = parseInt(stat[0])
+      this.physicalChoise = parseInt(stat[0])
+    }
   }
 
   SetupLpCommonTraits(lpCommonTraits) {
