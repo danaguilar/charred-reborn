@@ -612,8 +612,9 @@ class Character {
 
   GetAge() {
     return this.Lifepaths.reduce(
-      (runningAge, LP) => { return runningAge + LP.time }, 0
-    )
+      (runningAge, LP) => { 
+        return runningAge + LP.time + (LP.new_setting ? 1 : 0)
+      }, 0)
   }
 
   StartingMentalPool() {
