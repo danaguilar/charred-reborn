@@ -285,6 +285,9 @@ class Character {
 
   AddLifepath(setting, title) {
     const newLifepath = new Lifepath(setting, title)
+    if(this.Lifepaths.length > 0 && newLifepath.setting != this.Lifepaths[this.Lifepaths.length - 1].setting) {
+      newLifepath.new_setting = true
+    }
     this.Lifepaths.push(newLifepath)
     this.CalculateLPChanges()
   }
@@ -309,6 +312,7 @@ class Character {
     this.UpdateLPSkillPts()
     this.UpdateGeneralSkillPts()
     this.UpdateAvailableSettings()
+    this.CalculateAvailableLifepaths()
   }
   
   GetCirclesShade() {

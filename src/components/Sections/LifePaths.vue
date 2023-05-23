@@ -25,17 +25,21 @@
     <b-sidebar id="sidebar-1" title="LifePaths" shadow backdrop no-header>
       <AvailableLifepaths :available-lifepath-list = "availableLifepathList" />
     </b-sidebar>
-    <b-row>
+    <b-row class="border-bottom">
       <b-col class="d-flex justify-content-between">
-        <h3>Lifepaths</h3>
-        <h3>
-          {{ characterLP.Lifepaths ? characterLP.Lifepaths.length : 0 }} LP
-        </h3>
+        <h2>Lifepaths</h2>
+        <h2>
+          {{ characterLP.length }} LP
+        </h2>
       </b-col>
     </b-row>
-    <hr />
     <div class="p-3">
       <b-row class="mb-4" v-for="lifePath in characterLP">
+        <div class="separator mb-4" v-show="lifePath.new_setting">
+          <em>
+            Moving to {{ lifePath.setting }}
+          </em>
+        </div>
         <SelectedLifepath :lifepath-data = "lifePath" />
       </b-row>
       <b-row>

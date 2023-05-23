@@ -101,6 +101,7 @@ export class Lifepath {
     this.setting = lifepathSetting,
     this.key_leads = lifePathData.key_leads
     this.isBornLP = lifepathTitle.indexOf("Born") != -1 ? true : false
+    this.new_setting = false
     this.disabled = false
     this.traits = []
     this.common_traits = []

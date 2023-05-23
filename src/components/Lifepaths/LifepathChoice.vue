@@ -61,7 +61,7 @@
             {{ lifepathData.res }}
           </b-col>
           <b-col cols="2">
-            {{ lifepathData.time }} {{ lifepathData.disabled }}
+            {{ lifepathData.time }}
           </b-col>
           <b-col cols="2">
             {{  lifepathData.GetStatString() }}

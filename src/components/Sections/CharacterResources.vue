@@ -56,11 +56,6 @@
         </b-col>
       </b-row>
       <b-row>
-        <b-col>
-            <h3>Resources B1</h3>
-        </b-col>
-      </b-row>
-      <b-row>
         <b-col class="mx-2">
           <b-row class="border-bottom border-2">
             <h4 class="text-center">Gear <b-icon icon="gear-fill"></b-icon></h4>
@@ -167,13 +162,7 @@
         </b-col>
       </b-row>
       <br>
-      <hr>
       <br>
-      <b-row>
-        <b-col>
-            <h3>Circles B1</h3>
-        </b-col>
-      </b-row>
       <b-row>
         <b-col class="mx-2">
           <b-row class="border-bottom border-2">
