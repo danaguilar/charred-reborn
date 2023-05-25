@@ -23,7 +23,7 @@
 <template>
   <div>
     <b-sidebar id="sidebar-1" title="LifePaths" shadow backdrop no-header>
-      <AvailableLifepaths :available-lifepath-list = "availableLifepathList" />
+      <AvailableLifepaths :lifepaths = "availableLifepathList" />
     </b-sidebar>
     <b-row class="border-bottom">
       <b-col class="d-flex justify-content-between">

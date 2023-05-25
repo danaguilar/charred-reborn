@@ -96,8 +96,8 @@ export class Lifepath {
     this.physicalStat = 0,
     this.mentalStat = 0,
     this.chooseStat = false,
-    this.mentalChoise = 0,
-    this.physicalChoise = 0,
+    this.mentalChoice = 0,
+    this.physicalChoice = 0,
     this.generalSkillPts = 0,
     this.skillpts = 0,
     this.leads = lifePathData.leads.map(lead => LeadsToIcons[lead]),
@@ -142,8 +142,8 @@ export class Lifepath {
     }
     if(stat[1] == 'pm') {
       this.chooseStat = true
-      this.mentalChoise = parseInt(stat[0])
-      this.physicalChoise = parseInt(stat[0])
+      this.mentalChoice = parseInt(stat[0])
+      this.physicalChoice = parseInt(stat[0])
     }
   }
 

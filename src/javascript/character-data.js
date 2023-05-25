@@ -4,11 +4,11 @@ import { Shade, Attribute, StatType, Skill, Trait, Reputation, Affiliation, Rela
 import { HealthQuestionnaire, SteelQuestionnaire } from 'js/questionnaire'
 import dwarfStartingStatsJSON from 'data/gold/starting_stat_pts/dwarf.json'
 
-export const dwarfStartingStats = dwarfStartingStatsJSON
-export const AvailableLifepathList = DwarfLPList
+const dwarfStartingStats = dwarfStartingStatsJSON
+const AvailableLifepathList = DwarfLPList
 
 class Character {
-  constructor() {
+  constructor(startingStats, availableLifepaths) {
     this.Lifepaths = [],
     this.AvailableLPSkills = [],
     this.AvailableLPTraits = [],
@@ -22,12 +22,13 @@ class Character {
       ForteAttr: new Attribute("Forte", Shade.Black, 0, StatType.Physical),
       SpeedAttr: new Attribute("Speed", Shade.Black, 0, StatType.Physical)
     }
+    this.StartingStats = startingStats
     this.SpentPhysical = 0
     this.SpentMental = 0
     this.availableSettings = []
     this.GeneralSkills = []
     this.GeneralTraits = []
-    this.AvailableLifepathList = DwarfLPList
+    this.AvailableLifepathList = availableLifepaths
     this.gear = []
     this.property = []
     this.affiliations = []
@@ -42,6 +43,11 @@ class Character {
     this.steelShadeShifted = false
     this.resourceShadeShifted = false
     this.CalculateLPChanges()
+  }
+
+  UpdateData() {
+    this.Lifepaths.push({})
+    this.Lifepaths.pop()
   }
 
   AddOrSubIfWillHigh() {
@@ -195,7 +201,6 @@ class Character {
   }
 
   ToggleTraitBuying(trait) {
-    // Remove trait from general traits if it is currently in general traits
     const foundIndex  = this.GeneralTraits.indexOf(trait)
     if(foundIndex != -1) { 
       console.log(`${trait.name} to be removed at ${foundIndex}`)
@@ -620,33 +625,34 @@ class Character {
   StartingMentalPool() {
     const age = this.GetAge();
     if(age == 0) return "0"
-    const indexOfStats = dwarfStartingStats.findIndex(
+    const indexOfStats = this.StartingStats.findIndex(
       (element) => { 
         return age >= element.range[0] && age <= element.range[1] 
       });
-    return dwarfStartingStats[indexOfStats].m
+    return this.StartingStats[indexOfStats].m
   }
 
   StartingPhysicalPool() {
     const age = this.GetAge();
     if(age == 0) return "0"
-    const indexOfStats = dwarfStartingStats.findIndex(
+    const indexOfStats = this.StartingStats.findIndex(
       (element) => { 
         return age >= element.range[0] && age <= element.range[1] 
       });
-    return dwarfStartingStats[indexOfStats].p
+    return this.StartingStats[indexOfStats].p
   }
 
   GetMentalPool() {
     const mentalPool = this.StartingMentalPool() + this.Lifepaths.reduce((runningPool, LP) => {
-      let LpStat = 0
-      if(Array.isArray(LP.stat)) {
-        LpStat =  LP.stat.reduce((pool, statArr) => {
-          if(statArr[1] == "m") { return pool + statArr[0]; }
-          else { return pool}
-        },0)
-      }
-      return runningPool + LpStat
+      return runningPool + LP.mentalStat
+      // let LpStat = 0
+      // if(Array.isArray(LP.stat)) {
+      //   LpStat =  LP.stat.reduce((pool, statArr) => {
+      //     if(statArr[1] == "m") { return pool + statArr[0]; }
+      //     else { return pool}
+      //   },0)
+      // }
+      // return runningPool + LpStat
     }, 0);
     if(mentalPool < this.SpentMental) {
       this.RebalanceMentalAttributes(mentalPool)
@@ -671,14 +677,15 @@ class Character {
 
   GetPhysicalPool() {
     const physicalPool = this.StartingPhysicalPool() + this.Lifepaths.reduce((runningPool, LP) => {
-      let LpStat = 0
-      if(Array.isArray(LP.stat)) {
-        LpStat = LP.stat.reduce((pool, statArr) => {
-          if(statArr[1] == "p") { return pool + statArr[0]; }
-          else { return pool}
-        },0)
-      }
-      return runningPool + LpStat
+      return runningPool + LP.physicalStat
+      // let LpStat = 0
+      // if(Array.isArray(LP.stat)) {
+      //   LpStat = LP.stat.reduce((pool, statArr) => {
+      //     if(statArr[1] == "p") { return pool + statArr[0]; }
+      //     else { return pool}
+      //   },0)
+      // }
+      // return runningPool + LpStat
     }, 0);
     if(physicalPool < this.SpentPhysical) {
       this.RebalancePhysicalAttributes(physicalPool)
@@ -772,4 +779,4 @@ class Character {
 }
 
 
-export const CharacterData = reactive(new Character())
+export const CharacterData = reactive(new Character(dwarfStartingStats, AvailableLifepathList))

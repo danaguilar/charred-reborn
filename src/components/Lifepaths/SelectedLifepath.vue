@@ -1,6 +1,7 @@
 <script setup>
   import SkillsText from 'components/Skills/SkillsText.vue'
   import TraitsText from 'components/Traits/TraitsText.vue'
+  import WarningIcon from 'components/Helpers/WarningIcon.vue'
 </script>
 
 <script>
@@ -17,6 +18,29 @@
     methods: {
       removeLifepath(event) {
         CharacterData.RemoveLifepath(this.lifepathData)
+      },
+      ChooseMental() {
+        this.lifepathData.mentalStat = this.lifepathData.mentalChoice
+        this.lifepathData.physicalStat = 0
+      },
+      ChoosePhysical() {
+        this.lifepathData.physicalStat = this.lifepathData.physicalChoice
+        this.lifepathData.mentalStat = 0
+      },
+      NoStatSelected() {
+        return this.lifepathData.physicalStat == 0 && this.lifepathData.mentalStat == 0 && this.lifepathData.chooseStat
+      },
+      ChooseMentalClass() {
+        return this.lifepathData.mentalStat != 0 ? '' : 'text-muted'
+      },
+      ChoosePhysicalClass() {
+        return this.lifepathData.physicalStat != 0 ? '' : 'text-muted'
+      },
+      ChooseHeartIcon() {
+        return this.lifepathData.physicalStat != 0 ? 'heart-fill' : 'heart'
+      },
+      ChooseBulbIcon() {
+        return this.lifepathData.mentalStat != 0 ? 'lightbulb-fill' : 'lightbulb'
       }
     }
   }
@@ -36,7 +60,7 @@
           <b-col cols="3" class="fs-6"><small>Title</small></b-col>
           <b-col cols="2" class="fs-6"><small>Res</small></b-col>
           <b-col cols="2" class="fs-6"><small>Years</small></b-col>
-          <b-col cols="2" class="fs-6"><small>Stats</small></b-col>
+          <b-col cols="2" class="fs-6"><small>Stats <span v-if="NoStatSelected()"> <WarningIcon  hoveroverText="Select a stat"/></span></small></b-col>
           <b-col cols="2" class="fs-6"><small>Leads</small></b-col>
           <b-col cols="1" class="d-flex justify-content-between">
             <div></div>
@@ -48,13 +72,39 @@
             <b>{{ lifepathData.id }}</b>
           </b-col>
           <b-col cols="2">
-            {{ lifepathData.res }}
+            {{ lifepathData.res }} <b-icon icon="currency-exchange"></b-icon>
           </b-col>
           <b-col cols="2">
             {{ lifepathData.time }}
           </b-col>
           <b-col cols="2">
-            {{  lifepathData.GetStatString() }}
+            <span v-if="!lifepathData.chooseStat">
+              <span v-for="index in lifepathData.physicalStat">
+                <b-icon icon="plus"></b-icon>
+                <b-icon icon="heart-fill" ></b-icon>
+              </span>
+              <span v-for="index in lifepathData.mentalStat">
+                <b-icon icon="plus"></b-icon>
+                <b-icon icon="lightbulb-fill"></b-icon>
+              </span>
+            </span>
+            <span v-if="lifepathData.chooseStat">
+              <div v-show="NoStatSelected()">
+                <b-icon icon="plus"></b-icon>
+                <b-icon icon="heart" @click="ChoosePhysical" class="pointer"></b-icon>
+                /
+                <b-icon icon="lightbulb" @click="ChooseMental" class="pointer"></b-icon>
+              </div>
+              <div v-show="!NoStatSelected()">
+                <b-icon icon="plus"></b-icon>
+                <b-icon :icon="ChooseHeartIcon()" @click="ChoosePhysical" class="pointer" :class="ChoosePhysicalClass()"></b-icon>
+                /
+                <b-icon :icon="ChooseBulbIcon()" @click="ChooseMental" class="pointer" :class="ChooseMentalClass()"></b-icon>
+              </div>
+            </span>
+            <span v-if="!lifepathData.chooseStat && lifepathData.physicalStat == 0 && lifepathData.mentalStat == 0">
+              <b-icon icon="dash"></b-icon>
+            </span>
           </b-col>
           <b-col cols="3" class="d-flex justify-content-begin align-items-end">
             <span v-for="lead in lifepathData.leads" style="font-size: 1.2rem;">

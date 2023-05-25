@@ -8,6 +8,7 @@
   import ReflexesAttribute from 'components/Attributes/ReflexesAttribute.vue'
   import MortalWoundsAttribute from 'components/Attributes/MortalWoundsAttribute.vue'
   import HesitationAttribute from 'components/Attributes/HesitationAttribute.vue'
+  import Age from 'components/Lifepaths/Age.vue'
 </script>
 
 <script>
@@ -107,40 +108,43 @@
             </b-row>
           </b-col>
         </b-row>
-        <b-row class="mt-2">
-        </b-row>
-        <b-row>
-        </b-row>
       </b-card>
+      <b-row class="mt-2">
+        <b-col>
+          <h2>Attributes</h2>
+          <hr />
+          <b-card>
+            <b-row>
+              <b-col cols="6">
+                <HealthAttribute />
+              </b-col>
+              <b-col cols="6">
+                <SteelAttribute />
+              </b-col>
+              <b-col cols="6">
+                <ResourceAttribute />
+              </b-col>
+              <b-col cols="6">
+                <CirclesAttribute />
+              </b-col>
+              <b-col cols="6">
+                <ReflexesAttribute />
+              </b-col>
+              <b-col cols="6">
+                <MortalWoundsAttribute />
+              </b-col>
+              <b-col cols="6">
+                <HesitationAttribute />
+              </b-col>
+            </b-row>
+          </b-card>
+        </b-col>
+      </b-row>
     </b-col>
     <b-col>
-      <h2>Attributes</h2>
+      <h2>Summary</h2>
       <hr />
-      <b-card>
-        <b-row>
-          <b-col cols="6">
-            <HealthAttribute />
-          </b-col>
-          <b-col cols="6">
-            <SteelAttribute />
-          </b-col>
-          <b-col cols="6">
-            <ResourceAttribute />
-          </b-col>
-          <b-col cols="6">
-            <CirclesAttribute />
-          </b-col>
-          <b-col cols="6">
-            <ReflexesAttribute />
-          </b-col>
-          <b-col cols="6">
-            <MortalWoundsAttribute />
-          </b-col>
-          <b-col cols="6">
-            <HesitationAttribute />
-          </b-col>
-        </b-row>
-      </b-card>
+      <Age :age="character.GetAge()" :starting-stats="character.StartingStats"/>
     </b-col>
   </b-row>
 </template>
