@@ -9,7 +9,7 @@
     data() {
       return {
         characterLP: CharacterData.Lifepaths,
-        availableLifepathList: CharacterData.AvailableLifepathList
+        availableLifepathList: CharacterData.StockData.availableLifepathList
       }
     },
     methods: {

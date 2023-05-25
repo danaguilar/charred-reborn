@@ -3,6 +3,7 @@
   export default {
     props: {
       age: Number,
+      stock: String,
       StartingStats: Array
     },
     data() {
@@ -62,7 +63,7 @@
         <b-row>
           <b-col class="d-flex justify-content-between">
             <h4>Stock</h4>
-            <h4><em>Dwarven</em></h4>
+            <h4><em>{{ stock }}</em></h4>
           </b-col>
         </b-row>
         <b-row>

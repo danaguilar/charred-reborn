@@ -7,7 +7,6 @@
 
 <script>
   import { CharacterData } from 'js/character-data';
-  import { DwarfResourceList } from 'js/core';
   export default {
     data() {
       return {
@@ -17,7 +16,7 @@
           reputations: CharacterData.reputations,
           affiliations: CharacterData.affiliations,
           relationships: CharacterData.relationships,
-          resourceList: DwarfResourceList,
+          resourceList: CharacterData.StockData.resourceList,
           fields: [
             { key: 'rp', label: 'cost'},
             { key: 'name', label: 'name'}

@@ -1,10 +1,9 @@
 <script>
-  import { DwarfSkillList } from 'js/core';
   import { CharacterData } from 'js/character-data';
   export default {
     data() {
       return {
-        skillList: DwarfSkillList,
+        skillList: CharacterData.StockData.skillList,
         fields: [
           { key: 'name', label: 'Skill' },
         ]

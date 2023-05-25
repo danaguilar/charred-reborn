@@ -3,13 +3,13 @@
 </script>
 
 <script>
-  import { DwarfTraitList, TraitList } from 'js/core';
+  import { TraitList } from 'js/core';
   import { CharacterData } from 'js/character-data';
 
   export default {
     data() {
       return {
-        traitList: DwarfTraitList,
+        traitList: CharacterData.StockData.traitList,
         costList: [
         7,6,5,4,3,2,1
         ]

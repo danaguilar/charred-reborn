@@ -83,11 +83,11 @@
           {{ row.item.shade }}{{ row.item.CalculateStartingSkills(CharacterData) }}
       </template>
       <template #cell(pointsSpent)="row">
-        <b-icon icon="dash" @click="CharacterData.DecrementSkill(row.item)"></b-icon>
+        <b-icon icon="dash" @click="CharacterData.DecrementSkill(row.item)" class="pointer"></b-icon>
         <span class="user-select-none">
           {{ row.item.pointsSpent }} <span v-if="row.item.generalPointsSpent > 0">({{ row.item.generalPointsSpent }})</span>
         </span>
-        <b-icon icon="plus" @click="CharacterData.IncrementSkill(row.item)"></b-icon>
+        <b-icon icon="plus" @click="CharacterData.IncrementSkill(row.item)" class="pointer"></b-icon>
       </template>
       <template #cell(totalPoints)="row">
           <div v-show="row.item.totalPoints == 0">-</div>
@@ -136,11 +136,11 @@
           {{ row.item.shade }}{{ row.item.CalculateStartingSkills(CharacterData) }}
       </template>
       <template #cell(pointsSpent)="row">
-        <b-icon icon="dash" @click="CharacterData.DecrementGeneralSkill(row.item)"></b-icon>
+        <b-icon icon="dash" @click="CharacterData.DecrementGeneralSkill(row.item)" class="pointer"></b-icon>
         <span class="user-select-none">
           {{ row.item.pointsSpent }} <span v-if="row.item.generalPointsSpent > 0">({{ row.item.generalPointsSpent }})</span>
         </span>
-        <b-icon icon="plus" @click="CharacterData.IncrementGeneralSkill(row.item)"></b-icon>
+        <b-icon icon="plus" @click="CharacterData.IncrementGeneralSkill(row.item)" class="pointer"></b-icon>
       </template>
       <template #cell(totalPoints)="row">
           <div v-show="row.item.totalPoints == 0">-</div>

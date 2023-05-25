@@ -1,5 +1,4 @@
 <script setup>
-  //import { AvailableLifepathList } from 'js/character-data';
   import { LeadsToIcons } from 'js/lifepath'
   import Lifepath from 'components/Lifepaths/LifepathChoice.vue'
   import DisabledLifepath from 'components/Lifepaths/LifepathDisabledChoice.vue'

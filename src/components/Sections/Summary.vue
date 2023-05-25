@@ -144,7 +144,7 @@
     <b-col>
       <h2>Summary</h2>
       <hr />
-      <Age :age="character.GetAge()" :starting-stats="character.StartingStats"/>
+      <Age :age="character.GetAge()" :stock="character.StockData.name" :starting-stats="character.StockData.startingStats"/>
     </b-col>
   </b-row>
 </template>

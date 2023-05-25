@@ -1,7 +1,4 @@
 import { Skill, Trait } from 'js/core'
-import dwarfLPJSON from 'data/gold/lifepaths/dwarf.json'
-
-const dwarfLP = dwarfLPJSON
 
 class LeadIcon {
   constructor(name, icon) {
@@ -19,13 +16,13 @@ export const LeadsToIcons = {
   "Clansman": new LeadIcon("Clansman","hammer")
 }
 
-class LifepathList {
+export class LifepathList {
   constructor(rawJSONdata) {
     this.SettingList = {}
     for(let setting in rawJSONdata) {
       let LPList = []
       for(let lptitle in rawJSONdata[setting]) {
-        LPList.push(new Lifepath(setting, lptitle))
+        LPList.push(new Lifepath(rawJSONdata[setting][lptitle],setting, lptitle))
       }
       this.SettingList[setting] = LPList
     }
@@ -87,8 +84,7 @@ class LifepathList {
 }
 
 export class Lifepath {
-  constructor(lifepathSetting, lifepathTitle) {
-    const lifePathData = dwarfLPJSON[lifepathSetting][lifepathTitle]
+  constructor(lifePathData, lifepathSetting, lifepathTitle) {
     this.id = lifepathTitle,
     this.time =  lifePathData.time,
     this.res = lifePathData.res,
@@ -215,5 +211,3 @@ export class Lifepath {
     }
   }
 }
-
-export const DwarfLPList = new LifepathList(dwarfLPJSON, LeadsToIcons)

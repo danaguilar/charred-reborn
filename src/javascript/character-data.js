@@ -1,14 +1,15 @@
 import { reactive } from 'vue'
-import { Lifepath, DwarfLPList } from 'js/lifepath'
+import { Lifepath } from 'js/lifepath'
 import { Shade, Attribute, StatType, Skill, Trait, Reputation, Affiliation, Relationship } from 'js/core'
 import { HealthQuestionnaire, SteelQuestionnaire } from 'js/questionnaire'
-import dwarfStartingStatsJSON from 'data/gold/starting_stat_pts/dwarf.json'
 
-const dwarfStartingStats = dwarfStartingStatsJSON
-const AvailableLifepathList = DwarfLPList
+import { DwarfStock } from 'js/stock'
+
 
 class Character {
-  constructor(startingStats, availableLifepaths) {
+  constructor(stockData) {
+    this.name = "",
+    this.StockData = stockData
     this.Lifepaths = [],
     this.AvailableLPSkills = [],
     this.AvailableLPTraits = [],
@@ -22,13 +23,11 @@ class Character {
       ForteAttr: new Attribute("Forte", Shade.Black, 0, StatType.Physical),
       SpeedAttr: new Attribute("Speed", Shade.Black, 0, StatType.Physical)
     }
-    this.StartingStats = startingStats
     this.SpentPhysical = 0
     this.SpentMental = 0
     this.availableSettings = []
     this.GeneralSkills = []
     this.GeneralTraits = []
-    this.AvailableLifepathList = availableLifepaths
     this.gear = []
     this.property = []
     this.affiliations = []
@@ -240,10 +239,10 @@ class Character {
   }
 
   CalculateAvailableLifepaths() {
-    if(this.availableSettings.length == 0) return this.AvailableLifepathList.DisableWhen((lifepath) => {
+    if(this.availableSettings.length == 0) return this.StockData.availableLifepathList.DisableWhen((lifepath) => {
       return !lifepath.isBornLP
     })
-    this.AvailableLifepathList.ActivateSettings(this)
+    this.StockData.availableLifepathList.ActivateSettings(this)
   }
 
   GetArrayOfAttributes() {
@@ -289,7 +288,7 @@ class Character {
   }
 
   AddLifepath(setting, title) {
-    const newLifepath = new Lifepath(setting, title)
+    const newLifepath = new Lifepath(this.StockData.lifepathData[setting][title] ,setting, title)
     if(this.Lifepaths.length > 0 && newLifepath.setting != this.Lifepaths[this.Lifepaths.length - 1].setting) {
       newLifepath.new_setting = true
     }
@@ -625,34 +624,26 @@ class Character {
   StartingMentalPool() {
     const age = this.GetAge();
     if(age == 0) return "0"
-    const indexOfStats = this.StartingStats.findIndex(
+    const indexOfStats = this.StockData.startingStats.findIndex(
       (element) => { 
         return age >= element.range[0] && age <= element.range[1] 
       });
-    return this.StartingStats[indexOfStats].m
+    return this.StockData.startingStats[indexOfStats].m
   }
 
   StartingPhysicalPool() {
     const age = this.GetAge();
     if(age == 0) return "0"
-    const indexOfStats = this.StartingStats.findIndex(
+    const indexOfStats = this.StockData.startingStats.findIndex(
       (element) => { 
         return age >= element.range[0] && age <= element.range[1] 
       });
-    return this.StartingStats[indexOfStats].p
+    return this.StockData.startingStats[indexOfStats].p
   }
 
   GetMentalPool() {
     const mentalPool = this.StartingMentalPool() + this.Lifepaths.reduce((runningPool, LP) => {
       return runningPool + LP.mentalStat
-      // let LpStat = 0
-      // if(Array.isArray(LP.stat)) {
-      //   LpStat =  LP.stat.reduce((pool, statArr) => {
-      //     if(statArr[1] == "m") { return pool + statArr[0]; }
-      //     else { return pool}
-      //   },0)
-      // }
-      // return runningPool + LpStat
     }, 0);
     if(mentalPool < this.SpentMental) {
       this.RebalanceMentalAttributes(mentalPool)
@@ -678,14 +669,6 @@ class Character {
   GetPhysicalPool() {
     const physicalPool = this.StartingPhysicalPool() + this.Lifepaths.reduce((runningPool, LP) => {
       return runningPool + LP.physicalStat
-      // let LpStat = 0
-      // if(Array.isArray(LP.stat)) {
-      //   LpStat = LP.stat.reduce((pool, statArr) => {
-      //     if(statArr[1] == "p") { return pool + statArr[0]; }
-      //     else { return pool}
-      //   },0)
-      // }
-      // return runningPool + LpStat
     }, 0);
     if(physicalPool < this.SpentPhysical) {
       this.RebalancePhysicalAttributes(physicalPool)
@@ -778,5 +761,6 @@ class Character {
   }
 }
 
-
-export const CharacterData = reactive(new Character(dwarfStartingStats, AvailableLifepathList))
+export const CharacterData = reactive(new Character(
+  DwarfStock
+))
