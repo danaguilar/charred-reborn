@@ -13,7 +13,59 @@ export const LeadsToIcons = {
   "Guilder": new LeadIcon("Guilder","coin"),
   "Artificer":new LeadIcon("Artificer", "gem"),
   "Noble": new LeadIcon("Noble","bank2"),
-  "Clansman": new LeadIcon("Clansman","hammer")
+  "Clansman": new LeadIcon("Clansman","hammer"),
+  "Etharch": new LeadIcon("Etharch","moon-stars-fill"),
+  "Wilderlands": new LeadIcon("Wilderlands","tree-fill"),
+  "Protector": new LeadIcon("Protector","shield-shaded"),
+  "Citadel": new LeadIcon("Citadel","bank")
+}
+
+const LifepathRequirmentFunctions = {
+  CheckLifepathNameWithRequirement: function(lifepath, requirement) {
+    return lifepath.RequiredName() == requirement || lifepath.RequiredNameWithSetting() == requirement
+  },
+
+  CheckListOfRequirements: function(requirement_expr) {
+    console.log(`This: ${this}`)
+    return requirement_expr.some(requirement => {
+      return this.CheckRequirement(requirement)
+    }, this)
+  },
+
+  CheckSingleRequirement: function(requirement_expr) {
+    for(let index in this.CharacterData.Lifepaths) {
+      if(this.CheckLifepathNameWithRequirement(this.CharacterData.Lifepaths[index], requirement_expr)) return true
+    }
+    return false
+  },
+
+  and: function(requirement_expr) {
+    return requirement_expr.every(requirement => {
+      return this.CheckRequirement(requirement)
+    },this)
+  },
+
+  or: function(requirement_expr) {
+    return requirement_expr.some(requirement => {
+      return this.CheckRequirement(requirement)
+    },this)
+  },
+
+  trait: function(requirement_expr) {
+    // Placeholder until we check traits
+    return true
+  },
+
+  has_n_lifepaths_in: function(requirement_expr) {
+    const number_of_lifepaths = requirement_expr[0]
+    return number_of_lifepaths <= requirement_expr.slice(1).filter(requirement_expr => {
+      return this.CheckRequirement(requirement_expr)
+    }, this).length
+  },
+
+  age_greater_than: function(requirement_expr) {
+    return requirement_expr >= this.CharacterData.GetAge() 
+  }
 }
 
 export class LifepathList {
@@ -25,10 +77,25 @@ export class LifepathList {
         LPList.push(new Lifepath(rawJSONdata[setting][lptitle],setting, lptitle))
       }
       this.SettingList[setting] = LPList
+      this.CharacterData = {}
+    }
+  }
+
+  CheckRequirement(requirement_expr) {
+    if(requirement_expr[0][0] == '+') {
+      const func_name = requirement_expr[0].slice(1)
+      return this[func_name](requirement_expr.slice(1))
+    }
+    if(Array.isArray(requirement_expr)) {
+      return this.CheckListOfRequirements(requirement_expr)
+    }
+    else {
+      return this.CheckSingleRequirement.call(this,requirement_expr)
     }
   }
 
   ActivateSettings(CharacterData) {
+    this.CharacterData = CharacterData
     const settingsList  = CharacterData.availableSettings
     const currentLifepaths = CharacterData.Lifepaths
     for(let setting in this.SettingList) {
@@ -37,25 +104,7 @@ export class LifepathList {
         lifepath.disabled = settingsList.indexOf(setting) == -1 || lifepath.isBornLP
 
         if(!lifepath.disabled && lifepath.requires_expr) {
-          let requirmentsMet = false
-          for(let requirmentIndex in lifepath.requires_expr) {
-            const requirment = lifepath.requires_expr[requirmentIndex]
-            for(let lp in currentLifepaths) {
-              if(requirment.indexOf(":") != -1) {
-                if(currentLifepaths[lp].RequiredNameWithSetting() == requirment) {
-                  requirmentsMet = true
-                  break
-                }
-              }
-              else {
-                if(currentLifepaths[lp].RequiredName() == requirment) {
-                  requirmentsMet = true
-                  break
-                }
-              }
-            }
-            if(requirmentsMet) break
-          }
+          const requirmentsMet = this.CheckRequirement(lifepath.requires_expr)
           lifepath.disabled = !requirmentsMet
         }
       }
@@ -83,6 +132,8 @@ export class LifepathList {
   }
 }
 
+Object.setPrototypeOf(LifepathList.prototype, LifepathRequirmentFunctions);
+
 export class Lifepath {
   constructor(lifePathData, lifepathSetting, lifepathTitle) {
     this.id = lifepathTitle,
@@ -96,7 +147,11 @@ export class Lifepath {
     this.physicalChoice = 0,
     this.generalSkillPts = 0,
     this.skillpts = 0,
-    this.leads = lifePathData.leads.map(lead => LeadsToIcons[lead]),
+    this.leads = lifePathData.leads ? lifePathData.leads.map(lead => {
+      const icon = LeadsToIcons[lead]
+      if(!icon) console.log(`Update icon list for ${lead}`)
+      return icon
+    }) : []
     this.requires = lifePathData.requires,
     this.requires_expr = lifePathData.requires_expr
     this.setting = lifepathSetting,
@@ -211,3 +266,4 @@ export class Lifepath {
     }
   }
 }
+

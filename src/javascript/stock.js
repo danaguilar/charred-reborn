@@ -1,11 +1,12 @@
 import skillsJSON from 'data/gold/skills.json'
 import traitsJSON from 'data/gold/traits.json'
 import dwarfJSON from 'data/stock/dwarf.json'
+import elfJSON from 'data/stock/elf.json'
 
 import { SkillList, TraitList, ResourceList } from 'js/core'
 import { LifepathList, LeadsToIcons } from 'js/lifepath'
 
-export class Stock {
+class Stock {
   constructor(stockJSON) {
     this.name = stockJSON["Name"]
     this.startingStats = stockJSON["StartingStats"]
@@ -17,4 +18,5 @@ export class Stock {
   }
 }
 
-export const DwarfStock = new Stock(dwarfJSON)
+// export const DwarfStock = new Stock(dwarfJSON)
+export const ElfStock = new Stock(elfJSON)

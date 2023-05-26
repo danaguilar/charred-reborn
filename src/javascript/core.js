@@ -280,16 +280,22 @@ export class Skill {
   }
 }
 
+const defaultTraitData = {
+  type: "character", 
+  desc: "",
+  cost: 1,
+}
+
 export class Trait {
   constructor(traitName, isRequired) {
-    if(!traitsData[traitName]) console.log(traitName)
+    const traitData = traitsData[traitName] ? traitsData[traitName] : defaultTraitData
     this.name = traitName,
-    this.type = traitsData[traitName].type,
-    this.desc =traitsData[traitName].desc,
+    this.type = traitData.type,
+    this.desc = traitData.desc,
     this.required = isRequired,
-    this.bonus = traitsData[traitName].bonus,
-    this.cost = traitsData[traitName].cost,
-    this.restrict = traitsData[traitName].restrict,
+    this.bonus = traitData.bonus,
+    this.cost = traitData.cost,
+    this.restrict = traitData.restrict,
     this.active = true
     this.bought = isRequired
   }
