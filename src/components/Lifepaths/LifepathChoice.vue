@@ -64,12 +64,12 @@
             {{ lifepathData.time }}
           </b-col>
           <b-col cols="2">
-            <span v-for="index in lifepathData.physicalStat">
-              <b-icon icon="plus"></b-icon>
+            <span v-for="index in Math.abs(lifepathData.physicalStat)">
+              <b-icon :icon="lifepathData.physicalStat > 0 ? 'plus' : 'dash'"></b-icon>
               <b-icon icon="heart-fill" ></b-icon>
             </span>
-            <span v-for="index in lifepathData.mentalStat">
-              <b-icon icon="plus"></b-icon>
+            <span v-for="index in Math.abs(lifepathData.mentalStat)">
+              <b-icon :icon="lifepathData.mentalStat > 0 ? 'plus' : 'dash'"></b-icon>
               <b-icon icon="lightbulb-fill" ></b-icon>
             </span>
             <span v-if="lifepathData.chooseStat">

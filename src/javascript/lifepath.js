@@ -17,7 +17,16 @@ export const LeadsToIcons = {
   "Etharch": new LeadIcon("Etharch","moon-stars-fill"),
   "Wilderlands": new LeadIcon("Wilderlands","tree-fill"),
   "Protector": new LeadIcon("Protector","shield-shaded"),
-  "Citadel": new LeadIcon("Citadel","bank")
+  "Citadel": new LeadIcon("Citadel","bank"),
+  "Servitude": new LeadIcon("Servitude","lock-fill"),
+  "Soldier": new LeadIcon("Soldier","shield-fill-x"),
+  "Seafaring": new LeadIcon("Seafaring","compass"),
+  "Religious": new LeadIcon("Religious","sunrise"),
+  "Villager": new LeadIcon("Village","house-fill"),
+  "Peasant": new LeadIcon("Peasant","person-fill"),
+  "City": new LeadIcon("City","building"),
+  "Court": new LeadIcon("Court","briefcase-fill"),
+  "Rats": new LeadIcon("Rats","bug-fill"),
 }
 
 const LifepathRequirmentFunctions = {
@@ -61,6 +70,19 @@ const LifepathRequirmentFunctions = {
     return number_of_lifepaths <= requirement_expr.slice(1).filter(requirement_expr => {
       return this.CheckRequirement(requirement_expr)
     }, this).length
+
+  },
+
+  has_n_lifepaths_or_more: function(requirement_expr) {
+    return requirement_expr >= this.CharacterData.Lifepaths.length
+  },
+
+  has_n_lifepaths_or_less: function(requirement_expr) {
+    return requirement_expr <= this.CharacterData.Lifepaths.length
+  },
+
+  sex: function(requirement_expr) {
+    return true
   },
 
   age_greater_than: function(requirement_expr) {
@@ -84,6 +106,7 @@ export class LifepathList {
   CheckRequirement(requirement_expr) {
     if(requirement_expr[0][0] == '+') {
       const func_name = requirement_expr[0].slice(1)
+      if(!this[func_name]) console.log(`Create new function for ${func_name}`)
       return this[func_name](requirement_expr.slice(1))
     }
     if(Array.isArray(requirement_expr)) {
@@ -156,7 +179,7 @@ export class Lifepath {
     this.requires_expr = lifePathData.requires_expr
     this.setting = lifepathSetting,
     this.key_leads = lifePathData.key_leads
-    this.isBornLP = lifepathTitle.indexOf("Born") != -1 ? true : false
+    this.isBornLP = lifepathTitle.indexOf("Born") != -1 || lifepathTitle.indexOf('Son of') != -1? true : false
     this.new_setting = false
     this.disabled = false
     this.traits = []
@@ -208,6 +231,7 @@ export class Lifepath {
   }
 
   SetupLpTraits(lpTraitData) {
+    if(!lpTraitData) return
     this.traitPts = lpTraitData[0]
     let traitGroup = []
     for(let j = 1; j < lpTraitData.length; j++) {

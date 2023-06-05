@@ -3,7 +3,7 @@ import { Lifepath } from 'js/lifepath'
 import { Shade, Attribute, StatType, Skill, Trait, Reputation, Affiliation, Relationship } from 'js/core'
 import { HealthQuestionnaire, SteelQuestionnaire } from 'js/questionnaire'
 
-import {  ElfStock } from 'js/stock'
+import {  ElfStock, ManStock, DwarfStock } from 'js/stock'
 
 
 class Character {
@@ -762,6 +762,7 @@ class Character {
 }
 
 export const CharacterData = reactive(new Character(
-  // DwarfStock
-  ElfStock
+  DwarfStock
+  // ElfStock
+  // ManStock
 ))
